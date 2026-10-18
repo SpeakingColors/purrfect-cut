@@ -7,6 +7,9 @@ Audio editor as VST and desktop app from one install (Linux, Windows, macOS).
 ## Status
 Early work in progress. Free and open source. Donations welcome (link coming).
 
+## Docs
+- [Roadmap](ROADMAP.md)
+
 ## License
 AGPL-3.0-or-later, see [LICENSE](LICENSE).
 
