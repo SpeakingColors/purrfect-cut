@@ -1,0 +1,23 @@
+# Intro
+Purrfect Cut is an audio editor and a sampler with FX, as a desktop app and a VST3 plugin. It is not a pitch corrector or an autotune.
+
+# Quick start: the editor app (Purrfect Cut)
+- Open a file. Select a part of the waveform and cut, copy, paste, trim, silence, fade, change gain, normalise, reverse, invert or remove DC. Undo goes back 25 steps. Save as a 24 bit WAV.
+- Zoom with the mouse wheel around the pointer, scroll with shift or the sideways wheel, or use the zoom in, out, fit and selection buttons.
+
+# Quick start: the sampler (Purrfect Cut Sampler, VST3 and standalone)
+- Load a sample, then play it from MIDI. The sample path is saved in your project (the audio is not).
+- Note: the sampler window is the plain list of controls for now. Every control is an automatable host parameter. The designed window is in the mockup in the repository and is not built yet.
+
+# Sampler
+- Mode: Keys (pitch from the note) or Slices (each key plays a slice). Voices: polyphonic or mono with Glide. Root note, Tune, Fine tune and Bend.
+- Sample: Region start and end, Start, Loop with Loop start and end, Reverse, Slice by (even or transients) and Slices count.
+- Amp: Attack, Decay, Sustain, Release, Gain, Velocity, Pan.
+- Filter: type (off, low, high, band pass), Cutoff, Resonance, Env amount, Key track.
+
+# FX chain
+- Drive (Drive, Transistor, Fuzz and Mix), Squash, Duck (amount, shape, rate, tempo or free Hz, target, source shape or sidechain, restart on key), Delay (time, feedback, shift, shimmer, damping, mix), Reverb (type, decay, size, pre-delay, modulation, damping, shimmer pitch and amount, mix), Width and Output level.
+
+# Recommendations
+- Use Slices mode on drum loops, and Duck with a sidechain input to pump a pad under a kick.
+- Not tried on very long files or tuned by ear yet: please report problems on GitHub.
