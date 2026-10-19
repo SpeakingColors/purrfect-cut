@@ -35,7 +35,7 @@ Call Stack (most recent call first):
   CMakeLists.txt:33 (juce_add_plugin)
 
 
--- Configuring done (125.9s)
+-- Configuring done (128.6s)
 -- Generating done (0.2s)
 CMake Warning (unused-cli):
   Manually-specified variables were not used by the project:
@@ -61,28 +61,28 @@ Test project D:/a/purrfect-cut/purrfect-cut/build
     Start 1: core
 1/2 Test #1: core .............................   Passed    0.02 sec
     Start 2: sampler_and_view
-2/2 Test #2: sampler_and_view .................   Passed    1.15 sec
+2/2 Test #2: sampler_and_view .................   Passed    1.16 sec
 
 100% tests passed out of 2
 
-Total Test time (real) =   1.21 sec
+Total Test time (real) =   1.22 sec
 MSBuild version 18.10.1-1.26427.6+3cd27c13e for .NET Framework
 
   Checking File Globs
-  Generating PurrfectCutSampler_artefacts/JuceLibraryCode/PurrfectCutSampler_resources.rc
   Generating PurrfectCut_artefacts/JuceLibraryCode/PurrfectCut_resources.rc
+  Generating PurrfectCutSampler_artefacts/JuceLibraryCode/PurrfectCutSampler_resources.rc
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
   Building VST3 manifest helper for PurrfectCutSampler
-  PurrfectCut_rc_lib.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut_rc_lib.dir\Release\PurrfectCut_rc_lib.lib
   PurrfectCutSampler_rc_lib.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_rc_lib.dir\Release\PurrfectCutSampler_rc_lib.lib
+  PurrfectCut_rc_lib.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut_rc_lib.dir\Release\PurrfectCut_rc_lib.lib
   -- The CXX compiler identification is MSVC 19.51.36260.0
   -- Detecting CXX compiler ABI info
   -- Detecting CXX compiler ABI info - done
   -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
   -- Detecting CXX compile features
   -- Detecting CXX compile features - done
-  -- Configuring done (1.9s)
+  -- Configuring done (2.1s)
   -- Generating done (0.0s)
   -- Build files have been written to: D:/a/purrfect-cut/purrfect-cut/build/vst3_helpers/PurrfectCutSampler
   MSBuild version 18.10.1-1.26427.6+3cd27c13e for .NET Framework
@@ -132,25 +132,25 @@ D:\a\purrfect-cut\purrfect-cut\build\_deps\juce-src\modules\juce_gui_basics\juce
   PurrfectCutSampler_VST3.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\VST3\Purrfect Cut Sampler.vst3\Contents\x86_64-win\Purrfect Cut Sampler.vst3
   removing moduleinfo.json
   creating D:/a/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3/Contents/Resources/moduleinfo.json
-  test_core.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_core.exe
   test_more.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_more.exe
+  test_core.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_core.exe
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-  Main.cpp
   juce_audio_plugin_client_AAX.cpp
-  juce_audio_utils.cpp
   juce_audio_plugin_client_AAX_utils.cpp
   juce_audio_plugin_client_ARA.cpp
   juce_audio_plugin_client_LV2.cpp
   juce_audio_plugin_client_Standalone.cpp
-  juce_audio_processors.cpp
   juce_audio_plugin_client_Unity.cpp
   juce_audio_plugin_client_VST2.cpp
   juce_audio_plugin_client_VST3.cpp
+  Main.cpp
+  juce_audio_utils.cpp
+  juce_audio_processors.cpp
   juce_gui_extra.cpp
   juce_gui_basics.cpp
-  juce_gui_basics_2.cpp
   PurrfectCutSampler_Standalone.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\Standalone\Purrfect Cut Sampler.exe
+  juce_gui_basics_2.cpp
   juce_gui_basics_3.cpp
   juce_gui_basics_4.cpp
   juce_gui_basics_5.cpp
@@ -170,7 +170,7 @@ D:\a\purrfect-cut\purrfect-cut\build\_deps\juce-src\modules\juce_gui_basics\juce
   PurrfectCut.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut_artefacts\Release\Purrfect Cut.exe
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
 Started validating: D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\VST3\Purrfect Cut Sampler.vst3
-Random seed: 0x2369614
+Random seed: 0x7e35961
 Validation started
 Strictness level: 5
 -----------------------------------------------------------------
