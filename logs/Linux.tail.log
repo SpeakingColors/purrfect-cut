@@ -1,124 +1,400 @@
-all tests passed
--- The C compiler identification is GNU 13.3.0
--- The CXX compiler identification is GNU 13.3.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
--- Checking for module 'alsa'
---   Found alsa, version 1.2.11
--- Checking for modules 'freetype2;fontconfig'
---   Found freetype2, version 26.1.20
---   Found fontconfig, version 2.15.0
--- Checking for module 'gl'
---   Found gl, version 1.2
--- Checking for module 'libcurl'
---   Package 'libcurl', required by 'virtual:world', not found
--- Checking for modules 'webkit2gtk-4.0;gtk+-x11-3.0'
---   Package 'webkit2gtk-4.0', required by 'virtual:world', not found
---   Package 'gtk+-x11-3.0', required by 'virtual:world', not found
--- Configuring juceaide
--- Building juceaide
--- Exporting juceaide
--- Testing juceaide
--- Finished setting up juceaide
-CMake Warning at build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:1769 (message):
-  Target PurrfectCut has JUCE_BUNDLE_ID 'com.Studio 87.PurrfectCut', which
-  contains spaces.  Use the BUNDLE_ID option to specify a valid ID.
-Call Stack (most recent call first):
-  build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:2165 (_juce_set_fallback_properties)
-  build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:2237 (_juce_initialise_target)
-  CMakeLists.txt:9 (juce_add_gui_app)
-
-
--- Configuring done (94.8s)
--- Generating done (0.0s)
--- Build files have been written to: /home/runner/work/purrfect-cut/purrfect-cut/build
-[  4%] Building CXX object CMakeFiles/PurrfectCut.dir/src/app/Main.cpp.o
-[  8%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.cpp.o
-[ 17%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
-[ 17%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
 In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:6:
 /home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::del()’:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:55:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   55 |         if (!hasSel()) return false; const size_t a = selA, b = selB; auto n = std::make_shared<Audio>();
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:60:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   60 |         if (!hasSel()) return false; const size_t a = selA; Edit e = begin(); splice(e, a, selB - a, Audio {}); finish(e); selA = selB = a; cursor = a; e_after(); return true;
       |         ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:55:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   55 |         if (!hasSel()) return false; const size_t a = selA, b = selB; auto n = std::make_shared<Audio>();
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:60:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   60 |         if (!hasSel()) return false; const size_t a = selA; Edit e = begin(); splice(e, a, selB - a, Audio {}); finish(e); selA = selB = a; cursor = a; e_after(); return true;
       |                                      ^~~~~
 /home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::paste()’:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:63:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   63 |         if (!hasClip() || !cur_) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; auto n = std::make_shared<Audio>();
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:64:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   64 |         if (!hasClip() || empty()) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; Edit e = begin(); splice(e, a, b - a, clip_); finish(e);
       |         ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:63:48: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   63 |         if (!hasClip() || !cur_) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; auto n = std::make_shared<Audio>();
-      |                                                ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:64:50: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   64 |         if (!hasClip() || empty()) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; Edit e = begin(); splice(e, a, b - a, clip_); finish(e);
+      |                                                  ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::replace(const purrfect::Audio&)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:70:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   70 |         if (empty() || a.size() == 0) return false; const auto [x, y] = range(); Edit e = begin(); splice(e, x, y - x, a); finish(e); selA = x; selB = x + a.size(); cursor = x; e_after(); return true;
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:70:53: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   70 |         if (empty() || a.size() == 0) return false; const auto [x, y] = range(); Edit e = begin(); splice(e, x, y - x, a); finish(e); selA = x; selB = x + a.size(); cursor = x; e_after(); return true;
+      |                                                     ^~~~~
 /home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::normalize(float)’:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:76:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   76 |         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:78:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   78 |         if (empty()) return false; const auto [a, b] = range(); float pk = 0; for (size_t i = a; i < b; ++i) pk = std::max(pk, std::max(std::fabs(cur_.L[i]), std::fabs(cur_.R[i])));
       |         ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:76:39: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   76 |         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:78:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   78 |         if (empty()) return false; const auto [a, b] = range(); float pk = 0; for (size_t i = a; i < b; ++i) pk = std::max(pk, std::max(std::fabs(cur_.L[i]), std::fabs(cur_.R[i])));
+      |                                    ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:79:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   79 |         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:79:39: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   79 |         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
       |                                       ^~~~~~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::fx(F, bool, bool)’:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:104:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  104 |         if (empty()) return false; if (needSel && !hasSel()) return false;
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::undo()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:86:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   86 |         if (undo_.empty()) return false; Edit e = std::move(undo_.back()); undo_.pop_back();
       |         ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:104:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  104 |         if (empty()) return false; if (needSel && !hasSel()) return false;
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:86:42: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   86 |         if (undo_.empty()) return false; Edit e = std::move(undo_.back()); undo_.pop_back();
+      |                                          ^~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::redo()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:91:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   91 |         if (redo_.empty()) return false; Edit e = std::move(redo_.back()); redo_.pop_back();
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:91:42: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   91 |         if (redo_.empty()) return false; Edit e = std::move(redo_.back()); redo_.pop_back();
+      |                                          ^~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::fx(F, bool, bool)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:135:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  135 |         if (empty()) return false; if (needSel && !hasSel()) return false;
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:135:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  135 |         if (empty()) return false; if (needSel && !hasSel()) return false;
       |                                    ^~
 /home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In function ‘bool purrfect::readWav(const std::string&, Audio&, double&)’:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:145:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  145 |             if (!in) return false; sr = rate; return true;
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:181:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  181 |             if (!in) return false; sr = rate; return true;
       |             ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:145:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  145 |             if (!in) return false; sr = rate; return true;
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h: In member function ‘void purrfect::FxChain::refresh(const float*)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:121:21: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  121 |         if (v[dr_d] != mkD_ || v[dr_x] != mkX_ || v[dr_f] != mkF_) { mkD_ = v[dr_d]; mkX_ = v[dr_x]; mkF_ = v[dr_f]; mk_ = purrMakeup(mkD_, mkX_, mkF_); }
+      |             ~~~~~~~~^~~~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:121:40: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  121 |         if (v[dr_d] != mkD_ || v[dr_x] != mkX_ || v[dr_f] != mkF_) { mkD_ = v[dr_d]; mkX_ = v[dr_x]; mkF_ = v[dr_f]; mk_ = purrMakeup(mkD_, mkX_, mkF_); }
+      |                                ~~~~~~~~^~~~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:121:59: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  121 |         if (v[dr_d] != mkD_ || v[dr_x] != mkX_ || v[dr_f] != mkF_) { mkD_ = v[dr_d]; mkX_ = v[dr_x]; mkF_ = v[dr_f]; mk_ = purrMakeup(mkD_, mkX_, mkF_); }
+      |                                                   ~~~~~~~~^~~~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:181:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  181 |             if (!in) return false; sr = rate; return true;
       |                                    ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp: In lambda function:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:91:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   91 |             if (!c.getResult().existsAsFile()) return; std::unique_ptr<juce::AudioFormatReader> r(fm.createReaderFor(c.getResult())); if (!r || r->lengthInSamples > (juce::int64) r->sampleRate * 1800) return;
-      |             ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:91:56: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   91 |             if (!c.getResult().existsAsFile()) return; std::unique_ptr<juce::AudioFormatReader> r(fm.createReaderFor(c.getResult())); if (!r || r->lengthInSamples > (juce::int64) r->sampleRate * 1800) return;
-      |                                                        ^~~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp: In member function ‘void MainComponent::save()’:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:98:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   98 |         if (doc.empty()) return; chooser = std::make_unique<juce::FileChooser>("Save as 24 bit WAV", juce::File(), "*.wav");
+In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:7:
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/View.h: In member function ‘void purrfect::View::show(size_t, size_t, double)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/View.h:26:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   26 |         if (b <= a + 1) return; const double len = (double) (b - a), m = len * marginFraction; spp = (len + 2 * m) / (double) width; clamp(); start = (double) a - m; clamp();
       |         ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:98:34: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   98 |         if (doc.empty()) return; chooser = std::make_unique<juce::FileChooser>("Save as 24 bit WAV", juce::File(), "*.wav");
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/View.h:26:33: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   26 |         if (b <= a + 1) return; const double len = (double) (b - a), m = len * marginFraction; spp = (len + 2 * m) / (double) width; clamp(); start = (double) a - m; clamp();
+      |                                 ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h: In member function ‘void purrfect::SampleEngine::noteOn(int, float, const float*)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:156:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  156 |         if (!hasSource()) return; const size_t n = src_->size(); size_t a = (size_t) ((double) n * P[sm_rs]), b = (size_t) ((double) n * P[sm_re]); a = std::min(a, n - 1); b = std::min(std::max(b, a + 1), n);
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:156:35: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  156 |         if (!hasSource()) return; const size_t n = src_->size(); size_t a = (size_t) ((double) n * P[sm_rs]), b = (size_t) ((double) n * P[sm_re]); a = std::min(a, n - 1); b = std::min(std::max(b, a + 1), n);
+      |                                   ^~~~~
+In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:6,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginProcessor.h:8,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginEditor.h:4,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginEditor.cpp:1:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::del()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:60:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   60 |         if (!hasSel()) return false; const size_t a = selA; Edit e = begin(); splice(e, a, selB - a, Audio {}); finish(e); selA = selB = a; cursor = a; e_after(); return true;
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:60:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   60 |         if (!hasSel()) return false; const size_t a = selA; Edit e = begin(); splice(e, a, selB - a, Audio {}); finish(e); selA = selB = a; cursor = a; e_after(); return true;
+      |                                      ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp: In member function ‘virtual void Wave::mouseWheelMove(const juce::MouseEvent&, const juce::MouseWheelDetails&)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:79:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   79 |         if (doc.empty()) return; sync();
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:79:34: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   79 |         if (doc.empty()) return; sync();
+      |                                  ^~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::paste()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:64:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   64 |         if (!hasClip() || empty()) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; Edit e = begin(); splice(e, a, b - a, clip_); finish(e);
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:64:50: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   64 |         if (!hasClip() || empty()) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; Edit e = begin(); splice(e, a, b - a, clip_); finish(e);
+      |                                                  ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::replace(const purrfect::Audio&)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:70:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   70 |         if (empty() || a.size() == 0) return false; const auto [x, y] = range(); Edit e = begin(); splice(e, x, y - x, a); finish(e); selA = x; selB = x + a.size(); cursor = x; e_after(); return true;
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:70:53: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   70 |         if (empty() || a.size() == 0) return false; const auto [x, y] = range(); Edit e = begin(); splice(e, x, y - x, a); finish(e); selA = x; selB = x + a.size(); cursor = x; e_after(); return true;
+      |                                                     ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h: In member function ‘void purrfect::SampleEngine::process(const float*, const float*, const float*, float*, float*, int)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:189:17: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  189 |                 if (!v.on) continue; v.glo = kgl > 0.f ? v.glo * kgl : 0.f; if (std::fabs(v.glo) < 1e-4f) v.glo = 0.f;
+      |                 ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:189:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  189 |                 if (!v.on) continue; v.glo = kgl > 0.f ? v.glo * kgl : 0.f; if (std::fabs(v.glo) < 1e-4f) v.glo = 0.f;
+      |                                      ^
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::normalize(float)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:78:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   78 |         if (empty()) return false; const auto [a, b] = range(); float pk = 0; for (size_t i = a; i < b; ++i) pk = std::max(pk, std::max(std::fabs(cur_.L[i]), std::fabs(cur_.R[i])));
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:78:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   78 |         if (empty()) return false; const auto [a, b] = range(); float pk = 0; for (size_t i = a; i < b; ++i) pk = std::max(pk, std::max(std::fabs(cur_.L[i]), std::fabs(cur_.R[i])));
+      |                                    ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:79:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   79 |         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:79:39: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   79 |         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
+      |                                       ^~~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::undo()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:86:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   86 |         if (undo_.empty()) return false; Edit e = std::move(undo_.back()); undo_.pop_back();
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:86:42: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   86 |         if (undo_.empty()) return false; Edit e = std::move(undo_.back()); undo_.pop_back();
+      |                                          ^~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::redo()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:91:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   91 |         if (redo_.empty()) return false; Edit e = std::move(redo_.back()); redo_.pop_back();
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:91:42: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   91 |         if (redo_.empty()) return false; Edit e = std::move(redo_.back()); redo_.pop_back();
+      |                                          ^~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::fx(F, bool, bool)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:135:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  135 |         if (empty()) return false; if (needSel && !hasSel()) return false;
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:135:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  135 |         if (empty()) return false; if (needSel && !hasSel()) return false;
+      |                                    ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In function ‘bool purrfect::readWav(const std::string&, Audio&, double&)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:181:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  181 |             if (!in) return false; sr = rate; return true;
+      |             ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:181:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  181 |             if (!in) return false; sr = rate; return true;
+      |                                    ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp: In member function ‘void MainComponent::save()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:131:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  131 |         if (doc.empty()) return; chooser = std::make_unique<juce::FileChooser>("Save as 24 bit WAV", juce::File(), "*.wav");
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:131:34: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  131 |         if (doc.empty()) return; chooser = std::make_unique<juce::FileChooser>("Save as 24 bit WAV", juce::File(), "*.wav");
       |                                  ^~~~~~~
 /home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp: In lambda function:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:100:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  100 |             if (c.getResult() == juce::File()) return; const auto f = c.getResult().withFileExtension("wav");
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:133:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  133 |             if (c.getResult() == juce::File()) return; const auto f = c.getResult().withFileExtension("wav");
       |             ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:100:56: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  100 |             if (c.getResult() == juce::File()) return; const auto f = c.getResult().withFileExtension("wav");
+/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:133:56: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  133 |             if (c.getResult() == juce::File()) return; const auto f = c.getResult().withFileExtension("wav");
       |                                                        ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h: In member function ‘void purrfect::FxChain::refresh(const float*)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:121:21: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  121 |         if (v[dr_d] != mkD_ || v[dr_x] != mkX_ || v[dr_f] != mkF_) { mkD_ = v[dr_d]; mkX_ = v[dr_x]; mkF_ = v[dr_f]; mk_ = purrMakeup(mkD_, mkX_, mkF_); }
+      |             ~~~~~~~~^~~~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:121:40: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  121 |         if (v[dr_d] != mkD_ || v[dr_x] != mkX_ || v[dr_f] != mkF_) { mkD_ = v[dr_d]; mkX_ = v[dr_x]; mkF_ = v[dr_f]; mk_ = purrMakeup(mkD_, mkX_, mkF_); }
+      |                                ~~~~~~~~^~~~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:121:59: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  121 |         if (v[dr_d] != mkD_ || v[dr_x] != mkX_ || v[dr_f] != mkF_) { mkD_ = v[dr_d]; mkX_ = v[dr_x]; mkF_ = v[dr_f]; mk_ = purrMakeup(mkD_, mkX_, mkF_); }
+      |                                                   ~~~~~~~~^~~~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h: In member function ‘void purrfect::SampleEngine::noteOn(int, float, const float*)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:156:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  156 |         if (!hasSource()) return; const size_t n = src_->size(); size_t a = (size_t) ((double) n * P[sm_rs]), b = (size_t) ((double) n * P[sm_re]); a = std::min(a, n - 1); b = std::min(std::max(b, a + 1), n);
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:156:35: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  156 |         if (!hasSource()) return; const size_t n = src_->size(); size_t a = (size_t) ((double) n * P[sm_rs]), b = (size_t) ((double) n * P[sm_re]); a = std::min(a, n - 1); b = std::min(std::max(b, a + 1), n);
+      |                                   ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h: In member function ‘void purrfect::SampleEngine::process(const float*, const float*, const float*, float*, float*, int)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:189:17: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  189 |                 if (!v.on) continue; v.glo = kgl > 0.f ? v.glo * kgl : 0.f; if (std::fabs(v.glo) < 1e-4f) v.glo = 0.f;
+      |                 ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:189:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  189 |                 if (!v.on) continue; v.glo = kgl > 0.f ? v.glo * kgl : 0.f; if (std::fabs(v.glo) < 1e-4f) v.glo = 0.f;
+      |                                      ^
+[ 14%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
+[ 15%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.cpp.o
+[ 17%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
+[ 18%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
+[ 20%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
 [ 21%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
-[ 26%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
-[ 30%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
-[ 34%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
-[ 39%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
-[ 43%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.cpp.o
-[ 47%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
-[ 52%] Building C object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
-[ 56%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_events/juce_events.cpp.o
-[ 60%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core.cpp.o
-[ 65%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
-[ 69%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
-[ 73%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.cpp.o
-[ 78%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
-[ 82%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
-[ 86%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.cpp.o
-[ 91%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.cpp.o
-[ 95%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
-[100%] Linking CXX executable "PurrfectCut_artefacts/Release/Purrfect Cut"
-[100%] Built target PurrfectCut
+[ 22%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
+In file included from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_core/system/juce_StandardHeader.h:108,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_core/juce_core.h:215,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_graphics/juce_graphics.h:67,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.h:68,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp:55:
+/home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_core/system/juce_PlatformDefs.h:292:38: note: ‘#pragma message: This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored’
+  292 |  #define JUCE_COMPILER_WARNING(msg)  _Pragma (JUCE_STRINGIFY (message (msg)))
+      |                                      ^~~~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp:61:2: note: in expansion of macro ‘JUCE_COMPILER_WARNING’
+   61 |  JUCE_COMPILER_WARNING ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^~~~~~~~~~~~~~~~~~~~~
+[ 24%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
+[ 25%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
+[ 27%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
+[ 28%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
+[ 30%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
+[ 31%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
+[ 32%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
+[ 34%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.cpp.o
+[ 35%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.cpp.o
+[ 37%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
+[ 38%] Building C object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
+[ 40%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
+[ 41%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_events/juce_events.cpp.o
+[ 42%] Building C object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
+[ 44%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_core/juce_core.cpp.o
+[ 45%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_events/juce_events.cpp.o
+[ 47%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
+[ 48%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
+[ 50%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.cpp.o
+[ 51%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core.cpp.o
+[ 52%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
+[ 54%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
+[ 55%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
+[ 57%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
+[ 58%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.cpp.o
+[ 60%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.cpp.o
+[ 61%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.cpp.o
+[ 62%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
+[ 64%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
+[ 65%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.cpp.o
+[ 67%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.cpp.o
+[ 68%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
+[ 70%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.cpp.o
+[ 71%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
+[ 72%] Linking CXX static library "PurrfectCutSampler_artefacts/Release/libPurrfect Cut Sampler_SharedCode.a"
+[ 74%] Linking CXX executable "PurrfectCut_artefacts/Release/Purrfect Cut"
+[ 74%] Built target PurrfectCut
+[ 74%] Built target PurrfectCutSampler
+[ 75%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
+[ 77%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
+[ 78%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 80%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 82%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 82%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 85%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
+[ 85%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
+[ 90%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 90%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 87%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 91%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 94%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 94%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 95%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
+[ 97%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
+[ 98%] Linking CXX executable "PurrfectCutSampler_artefacts/Release/Standalone/Purrfect Cut Sampler"
+[ 98%] Built target PurrfectCutSampler_Standalone
+[100%] Linking CXX shared module "PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3/Contents/x86_64-linux/Purrfect Cut Sampler.so"
+removing moduleinfo.json
+creating /home/runner/work/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3/Contents/Resources/moduleinfo.json
+[100%] Built target PurrfectCutSampler_VST3
+Started validating: /home/runner/work/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3
+Random seed: 0x644955b
+Validation started
+Strictness level: 5
+-----------------------------------------------------------------
+Starting tests in: pluginval / Scan for plugins located in: /home/runner/work/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3...
+Num plugins found: 1
+
+Testing plugin: VST3-Purrfect Cut Sampler-1420462d-b96865f4
+Studio 87: Purrfect Cut Sampler v0.2.0
+Completed tests in pluginval / Scan for plugins located in: /home/runner/work/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3
+-----------------------------------------------------------------
+Starting tests in: pluginval / Open plugin (cold)...
+Completed tests in pluginval / Open plugin (cold)
+-----------------------------------------------------------------
+Starting tests in: pluginval / Open plugin (warm)...
+Running tests 1 times
+Completed tests in pluginval / Open plugin (warm)
+-----------------------------------------------------------------
+Starting tests in: pluginval / Plugin info...
+
+Plugin name: Purrfect Cut Sampler
+Alternative names: Purrfect Cut Sampler
+SupportsDoublePrecision: no
+Reported latency: 0
+Reported taillength: 8
+Completed tests in pluginval / Plugin info
+-----------------------------------------------------------------
+Starting tests in: pluginval / Plugin programs...
+Num programs: 0
+All program names checked
+Completed tests in pluginval / Plugin programs
+-----------------------------------------------------------------
+Starting tests in: pluginval / Editor...
+Completed tests in pluginval / Editor
+-----------------------------------------------------------------
+Starting tests in: pluginval / Open editor whilst processing...
+Completed tests in pluginval / Open editor whilst processing
+-----------------------------------------------------------------
+Starting tests in: pluginval / Audio processing...
+Testing with sample rate [44100] and block size [64]
+Testing with sample rate [44100] and block size [128]
+Testing with sample rate [44100] and block size [256]
+Testing with sample rate [44100] and block size [512]
+Testing with sample rate [44100] and block size [1024]
+Testing with sample rate [48000] and block size [64]
+Testing with sample rate [48000] and block size [128]
+Testing with sample rate [48000] and block size [256]
+Testing with sample rate [48000] and block size [512]
+Testing with sample rate [48000] and block size [1024]
+Testing with sample rate [96000] and block size [64]
+Testing with sample rate [96000] and block size [128]
+Testing with sample rate [96000] and block size [256]
+Testing with sample rate [96000] and block size [512]
+Testing with sample rate [96000] and block size [1024]
+Completed tests in pluginval / Audio processing
+-----------------------------------------------------------------
+Starting tests in: pluginval / Plugin state...
+Completed tests in pluginval / Plugin state
+-----------------------------------------------------------------
+Starting tests in: pluginval / Automation...
+Testing with sample rate [44100] and block size [64] and sub-block size [32]
+Testing with sample rate [44100] and block size [128] and sub-block size [32]
+Testing with sample rate [44100] and block size [256] and sub-block size [32]
+Testing with sample rate [44100] and block size [512] and sub-block size [32]
+Testing with sample rate [44100] and block size [1024] and sub-block size [32]
+Testing with sample rate [48000] and block size [64] and sub-block size [32]
+Testing with sample rate [48000] and block size [128] and sub-block size [32]
+Testing with sample rate [48000] and block size [256] and sub-block size [32]
+Testing with sample rate [48000] and block size [512] and sub-block size [32]
+Testing with sample rate [48000] and block size [1024] and sub-block size [32]
+Testing with sample rate [96000] and block size [64] and sub-block size [32]
+Testing with sample rate [96000] and block size [128] and sub-block size [32]
+Testing with sample rate [96000] and block size [256] and sub-block size [32]
+Testing with sample rate [96000] and block size [512] and sub-block size [32]
+Testing with sample rate [96000] and block size [1024] and sub-block size [32]
+Completed tests in pluginval / Automation
+-----------------------------------------------------------------
+Starting tests in: pluginval / Editor Automation...
+Completed tests in pluginval / Editor Automation
+-----------------------------------------------------------------
+Starting tests in: pluginval / Automatable Parameters...
+Completed tests in pluginval / Automatable Parameters
+-----------------------------------------------------------------
+Starting tests in: pluginval / auval...
+Completed tests in pluginval / auval
+-----------------------------------------------------------------
+Starting tests in: pluginval / vst3 validator...
+INFO: Skipping vst3 validator as validator path hasn't been set
+Completed tests in pluginval / vst3 validator
+-----------------------------------------------------------------
+Starting tests in: pluginval / Basic bus...
+Completed tests in pluginval / Basic bus
+-----------------------------------------------------------------
+Starting tests in: pluginval / Listing available buses...
+Inputs:
+	Named layouts: Stereo
+	Discrete layouts: None
+Outputs:
+	Named layouts: Stereo
+	Discrete layouts: None
+Main bus num input channels: 0
+Main bus num output channels: 2
+Completed tests in pluginval / Listing available buses
+-----------------------------------------------------------------
+Starting tests in: pluginval / Enabling all buses...
+Completed tests in pluginval / Enabling all buses
+-----------------------------------------------------------------
+Starting tests in: pluginval / Disabling non-main busses...
+Completed tests in pluginval / Disabling non-main busses
+-----------------------------------------------------------------
+Starting tests in: pluginval / Restoring default layout...
+Main bus num input channels: 0
+Main bus num output channels: 2
+Completed tests in pluginval / Restoring default layout
+SUCCESS
