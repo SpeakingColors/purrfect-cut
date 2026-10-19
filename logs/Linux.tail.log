@@ -38,13 +38,13 @@ Call Stack (most recent call first):
   CMakeLists.txt:9 (juce_add_gui_app)
 
 
--- Configuring done (89.7s)
+-- Configuring done (94.8s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/runner/work/purrfect-cut/purrfect-cut/build
 [  4%] Building CXX object CMakeFiles/PurrfectCut.dir/src/app/Main.cpp.o
 [  8%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.cpp.o
-[ 13%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
 [ 17%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
+[ 17%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
 In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:6:
 /home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::del()’:
 /home/runner/work/purrfect-cut/purrfect-cut/src/app/../core/EditDoc.h:55:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
