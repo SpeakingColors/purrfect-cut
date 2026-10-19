@@ -27,7 +27,7 @@ jobs:
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
       - name: Core tests (editing model, sampler engine, FX, zoom; no JUCE)
         run: |
-          cmake --build build --config Release --target test_core test_more 2>&1 | tee -a ci.log; [ ${PIPESTATUS[0]} -eq 0 ] || exit 1
+          cmake --build build --config Release --target test_core test_more test_pitch 2>&1 | tee -a ci.log; [ ${PIPESTATUS[0]} -eq 0 ] || exit 1
           ctest --test-dir build -C Release --output-on-failure 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
       - name: Build (desktop app and VST3 sampler)
         run: cmake --build build --config Release --parallel 4 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}

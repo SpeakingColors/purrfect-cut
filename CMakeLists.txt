@@ -7,8 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 enable_testing()
 add_executable(test_core tests/test_core.cpp)
 add_executable(test_more tests/test_more.cpp)
+add_executable(test_pitch tests/test_pitch.cpp)
 add_test(NAME core COMMAND test_core)
 add_test(NAME sampler_and_view COMMAND test_more)
+add_test(NAME pitch COMMAND test_pitch)
 
 # Desktop app and sampler plugin. Pass -DPC_JUCE_DIR=/path/to/JUCE to use a local JUCE, otherwise JUCE is fetched.
 option(PC_BUILD_JUCE "Build the desktop app and the VST3 sampler" ON)

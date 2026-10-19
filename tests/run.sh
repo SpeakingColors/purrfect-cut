@@ -6,3 +6,5 @@ g++ -std=c++17 -O2 -Wall -Wextra -Wno-misleading-indentation -o /tmp/purrfect_te
 /tmp/purrfect_test
 g++ -std=c++17 -O2 -Wall -Wextra -Wno-misleading-indentation -o /tmp/purrfect_test_more test_more.cpp
 /tmp/purrfect_test_more
+g++ -std=c++17 -O2 -Wall -Wextra -Wno-misleading-indentation -o /tmp/purrfect_test_pitch test_pitch.cpp
+/tmp/purrfect_test_pitch

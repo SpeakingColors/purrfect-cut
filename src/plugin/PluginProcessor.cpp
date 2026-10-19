@@ -87,6 +87,8 @@ void PurrfectSamplerProcessor::timerCallback()
 {
     { const juce::SpinLock::ScopedLockType l(lock); if (!pendingFlag) pending.reset(); }   // free the buffer the audio thread has let go of
     recomputeSlices();
+    const bool pc = apvts.getRawParameterValue("pc_on")->load() > 0.5f || apvts.getRawParameterValue("hm_on")->load() > 0.5f;   // Auto-Tune and Harmony delay the sound by a fixed amount: tell the host
+    const int lat = pc ? engine.pitchLatency() : 0; if (lat != getLatencySamples()) setLatencySamples(lat);
 }
 
 void PurrfectSamplerProcessor::recomputeSlices()

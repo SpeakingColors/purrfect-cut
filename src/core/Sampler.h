@@ -6,6 +6,7 @@
 #include "EditDoc.h"
 #include "Params.h"
 #include "Reverb.h"
+#include "Pitch.h"
 #include <array>
 
 namespace purrfect {
@@ -146,7 +147,7 @@ private:
 class SampleEngine {
 public:
     static constexpr int kVoices = 16;
-    void prepare(double rate) { sr_ = rate; fx_.prepare(rate); held_.reserve(64); allOff(); for (auto& v : voices_) v.on = false; }
+    void prepare(double rate) { sr_ = rate; fx_.prepare(rate); pitch_.prepare(rate); pcWas_ = false; held_.reserve(64); allOff(); for (auto& v : voices_) v.on = false; }
     // The sample. Audio thread only. srcRate is the sample's own rate; playback is corrected for it.
     void setSource(const Audio* a, double srcRate) { for (auto& v : voices_) v.on = false; src_ = a; srcRate_ = srcRate > 0 ? srcRate : sr_; }
     void setSlices(const SliceMap& m) { slices_ = m; }
@@ -179,6 +180,7 @@ public:
     // Renders n samples into oL/oR. sc may be null (no sidechain input). P is the parameter array (kParamCount values).
     void process(const float* P, const float* scL, const float* scR, float* oL, float* oR, int n) {
         fx_.refresh(P); const bool prev = P[fx_prev] > 0.5f;
+        pp_ = PitchParams::fromParams(P); const bool pcOn = pp_.active(); if (pcOn && !pcWas_) pitch_.reset(); pcWas_ = pcOn;   // auto-tune / harmony / robot sit between the sampler (plus sidechain input) and the FX
         const float gainV = std::pow(10.f, P[sm_gain] / 20.f), velA = P[sm_vel], pl = std::cos((P[sm_pan] + 1.f) * 0.25f * 3.14159265f) * 1.414f, pr = std::sin((P[sm_pan] + 1.f) * 0.25f * 3.14159265f) * 1.414f;
         const float aA = 1.f / std::max(2.f, P[sm_a] * 0.001f * (float) sr_), kD = 1.f - std::exp(-1.f / (std::max(1.f, P[sm_d]) * 0.001f * (float) sr_ / 3.5f)), kR = std::exp(-1.f / (std::max(2.f, P[sm_r]) * 0.001f * (float) sr_ / 4.6f)), sus = P[sm_s];
         const float tuneC = P[sm_tune] + P[sm_fine] / 100.f + P[sm_bend] + bendLive_; const bool slice = (int) P[sm_mode] == MODE_SLICES; const int ft = (int) P[sm_ft];
@@ -215,6 +217,7 @@ public:
             sL *= pl; sR *= pr;
             const float aL = scL ? scL[i] : 0.f, aR = scR ? scR[i] : 0.f;
             float l = sL, r = sR; if (prev) { l += aL; r += aR; }
+            if (pcOn) pitch_.tick(l, r, pp_);
             fx_.tick(P, l, r, aL, aR);
             // soft safety above -1 dB
             auto soft = [](float y) { const float a = std::fabs(y); return a > 0.9f ? (y < 0 ? -1.f : 1.f) * (0.9f + 0.1f * std::tanh((a - 0.9f) / 0.1f)) : y; };
@@ -222,6 +225,7 @@ public:
         }
         if (activeVoices() == 0 && energy < 1e-12f * (float) n) { quiet_ += n; if (quiet_ > (long) (sr_ * 12)) sleeping_ = true; } else quiet_ = 0;
     }
+    int pitchLatency() const { return pitch_.latency(); }   // samples of delay while Auto-Tune or Harmony is on
     bool asleep() const { return sleeping_ && activeVoices() == 0; }
     void reset() { fx_.reset(); allOff(); for (auto& v : voices_) v.on = false; quiet_ = 0; sleeping_ = false; }
 private:
@@ -230,7 +234,7 @@ private:
         double pos = 0, a = 0, b = 0, ls = 0, le = 0; int dir = 1; unsigned long age = 0;
     };
     double sr_ = 48000, srcRate_ = 48000; const Audio* src_ = nullptr; SliceMap slices_; Voice voices_[kVoices]; std::vector<int> held_; unsigned long age_ = 0;
-    bool sustain_ = false, sleeping_ = false; float bendLive_ = 0; long quiet_ = 0; FxChain fx_;
+    bool sustain_ = false, sleeping_ = false, pcWas_ = false; float bendLive_ = 0; long quiet_ = 0; FxChain fx_; LivePitch pitch_; PitchParams pp_;
 };
 
 }  // namespace purrfect
