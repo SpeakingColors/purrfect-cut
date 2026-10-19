@@ -179,6 +179,14 @@ button[aria-pressed="true"],button.on { background:color-mix(in srgb,var(--cL) 1
 .s7 { grid-column:span 7; }
 #boxSmp .pg .kw { width:54px; } #boxSmp .pg .fld select { max-width:92px; } #boxSmp .pg { padding:5px 5px 6px; }
 
+.seg { display:inline-flex; gap:0; align-self:flex-end; } .seg button { border-radius:0; font-size:12px; padding:3px 9px; } .seg button:first-child { border-radius:4px 0 0 4px; } .seg button:last-child { border-radius:0 4px 4px 0; }
+.notesw { display:flex; gap:3px; align-items:flex-end; flex-wrap:wrap; width:100%; } .notesw button { min-width:30px; padding:3px 4px !important; font-size:11.5px !important; } .notesw button.blk { background:#14161b; }
+.notelab { font-family:var(--f-num); font-size:15px; color:var(--cAcc); min-width:120px; align-self:center; }
+.statl { font-size:12px; color:var(--ink-dim); letter-spacing:.04em; min-height:16px; flex:0 0 auto; }
+.pg .hint2 { font-size:11.5px; color:var(--ink-dim); } #boxPE .hint2 { grid-column:span 12; }
+#boxAT, #boxPE, #boxHM { align-items:start; }
+.modes button { font-size:14px; padding:6px 6px; letter-spacing:.1em; } .modes button small { font-size:9.5px; letter-spacing:.08em; }
+
 </style>
 <div id="desk"><div id="frame"><div id="win">
 <div class="unit" id="unit">
@@ -208,6 +216,9 @@ button[aria-pressed="true"],button.on { background:color-mix(in srgb,var(--cL) 1
         <button data-mode="editor" data-tl="Editor" data-tip="Waveform editor: select, cut, copy, paste, trim, fades, normalize, reverse and more, with undo.">Editor<small>cut, fade, fix</small></button>
         <button data-mode="sampler" data-tl="Sampler" data-tip="Turn the audio (or your selection) into an instrument: play it from a keyboard or MIDI, with pitch, loop, slices, envelope and filter.">Sampler<small>play it from keys or MIDI</small></button>
         <button data-mode="fx" data-tl="FX" data-tip="Drive, Transistor and Fuzz from PurrOne, squash, duck, delay and reverb from the shimmer plugin. Works on the sampler, or on the preview, or can be applied to the audio.">FX<small>drive, squash, duck, echo, reverb</small></button>
+        <button data-mode="autotune" data-tl="Auto-Tune" data-tip="Auto-Tune and pitch corrector: pulls a voice or lead onto the notes of a key, from natural to hard and robotic. Runs live in the plugin.">Auto-Tune<small>key, speed, formants</small></button>
+        <button data-mode="pitched" data-tl="Pitch Editor" data-tip="Melodyne style editor: the pitch of the file becomes note blobs on a piano roll. Drag notes up, down and sideways, change vibrato, drift and formants per note.">Pitch Editor<small>notes you can drag</small></button>
+        <button data-mode="harmony" data-tl="Harmony" data-tip="Harmony voices (thirds, fifths, octaves that follow the key) and a robot voice locked to one note.">Harmony<small>stack voices, robot</small></button>
       </nav>
       <section class="rig" aria-label="File and transport">
         <span class="lab">File</span>
@@ -223,6 +234,9 @@ button[aria-pressed="true"],button.on { background:color-mix(in srgb,var(--cL) 1
           <div class="cv" id="wvBox" style="flex:1 1 auto;min-height:170px"><canvas id="cvW"></canvas></div>
           <div class="cv" id="ovBox" style="height:34px;flex:0 0 auto"><canvas id="cvO"></canvas></div>
           <div class="ctl" id="boxEd"><div class="row2" id="ctlRow"></div></div>
+          <div class="cv" id="ptBox" style="flex:1 1 auto;min-height:170px" hidden><canvas id="cvPt"></canvas></div>
+          <div class="statl" id="ptStat"></div>
+          <div class="pgrid" id="boxAT" hidden></div><div class="pgrid" id="boxPE" hidden></div><div class="pgrid" id="boxHM" hidden></div>
           <div class="pgrid" id="boxSmp" hidden></div>
           <div class="pgrid fxg" id="boxFx" hidden></div>
           <div class="kbbar" id="kbBar" hidden>
@@ -1315,6 +1329,383 @@ $("#bParams").addEventListener("click", function () {
   openCard("<h2>Automation list</h2><p>Every control below is a host parameter in the plugin: automate it, record it, or map it to a MIDI controller. " + PREG.length + " controls.</p><div class='ptabw'><table class='ptab'><tr><th>Section</th><th>Control</th><th>ID</th><th>Value</th></tr>" + rows + "</table></div><div class='row'><button data-close>Close</button></div>");
 });
 
+/* ===== Purrfect Cut: pitch pages (Auto-Tune, Pitch Editor, Harmony and Robot) =====
+   Same algorithms as src/core/Pitch.h: YIN detection, note segmentation, time-domain PSOLA with formant control.
+   In this page they run offline on the loaded audio (Original / Processed switch, Apply to audio). In the plugin the same
+   corrector runs live on the sampler and on the sidechain input. Mono sources only (voice, lead, bass). */
+var PT = { hop: 256, f0: null, notes: [], key: "", sel: -1, ab: "proc", L: null, R: null, rkey: "", busy: false, timer: 0, v0: 0, v1: 1, mlo: 48, mhi: 72, drag: null, hover: null, stat: "", anTok: 0 };
+var NAMES12 = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+var SCALES = [["0", "Chromatic"], ["1", "Major"], ["2", "Minor"], ["3", "Dorian"], ["4", "Phrygian"], ["5", "Lydian"], ["6", "Mixolydian"], ["7", "Harmonic minor"], ["8", "Pentatonic major"], ["9", "Pentatonic minor"], ["10", "Blues"]];
+var SCALE_N = [null, [0, 2, 4, 5, 7, 9, 11], [0, 2, 3, 5, 7, 8, 10], [0, 2, 3, 5, 7, 9, 10], [0, 1, 3, 5, 7, 8, 10], [0, 2, 4, 6, 7, 9, 11], [0, 2, 4, 5, 7, 9, 10], [0, 2, 3, 5, 7, 8, 11], [0, 2, 4, 7, 9], [0, 3, 5, 7, 10], [0, 3, 5, 6, 7, 10]];
+var PMODES = { autotune: 1, pitched: 1, harmony: 1 };
+
+/* ---------- DSP (mirrors src/core/Pitch.h) ---------- */
+function hz2m(hz, ref) { return 69 + 12 * Math.log(hz / ref) / Math.LN2; }
+function m2hz(m, ref) { return ref * Math.pow(2, (m - 69) / 12); }
+function allowedMask() {
+  var key = S.pc_key | 0, sc = SCALE_N[S.pc_scale | 0], user = 0, k, m = 0; for (k = 0; k < 12; k++) if (S["pc_n" + k]) user |= 1 << k;
+  if (!sc) m = 0xFFF; else for (k = 0; k < sc.length; k++) m |= 1 << ((sc[k] + key) % 12);
+  m &= user; return m ? m : 0xFFF;
+}
+function nearestAllowed(m, mask) { var base = Math.floor(m), best = base, bd = 1e9, c; for (c = base - 7; c <= base + 8; c++) { var pc = ((c % 12) + 12) % 12; if (!(mask & (1 << pc))) continue; var d = Math.abs(c - m); if (d < bd) { bd = d; best = c; } } return best; }
+function yinPeriod(x, W, tauMin, tauMax, thr, d, cm) {
+  var en = 0, j, tau; for (j = 0; j < W; j++) en += x[j] * x[j]; if (en < 1e-7 * W) return 0;
+  for (tau = 1; tau <= tauMax; tau++) { var s = 0; for (j = 0; j < W; j++) { var df = x[j] - x[j + tau]; s += df * df; } d[tau] = s; }
+  cm[0] = 1; var run = 0; for (tau = 1; tau <= tauMax; tau++) { run += d[tau]; cm[tau] = run > 1e-12 ? d[tau] * tau / run : 1; }
+  var best = -1; for (tau = tauMin; tau < tauMax; tau++) if (cm[tau] < thr) { while (tau + 1 < tauMax && cm[tau + 1] < cm[tau]) tau++; best = tau; break; }
+  if (best < 0) { best = tauMin; for (tau = tauMin; tau < tauMax; tau++) if (cm[tau] < cm[best]) best = tau; if (cm[best] > 0.3) return 0; }
+  var t = best; if (best > 1 && best < tauMax) { var a = cm[best - 1], b = cm[best], c = cm[best + 1], den = a - 2 * b + c; if (Math.abs(den) > 1e-9) t += 0.5 * (a - c) / den; } return t;
+}
+/* pitch track in chunks, so the page stays alive on long files. cb(f0 Float32Array) at the end, prog(frac) on the way. */
+function yinTrackAsync(x, rate, hop, cb, prog, tok) {
+  var n = x.length, nf = Math.floor(n / hop) + 1, f0 = new Float32Array(nf), sd = rate / 2, tauMax = Math.ceil(sd / 75), tauMin = Math.max(2, Math.floor(sd / 1000)), W = 512, tot = W + tauMax, i;
+  var y = new Float32Array((n >> 1) + 1); for (i = 0; i + 1 < n; i += 2) y[i >> 1] = 0.5 * (x[i] + x[i + 1]);
+  var d = new Float32Array(tauMax + 2), cm = new Float32Array(tauMax + 2), win = new Float32Array(tot), f = 0;
+  function step() {
+    if (tok !== PT.anTok) return; var t0 = performance.now();
+    while (f < nf && performance.now() - t0 < 14) {
+      var c = Math.round(f * hop / 2), s0 = c - (tot >> 1), k; for (k = 0; k < tot; k++) { var q = s0 + k; win[k] = q >= 0 && q < y.length ? y[q] : 0; }
+      var p = yinPeriod(win, W, tauMin, tauMax, 0.15, d, cm); f0[f] = p > 0 ? sd / p : 0; f++;
+    }
+    if (prog) prog(f / nf);
+    if (f < nf) { setTimeout(step, 0); return; }
+    for (var j = 1; j + 1 < nf; j++) {
+      if (f0[j] > 0 && f0[j - 1] > 0 && f0[j + 1] > 0) { var a = f0[j - 1], b = f0[j], c2 = f0[j + 1], mid = Math.max(Math.min(a, b), Math.min(Math.max(a, b), c2)); if (Math.abs(Math.log(b / mid) / Math.LN2) > 0.4) f0[j] = mid; }
+      else if (f0[j] > 0 && f0[j - 1] <= 0 && f0[j + 1] <= 0) f0[j] = 0;
+    }
+    for (var j2 = 1; j2 < nf; j2++) if (f0[j2] > 0 && f0[j2 - 1] > 0 && Math.abs(12 * Math.log(f0[j2] / f0[j2 - 1]) / Math.LN2) > 4) f0[j2] = 0;   /* a leap of more than 4 semitones in one frame is a detection slip, or the first frame of a new note */
+    for (var s = 0; s < nf;) { if (!(f0[s] > 0)) { s++; continue; } var e2 = s; while (e2 < nf && f0[e2] > 0) e2++; if (e2 - s < 3) for (var q = s; q < e2; q++) f0[q] = 0; s = e2; }   /* a clear pitch lasts more than 3 frames */
+    cb(f0);
+  }
+  step();
+}
+function segmentNotes(f0, rate, hop, ref) {
+  var out = [], nf = f0.length, minF = Math.max(2, Math.round(0.07 * rate / hop)), i = 0;
+  while (i < nf) {
+    if (!(f0[i] > 0)) { i++; continue; }
+    var run = [], start = i, last = i, gap = 0, off = 0, j;
+    for (j = i; j < nf; j++) {
+      var f = f0[j]; if (!(f > 0)) { if (++gap > 2) break; continue; } gap = 0; var m = hz2m(f, ref);
+      if (!run.length) { run.push(m); last = j; continue; }
+      var s = run.slice().sort(function (p, q) { return p - q; }), med = s[s.length >> 1];
+      if (Math.abs(m - med) > 0.65) { if (++off >= 3) break; continue; } off = 0; run.push(m); last = j;
+    }
+    var end = last + 1; if (end - start >= minF && run.length) { run.sort(function (p, q) { return p - q; }); out.push({ a: start, b: end, ta: start, tb: end, midi: run[run.length >> 1], dp: 0, vib: 1, drift: 0, fs: 0 }); }
+    i = Math.max(end, start + 1);
+  }
+  return out;
+}
+/* the decision part (PitchBrain): per analysis frame -> shift in semitones for the main voice and three harmony voices */
+function brainRun(f0, hop, rate, P) {
+  var nf = f0.length, hopMs = 1000 * hop / rate, mask = allowedMask(), voiced = false, mAvg = 0, c = 0, note = -1000, held = 0, ref = P.ref;
+  var res = { s: [new Float32Array(nf), new Float32Array(nf), new Float32Array(nf), new Float32Array(nf)], mIn: new Float32Array(nf), note: new Float32Array(nf) }, i, v;
+  for (i = 0; i < nf; i++) {
+    if (!(f0[i] > 0)) { voiced = false; continue; }
+    var mIn = hz2m(f0[i], ref); res.mIn[i] = mIn;
+    if (!voiced) { mAvg = mIn; c = 0; note = -1000; held = 0; voiced = true; }
+    mAvg += (1 - Math.exp(-hopMs / 120)) * (mIn - mAvg);
+    var nn;
+    if (P.robot) { var pcv = P.robotPc; nn = pcv + 12 * Math.round((mAvg - pcv) / 12); }
+    else { nn = note; if (!(nn > -999) || !(mask & (1 << (((Math.round(nn) % 12) + 12) % 12))) || Math.abs(mAvg - nn) > 0.7) nn = nearestAllowed(mAvg, mask); }
+    if (nn !== note) { note = nn; held = 0; } else held += hopMs;
+    var tau = P.speed * (1 + 3 * P.hum * Math.min(1, held / 400)), a = tau < 0.5 ? 1 : 1 - Math.exp(-hopMs / tau);
+    c += (nn - mAvg - c) * a;
+    var amt = P.mainOn ? P.amt : 0, s = amt * (c - (1 - P.vib) * (mIn - mAvg)), mo = mIn + s;
+    res.note[i] = note; res.s[0][i] = Math.max(-12, Math.min(12, s));
+    if (P.harmOn) for (v = 0; v < 3; v++) { var sh = P.hint[v]; if (P.hsnap) sh = nearestAllowed(note + P.hint[v], mask) - note; res.s[v + 1][i] = Math.max(-12, Math.min(12, mo + sh - mIn)); }
+  }
+  return res;
+}
+function cubic(x, p) { var n = x.length, i = Math.floor(p), f = p - i, a = x[i - 1 < 0 ? 0 : i - 1 >= n ? n - 1 : i - 1], b = x[i < 0 ? 0 : i >= n ? n - 1 : i], c = x[i + 1 < 0 ? 0 : i + 1 >= n ? n - 1 : i + 1], d = x[i + 2 < 0 ? 0 : i + 2 >= n ? n - 1 : i + 2]; return b + 0.5 * f * (c - a + f * (2 * a - 5 * b + 4 * c - d + f * (3 * (b - c) + d - a))); }
+function lerpFr(a, pos, hop, dflt) { if (!a) return dflt; var f = pos / hop, i = Math.floor(f), fr = f - i, n = a.length; function at(k) { return a[k < 0 ? 0 : k > n - 1 ? n - 1 : k]; } return at(i) * (1 - fr) + at(i + 1) * fr; }
+/* TD-PSOLA. xs: channels, f0: pitch frames at pf hop, ed: {hop, ratio[], fshift[], tmap[]} per output frame (semitones for ratio) */
+function psolaRender(xs, rate, f0, pfHop, ed, preserve, outLen) {
+  var nch = xs.length, outs = [], c, i, nIn = xs[0].length, mono = new Float32Array(nIn); for (c = 0; c < nch; c++) outs.push(new Float32Array(outLen));
+  for (i = 0; i < nIn; i++) { var s = 0; for (c = 0; c < nch; c++) s += xs[c][i]; mono[i] = s / nch; }
+  var ws = new Float32Array(outLen), T0 = 0.005 * rate, sm = 0, am = 0, have = false;
+  function refine(cc, Tin) { var ctr = Math.round(cc), rad = Math.max(1, Math.floor(0.25 * Tin)), best = ctr, bv = -1e9, q; for (var s2 = ctr - rad; s2 <= ctr + rad; s2++) { q = s2 < 0 ? 0 : s2 > nIn - 1 ? nIn - 1 : s2; if (mono[q] > bv) { bv = mono[q]; best = s2; } } return best; }
+  while (sm < outLen + 0.02 * rate) {
+    var semi = ed.ratio ? lerpFr(ed.ratio, sm, ed.hop, 0) : 0, ratio = Math.pow(2, semi / 12), fs = lerpFr(ed.fshift, sm, ed.hop, 0), tin = ed.tmap ? lerpFr(ed.tmap, sm, ed.hop, sm) : sm;
+    var fi = Math.max(0, Math.min(f0.length - 1, Math.round(tin / pfHop))), fz = f0[fi], voiced = fz > 0, Tin = voiced ? rate / fz : T0, r = voiced ? ratio : 1, step = 1;
+    if (voiced) step = Math.pow(r, 1 - preserve) * Math.pow(2, fs / 12);
+    var Tout = Math.max(0.0007 * rate, Math.min(0.02 * rate, Tin / r)), Hw = Math.max(0.0007 * rate, Math.min(0.02 * rate, Tin / step));
+    if (!voiced) { am = tin; have = false; } else {
+      if (!have) { am = refine(tin, Tin); have = true; }
+      while (am + 0.5 * Tin < tin) am = refine(am + Tin, Tin); while (am - 0.5 * Tin > tin) am = refine(am - Tin, Tin); if (Math.abs(am - tin) > 4 * Tin) am = refine(tin, Tin);
+    }
+    var lo = Math.ceil(sm - Hw), hi = Math.floor(sm + Hw);
+    for (var o = lo; o <= hi; o++) {
+      if (o < 0 || o >= outLen) continue; var t = o - sm, w = 0.5 * (1 + Math.cos(Math.PI * t / Hw)), rp = am + t * step; if (rp < 0 || rp > nIn - 1) continue;
+      for (c = 0; c < nch; c++) outs[c][o] += w * cubic(xs[c], rp); ws[o] += w;
+    }
+    sm += Tout;
+  }
+  for (i = 0; i < outLen; i++) { var g = 1 / Math.max(0.2, ws[i]); for (c = 0; c < nch; c++) outs[c][i] *= g; }
+  return outs;
+}
+
+/* ---------- analysis and rendering ---------- */
+function monoOf() { var m = new Float32Array(D.n), i; for (i = 0; i < D.n; i++) m[i] = 0.5 * (D.L[i] + D.R[i]); return m; }
+function srcKey() { return name + "|" + D.n + "|" + dirtyStamp + "|" + sr; }
+function pitchParams() {
+  return { mainOn: !!S.pc_on, harmOn: !!S.hm_on, robot: !!S.rb_on && !!S.pc_on, robotPc: S.rb_note | 0, hsnap: !!S.hm_snap, speed: S.pc_speed, amt: S.pc_amt, hum: S.pc_hum, vib: S.pc_vib, ref: S.pc_ref, hint: [S.hm_i1, S.hm_i2, S.hm_i3], lvl: [S.hm_l1, S.hm_l2, S.hm_l3], wet: S.hm_wet };
+}
+function analyze(force) {
+  if (!D.L) return; var k = srcKey(); if (!force && PT.key === k && PT.f0) return; PT.key = k; PT.f0 = null; PT.L = PT.R = null; PT.rkey = ""; PT.notes = []; PT.sel = -1; PT.busy = true; var tok = ++PT.anTok;
+  PT.stat = "Listening for pitch ..."; ptStat(); var x = monoOf();
+  yinTrackAsync(x, sr, PT.hop, function (f0) {
+    if (tok !== PT.anTok) return; PT.f0 = f0; PT.notes = segmentNotes(f0, sr, PT.hop, S.pc_ref); PT.busy = false; PT.t = D.n / sr; PT.v0 = 0; PT.v1 = D.n / sr; fitRange(); PT.sel = PT.notes.length ? 0 : -1; selToKnobs(); ptStat(); schedRender(10);
+  }, function (fr) { PT.stat = "Listening for pitch " + Math.round(fr * 100) + " %"; ptStat(); }, tok);
+}
+function fitRange() {
+  var lo = 1e9, hi = -1e9, i; if (PT.f0) for (i = 0; i < PT.f0.length; i += 2) if (PT.f0[i] > 0) { var m = hz2m(PT.f0[i], S.pc_ref); lo = Math.min(lo, m); hi = Math.max(hi, m); }
+  if (lo > hi) { lo = 55; hi = 67; } var mid = (lo + hi) / 2, span = Math.max(16, hi - lo + 6); PT.mlo = Math.floor(mid - span / 2); PT.mhi = Math.ceil(mid + span / 2);
+}
+function ptStat() {
+  var el = $("#ptStat"); if (!el) return; var voiced = 0; if (PT.f0) for (var i = 0; i < PT.f0.length; i++) if (PT.f0[i] > 0) voiced++;
+  var txt = PT.busy ? PT.stat : PT.f0 ? (PT.notes.length + " notes found, " + Math.round(100 * voiced / PT.f0.length) + " % of the file has a clear pitch" + (PT.f0 && voiced < PT.f0.length * 0.05 ? ". This sound is not a single voice or lead; try the Vocal take, Hoover or Acid source." : "") + (PT.rendering ? " | rendering ..." : "")) : "";
+  el.textContent = txt;
+}
+function schedRender(ms) { clearTimeout(PT.timer); PT.timer = setTimeout(doRender, ms === undefined ? 140 : ms); }
+function doRender() {
+  if (!PT.f0 || !D.L) return; var t0 = performance.now(), n = D.n; PT.rendering = true; ptStat();
+  setTimeout(function () {
+    var xs = [D.L, D.R], out;
+    if (MODE === "pitched") out = renderEditor(xs, n); else out = renderAuto(xs, n);
+    PT.L = out[0]; PT.R = out[1]; PT.rkey = srcKey(); PT.rendering = false; PT.ms = performance.now() - t0; ptStat(); dirty = true;
+    if (PL.on && PT.ab === "proc" && PMODES[MODE]) startPlay();
+  }, 0);
+}
+function constArr(n, v) { var a = new Float32Array(n); if (v) a.fill(v); return a; }
+function renderAuto(xs, n) {
+  var P = pitchParams(), f0 = PT.f0, nf = f0.length, res = brainRun(f0, PT.hop, sr, P), main = xs, i, c, v, form = S.pc_form, fsh = constArr(nf, S.pc_fshift);
+  PT.curve = res;
+  if (P.mainOn || S.pc_fshift !== 0) main = psolaRender(xs, sr, f0, PT.hop, { hop: PT.hop, ratio: res.s[0], fshift: fsh }, form, n);
+  var out = [Float32Array.from(main[0]), Float32Array.from(main[1])];
+  if (P.harmOn) for (v = 0; v < 3; v++) { if (P.lvl[v] < 0.001) continue; var h = psolaRender(xs, sr, f0, PT.hop, { hop: PT.hop, ratio: res.s[v + 1], fshift: fsh }, form, n), g = P.lvl[v] * P.wet; for (c = 0; c < 2; c++) for (i = 0; i < n; i++) out[c][i] += g * h[c][i]; }
+  return out;
+}
+function noteDevs() {   /* per note: slow drift and fast vibrato parts of the original contour, per input frame */
+  var f0 = PT.f0, res = [];
+  PT.notes.forEach(function (nt) {
+    var m = [], k; for (k = nt.a; k < nt.b; k++) m.push(f0[k] > 0 ? hz2m(f0[k], S.pc_ref) : nt.midi);
+    var slow = m.map(function (_, i) { var s = 0, c = 0; for (var j = Math.max(0, i - 7); j <= Math.min(m.length - 1, i + 7); j++) { s += m[j]; c++; } return s / c; }); res.push({ m: m, slow: slow });
+  }); return res;
+}
+function renderEditor(xs, n) {
+  var nf = Math.floor(n / PT.hop) + 2, semi = new Float32Array(nf), fsh = new Float32Array(nf), tm = new Float32Array(nf), devs = noteDevs(), knots = [[0, 0]], notes = PT.notes, i, k;
+  notes.forEach(function (nt, idx) {
+    var d = devs[idx], len = Math.max(1, nt.tb - nt.ta);
+    for (k = nt.ta; k < nt.tb && k < nf; k++) { var fin = nt.a + (k - nt.ta) / len * (nt.b - nt.a), q = Math.max(0, Math.min(d.m.length - 1, Math.round(fin - nt.a))), m0 = d.m[q], slow = d.slow[q], fast = m0 - slow; semi[k] = nt.dp - nt.drift * (slow - nt.midi) + (nt.vib - 1) * fast; fsh[k] = nt.fs; }
+    knots.push([nt.ta, nt.a], [nt.tb, nt.b]);
+  });
+  knots.push([nf - 1, nf - 1]);
+  for (k = 0, i = 0; k < nf; k++) { while (i + 1 < knots.length - 1 && knots[i + 1][0] <= k) i++; var A = knots[i], B = knots[Math.min(i + 1, knots.length - 1)], tt = B[0] > A[0] ? (k - A[0]) / (B[0] - A[0]) : 0; tm[k] = (A[1] + (B[1] - A[1]) * Math.max(0, Math.min(1, tt))) * PT.hop; }
+  var tau = Math.max(0, S.pe_trans) / (1000 * PT.hop / sr);   /* glide between notes: zero-phase one-pole */
+  if (tau > 0.2) { var a = 1 - Math.exp(-1 / tau), z = semi[0]; for (k = 0; k < nf; k++) { z += a * (semi[k] - z); semi[k] = z; } z = semi[nf - 1]; for (k = nf - 1; k >= 0; k--) { z += a * (semi[k] - z); semi[k] = z; } }
+  return psolaRender(xs, sr, PT.f0, PT.hop, { hop: PT.hop, ratio: semi, fshift: fsh, tmap: tm }, S.pe_form, n);
+}
+
+/* ---------- controls ---------- */
+var boxAT = $("#boxAT"), boxPE = $("#boxPE"), boxHM = $("#boxHM"), ptBox = $("#ptBox"), cvPt = $("#cvPt");
+function ptBar(host, extra) {
+  var r = pgroup(host, "Result", extra || "s3"); PG = "Pitch result";
+  var ab = document.createElement("div"); ab.className = "seg"; ab.innerHTML = '<button data-ab="orig">Original</button><button data-ab="proc">Processed</button>'; r.appendChild(ab);
+  attachTip($("[data-ab=orig]", ab), "Original", "Plays the file as it is, to compare."); attachTip($("[data-ab=proc]", ab), "Processed", "Plays the file with the pitch changes. Space plays it from the cursor.");
+  $$("button", ab).forEach(function (b) { b.addEventListener("click", function () { PT.ab = b.getAttribute("data-ab"); abUI(); if (PL.on) startPlay(); }); });
+  var ap = document.createElement("button"); ap.textContent = "Apply to audio"; r.appendChild(ap); attachTip(ap, "Apply to audio", "Writes the processed pitch into the file (all of it). Undo brings the old audio back.");
+  ap.addEventListener("click", applyPitch); return r;
+}
+function abUI() { $$("[data-ab]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-ab") === PT.ab)); }); }
+function applyPitch() {
+  if (!PT.L || PT.rkey !== srcKey()) { doRender(); flash("Rendering first, press Apply again"); return; } snap(); D.L = Float32Array.from(PT.L); D.R = Float32Array.from(PT.R); afterEdit(); flash("Pitch applied"); PT.key = "";
+}
+(function buildPitch() {
+  var r, k;
+  /* ---- Auto-Tune ---- */
+  r = pgroup(boxAT, "Key and scale", "s5"); PG = "Auto-Tune";
+  mkSel(r, "pc_key", "Key", NAMES12.map(function (n, i) { return [i, n]; }), "The key. Notes outside the scale are pulled to the nearest note inside it.", 0);
+  mkSel(r, "pc_scale", "Scale", SCALES.map(function (s) { return [+s[0], s[1]]; }), "The scale. Chromatic lets every note through (the pitch is rounded to the nearest semitone).", 0);
+  var nr = document.createElement("div"); nr.className = "notesw"; r.appendChild(nr); PG = "Auto-Tune notes";
+  for (k = 0; k < 12; k++) mkTog(nr, "pc_n" + k, NAMES12[k], "Allow or block " + NAMES12[k] + " on top of the scale. You can also click the keys on the left of the graph.", true, NAMES12[k].length > 1 ? "blk" : "");
+  PG = "Auto-Tune";
+  r = pgroup(boxAT, "Auto-Tune", "s4", "pc_on");
+  K(r, "pc_speed", "Speed", 0, 400, 25, function (v) { return v < 1 ? "hard" : Math.round(v) + " ms"; }, "Retune speed. 0 snaps at once (the hard, robotic effect). 20 to 60 ms is a clean modern vocal, 100 ms and up keeps it natural.", { step: 1, color: CP });
+  K(r, "pc_amt", "Amount", 0, 1, 1, pc, "How far the pitch is pulled towards the note. 100 % lands on it, 50 % lands half way.", { step: 0.01, color: CP });
+  K(r, "pc_hum", "Humanize", 0, 1, 0.3, pc, "Slows the correction down the longer a note is held, so long notes can drift a little like a real singer.", { step: 0.01, color: CY });
+  K(r, "pc_vib", "Vibrato", 0, 1, 0.6, pc, "How much of the singer's own vibrato is kept. 0 flattens it (robotic), 100 % keeps all of it.", { step: 0.01, color: CY });
+  r = pgroup(boxAT, "Voice", "s3");
+  K(r, "pc_form", "Keep", 0, 1, 1, pc, "Formant keep. 100 % keeps the vowel colour when the pitch moves (the voice keeps its character). 0 resamples, so the voice gets smaller or bigger with the pitch.", { step: 0.01, color: CS });
+  K(r, "pc_fshift", "Shift", -12, 12, 0, fmtSt, "Formant shift. Moves the formants on their own: up for a smaller, younger voice, down for a bigger one. The pitch stays.", { step: 0.1, mid: 0, color: CS });
+  K(r, "pc_ref", "A4", 415, 466, 440, function (v) { return (Math.round(v * 10) % 10 ? v.toFixed(1) : v.toFixed(0)) + " Hz"; }, "The reference pitch for A4. 440 Hz is standard.", { step: 0.1, color: CO });
+  ptBar(boxAT, "s12");
+  /* ---- Pitch editor ---- */
+  r = pgroup(boxPE, "Selected note", "s6"); PG = "Pitch editor";
+  var nl = document.createElement("div"); nl.className = "notelab"; nl.id = "peLab"; nl.textContent = "Click a note"; r.appendChild(nl);
+  K(r, "pe_dp", "Pitch", -12, 12, 0, fmtSt, "Moves the note up or down. You can also drag the note in the graph. Fine: hold Alt while dragging.", { step: 0.01, mid: 0, color: CY });
+  K(r, "pe_vib", "Vibrato", 0, 2, 1, function (v) { return Math.round(v * 100) + " %"; }, "Scales the note's own vibrato: 0 flat, 100 % as sung, 200 % twice as wide. The pink diamond above the note does the same.", { step: 0.01, color: CP });
+  K(r, "pe_drift", "Drift", 0, 1, 0, pc, "Straightens slow drift away from the note's centre (a note that sags or climbs). The orange dot under the note does the same.", { step: 0.01, color: CO });
+  K(r, "pe_fs", "Fmt shift", -12, 12, 0, fmtSt, "Formant shift for this note only. The purple square on the right of the note does the same.", { step: 0.1, mid: 0, color: CS });
+  r = pgroup(boxPE, "Whole file", "s4");
+  mkSel(r, "pe_snap", "Snap", [["off", "Off"], ["semi", "Semitone"], ["scale", "Scale"]], "While you drag a note: Off is free, Semitone lands on whole notes, Scale lands on notes of the key set on the Auto-Tune page.", "semi");
+  K(r, "pe_trans", "Glide", 0, 200, 40, function (v) { return Math.round(v) + " ms"; }, "How smoothly the pitch moves from one edited note to the next.", { step: 1, color: CV });
+  K(r, "pe_form", "Keep", 0, 1, 1, pc, "100 % keeps the vowel colour when notes move. 0 lets the voice change size with the pitch.", { step: 0.01, color: CS });
+  r = pgroup(boxPE, "Notes", "s2");
+  [["Snap all", "Moves every note to the nearest note of the scale.", function () { var m = allowedMask(); PT.notes.forEach(function (n) { n.dp = nearestAllowed(n.midi, m) - n.midi; }); selToKnobs(); schedRender(10); }],
+   ["Reset note", "Puts the selected note back as it was sung.", function () { var n = PT.notes[PT.sel]; if (n) { n.dp = 0; n.vib = 1; n.drift = 0; n.fs = 0; n.ta = n.a; n.tb = n.b; selToKnobs(); schedRender(10); } }],
+   ["Reset all", "Puts every note back as it was sung.", function () { PT.notes.forEach(function (n) { n.dp = 0; n.vib = 1; n.drift = 0; n.fs = 0; n.ta = n.a; n.tb = n.b; }); selToKnobs(); schedRender(10); }]].forEach(function (a) { var b = document.createElement("button"); b.textContent = a[0]; r.appendChild(b); attachTip(b, a[0], a[1]); b.addEventListener("click", a[2]); });
+  ptBar(boxPE, "s12");
+  /* ---- Harmony and robot ---- */
+  r = pgroup(boxHM, "Harmony", "s8", "hm_on"); PG = "Harmony";
+  K(r, "hm_wet", "Mix", 0, 1, 0.7, pc, "Level of all harmony voices together, against the main voice.", { step: 0.01, color: CP });
+  mkTog(r, "hm_snap", "Follow scale", "On: each voice is pulled into the key, so a third stays a third of the scale (major or minor as the key needs). Off: exact intervals.", true);
+  [["1", 4, 0.6], ["2", 7, 0.5], ["3", -12, 0]].forEach(function (v) {
+    K(r, "hm_i" + v[0], "Voice " + v[0], -12, 12, v[1], fmtSt, "Interval of voice " + v[0] + " from the singer, in semitones (4 is a third, 7 a fifth, 12 an octave).", { step: 1, mid: 0, color: CV });
+    K(r, "hm_l" + v[0], "Level " + v[0], 0, 1, v[2], pc, "Level of voice " + v[0] + ". 0 switches it off.", { step: 0.01, color: CP });
+  });
+  r = pgroup(boxHM, "Robot", "s2", "rb_on"); PG = "Robot";
+  mkSel(r, "rb_note", "Note", NAMES12.map(function (n, i) { return [i, n]; }), "Robot voice: the whole performance is forced onto this one note (in the nearest octave). Needs Auto-Tune on. Set the speed to 0 for a hard robot.", 0);
+  r = pgroup(boxHM, "Key", "s2"); PG = "Harmony";
+  var kb = document.createElement("button"); kb.id = "hmKey"; r.appendChild(kb); attachTip(kb, "Key and scale", "Harmony and Robot use the key, scale and note switches of the Auto-Tune page. Click to go there."); kb.addEventListener("click", function () { setMode("autotune"); });
+  ptBar(boxHM, "s12");
+  var rm = function (p) { return !/^pe_/.test(p.id); }; PREG = PREG.filter(rm);
+  var note = document.createElement("div"); note.className = "hint2"; note.textContent = "Pitch editor controls are offline tools (not host parameters). Auto-Tune, Robot and Harmony run live in the plugin.";
+  boxPE.appendChild(note);
+})();
+function hmKeyUI() { var b = $("#hmKey"); if (b) b.textContent = NAMES12[S.pc_key | 0] + " " + (SCALES[S.pc_scale | 0] ? SCALES[S.pc_scale | 0][1].toLowerCase() : "") + " (edit)"; }
+function selToKnobs() {
+  var n = PT.notes[PT.sel], lab = $("#peLab"); if (!n) { if (lab) lab.textContent = "Click a note"; return; }
+  PT._set = true; setParam("pe_dp", clamp(n.dp, -12, 12), false); setParam("pe_vib", n.vib, false); setParam("pe_drift", n.drift, false); setParam("pe_fs", n.fs, false); PT._set = false;
+  var m = n.midi + n.dp; if (lab) lab.textContent = noteName(Math.round(m)) + (Math.round((m - Math.round(m)) * 100) >= 0 ? " +" : " ") + Math.round((m - Math.round(m)) * 100) + " ct, " + ((n.tb - n.ta) * PT.hop / sr).toFixed(2) + " s";
+}
+var _onParamP = window.onParam;
+window.onParam = function (id, v, ui) {
+  _onParamP(id, v, ui);
+  if (/^pe_(dp|vib|drift|fs)$/.test(id)) { if (!PT._set) { var n = PT.notes[PT.sel]; if (n) { n.dp = S.pe_dp; n.vib = S.pe_vib; n.drift = S.pe_drift; n.fs = S.pe_fs; selToKnobs(); schedRender(); } } }
+  else if (PMODES[MODE] && /^(pc_|rb_|hm_|pe_)/.test(id)) { if (id === "pc_ref") PT.key = ""; hmKeyUI(); if (PT.f0 && MODE !== "pitched") PT.curve = brainRun(PT.f0, PT.hop, sr, pitchParams()); schedRender(); }
+};
+
+/* ---------- the graph ---------- */
+function PX(t, w) { return 46 + (t - PT.v0) / (PT.v1 - PT.v0) * (w - 52); }
+function PTt(x, w) { return PT.v0 + (x - 46) / (w - 52) * (PT.v1 - PT.v0); }
+function PY(m, h) { return 6 + (PT.mhi - m) / (PT.mhi - PT.mlo) * (h - 24); }
+function PM(y, h) { return PT.mhi - (y - 6) / (h - 24) * (PT.mhi - PT.mlo); }
+function drawPT(cc) {
+  var g = cc.g, w = cc.w, h = cc.h, i, m; g.fillStyle = "#06080a"; g.fillRect(0, 0, w, h); if (!D.L) return;
+  var mask = allowedMask(), at = MODE === "autotune", pe = MODE === "pitched", hm = MODE === "harmony", rowH = (h - 24) / (PT.mhi - PT.mlo);
+  g.font = "10px 'JetBrains Mono',monospace";
+  for (m = Math.floor(PT.mlo); m <= PT.mhi; m++) {
+    var pcn = ((m % 12) + 12) % 12, y0 = PY(m + 0.5, h), on = !!(mask & (1 << pcn)), black = NAMES12[pcn].length > 1;
+    g.fillStyle = on ? (black ? "#162a28" : "#1b3633") : (black ? "#0b0d0f" : "#101316"); g.fillRect(46, y0, w - 52, rowH);
+    g.fillStyle = on ? (black ? "#3a3d46" : "#cfd1da") : (black ? "#1d1f24" : "#4b4e5a"); g.fillRect(2, y0 + 0.5, 42, Math.max(1, rowH - 1)); g.fillStyle = black ? "#cfd1da" : "#222"; g.textAlign = "left"; if (rowH > 9 && (pcn === 0 || rowH > 13)) g.fillText(noteName(m), 5, y0 + Math.min(rowH - 2, 11));
+    g.strokeStyle = "#1a2422"; g.beginPath(); g.moveTo(46, Math.round(y0) + 0.5); g.lineTo(w - 6, Math.round(y0) + 0.5); g.stroke();
+  }
+  var tt = PT.v1 - PT.v0, stp = tt > 20 ? 5 : tt > 8 ? 2 : tt > 3 ? 1 : tt > 1.2 ? 0.5 : 0.1; g.fillStyle = "#6c7080"; g.textAlign = "center";
+  for (var t = Math.ceil(PT.v0 / stp) * stp; t <= PT.v1; t += stp) { var x = Math.round(PX(t, w)) + 0.5; g.strokeStyle = "#14201f"; g.beginPath(); g.moveTo(x, 6); g.lineTo(x, h - 18); g.stroke(); g.fillText(t.toFixed(stp < 1 ? 1 : 0) + " s", x, h - 5); }
+  if (PT.busy || !PT.f0) { g.fillStyle = "#cfd1da"; g.textAlign = "center"; g.font = "14px 'Barlow Condensed',sans-serif"; g.fillText(PT.stat || "Open a file or pick a source", w / 2, h / 2); return; }
+  var hop = PT.hop, f0 = PT.f0, nf = f0.length;
+  function line(arr, col, lw, dash) { g.strokeStyle = col; g.lineWidth = lw; g.setLineDash(dash || []); g.beginPath(); var pen = false; for (var k = 0; k < nf; k++) { var tk = k * hop / sr; if (tk < PT.v0 - 0.05 || tk > PT.v1 + 0.05) { pen = false; continue; } var mm = arr(k); if (!(mm > 0)) { pen = false; continue; } var xx = PX(tk, w), yy = PY(mm, h); if (pen) g.lineTo(xx, yy); else { g.moveTo(xx, yy); pen = true; } } g.stroke(); g.setLineDash([]); g.lineWidth = 1; }
+  var cur_ = PT.curve, orig = function (k) { return f0[k] > 0 ? hz2m(f0[k], S.pc_ref) : 0; };
+  if (at || hm) {
+    line(orig, "#FF5CA8", 1.2);
+    if (cur_ && S.pc_on) line(function (k) { return f0[k] > 0 ? cur_.mIn[k] + cur_.s[0][k] : 0; }, "#02EBBA", 2.4);
+    if (hm && cur_ && S.hm_on) [CV, CY, CB].forEach(function (col, v) { if (S["hm_l" + (v + 1)] > 0.001) line(function (k) { return f0[k] > 0 ? cur_.mIn[k] + cur_.s[v + 1][k] : 0; }, col, 1.8); });
+  }
+  if (pe) {
+    var devs = PT.devs; PT.notes.forEach(function (nt, idx) {
+      var x0 = PX(nt.ta * hop / sr, w), x1 = PX(nt.tb * hop / sr, w), cm = nt.midi + nt.dp, yc = PY(cm, h), bh = Math.max(7, rowH * 0.8), sel = idx === PT.sel;
+      if (x1 < 46 || x0 > w) return;
+      g.strokeStyle = "rgba(255,92,168,.55)"; g.lineWidth = 1; g.beginPath(); var pen = false; for (var k = nt.a; k < nt.b; k++) { if (!(f0[k] > 0)) { pen = false; continue; } var xx = PX((nt.ta + (k - nt.a) / (nt.b - nt.a) * (nt.tb - nt.ta)) * hop / sr, w), yy = PY(hz2m(f0[k], S.pc_ref) + 0, h); if (pen) g.lineTo(xx, yy); else { g.moveTo(xx, yy); pen = true; } } g.stroke();
+      g.fillStyle = sel ? "rgba(255,209,0,.30)" : "rgba(2,235,186,.28)"; g.strokeStyle = sel ? "#FFD100" : "#02EBBA"; g.lineWidth = sel ? 2 : 1.2; g.beginPath(); if (g.roundRect) g.roundRect(x0, yc - bh / 2, Math.max(3, x1 - x0), bh, 4); else g.rect(x0, yc - bh / 2, x1 - x0, bh); g.fill(); g.stroke(); g.lineWidth = 1;
+      g.strokeStyle = "#02EBBA"; g.lineWidth = 2; g.beginPath(); pen = false; for (var k2 = nt.a; k2 < nt.b; k2++) { if (!(f0[k2] > 0)) { pen = false; continue; } var rel = (k2 - nt.a) / (nt.b - nt.a), j = Math.max(0, Math.min(devs[idx].m.length - 1, k2 - nt.a)), m0 = devs[idx].m[j], sl = devs[idx].slow[j], semi = nt.dp - nt.drift * (sl - nt.midi) + (nt.vib - 1) * (m0 - sl), xx2 = PX((nt.ta + rel * (nt.tb - nt.ta)) * hop / sr, w), yy2 = PY(m0 + semi, h); if (pen) g.lineTo(xx2, yy2); else { g.moveTo(xx2, yy2); pen = true; } } g.stroke(); g.lineWidth = 1;
+      if (sel) {
+        var xc = (x0 + x1) / 2; g.fillStyle = "#FFD100"; g.textAlign = "center"; g.fillText(noteName(Math.round(cm)) + (Math.round((cm - Math.round(cm)) * 100) >= 0 ? "+" : "") + Math.round((cm - Math.round(cm)) * 100), xc, yc - bh / 2 - 22 - nt.vib * 8);
+        g.fillStyle = "#FF5CA8"; var vy = yc - bh / 2 - 8 - nt.vib * 8; g.beginPath(); g.moveTo(xc, vy - 6); g.lineTo(xc + 6, vy); g.lineTo(xc, vy + 6); g.lineTo(xc - 6, vy); g.closePath(); g.fill();
+        g.fillStyle = "#FF8A3D"; g.beginPath(); g.arc(xc, yc + bh / 2 + 8 + nt.drift * 10, 5, 0, 7); g.fill();
+        g.fillStyle = "#CD92FE"; g.fillRect(x1 + 3, yc - 5 - nt.fs * 1.2, 10, 10);
+        g.fillStyle = "#FFD100"; g.fillRect(x0 - 1, yc - bh / 2, 3, bh); g.fillRect(x1 - 2, yc - bh / 2, 3, bh);
+      }
+    });
+  }
+  if (PL.on || cur > 0) { var px = PX((PL.on ? playSample() : cur) / sr, w); if (px > 46 && px < w - 6) { g.strokeStyle = "#fff"; g.beginPath(); g.moveTo(Math.round(px) + 0.5, 6); g.lineTo(Math.round(px) + 0.5, h - 18); g.stroke(); } }
+  g.fillStyle = "#cfd1da"; g.textAlign = "right"; g.font = "11px 'JetBrains Mono',monospace";
+  g.fillText(at ? "pink: as sung, teal: corrected. Click the keys to block notes." : pe ? "drag: up/down pitch, sideways time. diamond vibrato, dot drift, square formant, edges length" : "pink: as sung, other colours: harmony voices", w - 8, 14);
+}
+PAINT.push(function () {
+  if (!PMODES[MODE]) return; var a = fit(cvPt); if (!a) return; if (D.L && PT.key !== srcKey() && !PT.busy) analyze(false);
+  if (MODE === "pitched" && PT.f0) PT.devs = noteDevs();
+  drawPT(a);
+});
+/* mouse */
+function hitNote(x, y, w, h) {
+  var hop = PT.hop, i, sel = PT.notes[PT.sel];
+  if (sel) {
+    var x0 = PX(sel.ta * hop / sr, w), x1 = PX(sel.tb * hop / sr, w), cm = sel.midi + sel.dp, yc = PY(cm, h), bh = Math.max(7, ((h - 24) / (PT.mhi - PT.mlo)) * 0.8), xc = (x0 + x1) / 2;
+    var vy = yc - bh / 2 - 8 - sel.vib * 8; if (Math.abs(x - xc) < 9 && Math.abs(y - vy) < 9) return { i: PT.sel, part: "vib" };
+    if (Math.abs(x - xc) < 9 && Math.abs(y - (yc + bh / 2 + 8 + sel.drift * 10)) < 9) return { i: PT.sel, part: "drift" };
+    if (x >= x1 + 1 && x <= x1 + 15 && Math.abs(y - (yc - sel.fs * 1.2)) < 9) return { i: PT.sel, part: "fs" };
+  }
+  for (i = PT.notes.length - 1; i >= 0; i--) {
+    var n = PT.notes[i], a0 = PX(n.ta * hop / sr, w), a1 = PX(n.tb * hop / sr, w), yy = PY(n.midi + n.dp, h), hh = Math.max(7, ((h - 24) / (PT.mhi - PT.mlo)) * 0.8);
+    if (y >= yy - hh / 2 - 3 && y <= yy + hh / 2 + 3 && x >= a0 - 4 && x <= a1 + 4) { var part = x < a0 + 6 ? "L" : x > a1 - 6 ? "R" : "body"; return { i: i, part: part }; }
+  }
+  return null;
+}
+cvPt.addEventListener("pointerdown", function (e) {
+  if (!D.L || !PT.f0) return; var p = mpos(cvPt, e), w = cvPt.clientWidth, h = cvPt.clientHeight; cvPt.setPointerCapture(e.pointerId);
+  if (p.x < 46 && MODE !== "pitched") { var m = Math.round(PM(p.y, h)), pcn = ((m % 12) + 12) % 12; setParam("pc_n" + pcn, !S["pc_n" + pcn], true); return; }
+  if (MODE !== "pitched") { cur = clamp(PTt(p.x, w) * sr, 0, D.n); return; }
+  var ht = hitNote(p.x, p.y, w, h); if (!ht) { PT.sel = -1; selToKnobs(); cur = clamp(PTt(p.x, w) * sr, 0, D.n); return; }
+  PT.sel = ht.i; var n = PT.notes[ht.i]; selToKnobs();
+  PT.drag = { part: ht.part, x: p.x, y: p.y, dp: n.dp, ta: n.ta, tb: n.tb, vib: n.vib, drift: n.drift, fs: n.fs, axis: null, moved: false, free: e.shiftKey };
+});
+cvPt.addEventListener("pointermove", function (e) {
+  var p = mpos(cvPt, e), w = cvPt.clientWidth, h = cvPt.clientHeight, d = PT.drag;
+  if (!d) { if (MODE === "pitched" && PT.f0) { var ht = hitNote(p.x, p.y, w, h); cvPt.style.cursor = !ht ? "default" : ht.part === "L" || ht.part === "R" ? "ew-resize" : ht.part === "body" ? "grab" : "pointer"; } else cvPt.style.cursor = p.x < 46 ? "pointer" : "default"; return; }
+  var n = PT.notes[PT.sel]; if (!n) return; var dx = p.x - d.x, dy = p.y - d.y, rowH = (h - 24) / (PT.mhi - PT.mlo), fpx = (PT.v1 - PT.v0) / (w - 52) * sr / PT.hop;   // frames per pixel
+  if (d.part === "body") {
+    if (!d.axis && !d.free && Math.hypot(dx, dy) > 6) d.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+    if (d.axis === "y" || d.free || (!d.axis && false)) {
+      var cm = n.midi + d.dp - dy / rowH * (e.altKey ? 0.1 : 1);
+      if (S.pe_snap === "semi" && !e.altKey) cm = Math.round(cm); else if (S.pe_snap === "scale" && !e.altKey) cm = nearestAllowed(cm, allowedMask());
+      n.dp = clamp(cm - n.midi, -12, 12);
+    }
+    if (d.axis === "x" || d.free) {
+      var df = Math.round(dx * fpx), prev = PT.notes[PT.sel - 1], next = PT.notes[PT.sel + 1], lo = prev ? prev.tb + 1 : 0, hi = next ? next.ta - 1 : Math.floor(D.n / PT.hop) - 1, len = d.tb - d.ta, ta = clamp(d.ta + df, lo, hi - len);
+      n.ta = ta; n.tb = ta + len;
+    }
+  } else if (d.part === "L") { var prev2 = PT.notes[PT.sel - 1]; n.ta = clamp(d.ta + Math.round(dx * fpx), prev2 ? prev2.tb + 1 : 0, n.tb - 3); }
+  else if (d.part === "R") { var next2 = PT.notes[PT.sel + 1]; n.tb = clamp(d.tb + Math.round(dx * fpx), n.ta + 3, next2 ? next2.ta - 1 : Math.floor(D.n / PT.hop) - 1); }
+  else if (d.part === "vib") n.vib = clamp(d.vib - dy / 8, 0, 2);
+  else if (d.part === "drift") n.drift = clamp(d.drift + dy / 10, 0, 1);
+  else if (d.part === "fs") n.fs = clamp(d.fs - dy / 1.2, -12, 12);
+  d.moved = true; selToKnobs(); dirty = true;
+});
+function ptUp() { var d = PT.drag; PT.drag = null; if (d && d.moved) schedRender(30); }
+cvPt.addEventListener("pointerup", ptUp); cvPt.addEventListener("pointercancel", ptUp);
+cvPt.addEventListener("dblclick", function (e) {
+  if (MODE !== "pitched") return; var p = mpos(cvPt, e), ht = hitNote(p.x, p.y, cvPt.clientWidth, cvPt.clientHeight); if (ht) { var n = PT.notes[ht.i]; n.dp = nearestAllowed(n.midi, allowedMask()) - n.midi; PT.sel = ht.i; selToKnobs(); schedRender(10); }
+});
+cvPt.addEventListener("wheel", function (e) {
+  e.preventDefault(); var w = cvPt.clientWidth, p = mpos(cvPt, e), tt = PTt(p.x, w), len = PT.v1 - PT.v0;
+  if (e.altKey) { var sp = (e.deltaY > 0 ? 1 : -1) * 2; PT.mlo += sp; PT.mhi += sp; return; }
+  if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) { var dt = (e.deltaX || e.deltaY) / (w - 52) * len; PT.v0 = clamp(PT.v0 + dt, 0, Math.max(0, D.n / sr - len)); PT.v1 = PT.v0 + len; return; }
+  var nl = clamp(len * (e.deltaY < 0 ? 0.8 : 1.25), 0.25, D.n / sr); PT.v0 = clamp(tt - (tt - PT.v0) / len * nl, 0, Math.max(0, D.n / sr - nl)); PT.v1 = PT.v0 + nl;
+}, { passive: false });
+
+/* ---------- modes and playback ---------- */
+var _setModeP = setMode;
+setMode = function (m) {
+  _setModeP(m); var pm = !!PMODES[m];
+  ptBox.hidden = !pm; boxAT.hidden = m !== "autotune"; boxPE.hidden = m !== "pitched"; boxHM.hidden = m !== "harmony";
+  if (pm) { $("#wvBox").hidden = true; $("#ovBox").hidden = true; $("#kbBar").hidden = true; $("#bLoop").hidden = true; abUI(); hmKeyUI(); if (D.L && PT.key !== srcKey()) analyze(false); else if (PT.f0) { PT.rkey = ""; schedRender(10); } }
+  else { $("#wvBox").hidden = false; $("#ovBox").hidden = false; }
+};
+var _startPlayP = startPlay;
+startPlay = function () {
+  if (PMODES[MODE] && PT.ab === "proc" && PT.L && PT.rkey === srcKey()) { var sL = D.L, sR = D.R; D.L = PT.L; D.R = PT.R; try { _startPlayP(); } finally { D.L = sL; D.R = sR; } } else _startPlayP();
+};
+
 /* ---------- presets (one preset holds the editor view, the sampler and the whole FX chain) ---------- */
 var _onParam = window.onParam;
 window.onParam = function (id, v) {
@@ -1333,6 +1724,13 @@ var FACT = [
   { name: "Sampler: hoover stab lead", v: mx({ src: "hoover", sm_root: 60, sm_poly: "mono", sm_glide: 60, sm_a: 3, sm_d: 600, sm_s: 0.8, sm_r: 260, sm_ft: "lp", sm_fc: 4200, sm_fq: 1.6, sm_fe: 0.3, dr_on: true, dr_d: 0.4, dr_x: 0.35, de_on: true, de_time: 320, de_fb: 0.45, de_mix: 0.25, rv_on: true, rv_mix: 0.22 }) },
   { name: "Sampler: acid line, fuzz", v: mx({ src: "acid", sm_root: 48, sm_loop: true, sm_ls: 0, sm_le: 0.5, sm_ft: "lp", sm_fc: 1800, sm_fq: 5, sm_fe: 0.55, sm_d: 220, sm_s: 0.45, dr_on: true, dr_d: 0.2, dr_f: 0.55 }) },
   { name: "FX: hardstyle pump", v: mx({ src: "hard", sm_root: 60, sm_loop: true, sm_le: 0.5, du_on: true, du_shape: "pump", du_rate: 1, du_amt: 0.85, du_where: "dry", dr_on: true, dr_x: 0.5, dr_f: 0.3, sq_on: true, sq_mix: 0.4, rv_on: true, rv_decay: 0.7, rv_mix: 0.3 }) },
+  { name: "Auto-Tune: hard robotic (T-Pain style)", v: mx({ src: "vox", pc_on: true, pc_speed: 0, pc_amt: 1, pc_vib: 0, pc_hum: 0, pc_scale: 0 }) },
+  { name: "Auto-Tune: clean modern vocal, A minor", v: mx({ src: "vox", pc_on: true, pc_key: 9, pc_scale: 2, pc_speed: 35, pc_amt: 1, pc_vib: 0.7, pc_hum: 0.3 }) },
+  { name: "Auto-Tune: natural touch-up", v: mx({ src: "vox", pc_on: true, pc_key: 9, pc_scale: 2, pc_speed: 140, pc_amt: 0.7, pc_vib: 1, pc_hum: 0.6 }) },
+  { name: "Harmony: third and fifth above", v: mx({ src: "vox", pc_on: true, pc_key: 9, pc_scale: 2, pc_speed: 40, hm_on: true, hm_i1: 4, hm_l1: 0.6, hm_i2: 7, hm_l2: 0.5, hm_l3: 0 }) },
+  { name: "Harmony: octave down and up", v: mx({ src: "vox", pc_on: true, pc_speed: 60, hm_on: true, hm_snap: false, hm_i1: 12, hm_l1: 0.4, hm_i2: -12, hm_l2: 0.6, hm_l3: 0, hm_wet: 0.8 }) },
+  { name: "Robot: locked on E", v: mx({ src: "vox", pc_on: true, rb_on: true, rb_note: 4, pc_speed: 0, pc_vib: 0, pc_hum: 0 }) },
+  { name: "Pitch editor: snap to A minor", v: mx({ src: "vox", pc_key: 9, pc_scale: 2, pe_snap: "scale" }) },
   { name: "FX: trance gate on pad", v: mx({ src: "vox", sm_loop: true, sm_ls: 0.1, sm_le: 0.6, sm_s: 1, du_on: true, du_shape: "gate", du_rate: 0.5, du_amt: 0.9, du_where: "all", rv_on: true, rv_type: 2, rv_decay: 0.75, rv_mix: 0.35 }) }
 ];
 initPresets(FACT, KEYS, function () { loadSrc(); dirty = true; updBtns(); if (window.markKeys) markKeys(); });

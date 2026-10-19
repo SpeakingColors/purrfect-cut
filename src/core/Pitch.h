@@ -96,6 +96,11 @@ inline PitchFrames yinTrack(const float* x, size_t n, double sr, int hop = 256, 
         if (f[i] > 0.f && f[i - 1] > 0.f && f[i + 1] > 0.f) { const float a = f[i - 1], b = f[i], c = f[i + 1]; const float mid = std::max(std::min(a, b), std::min(std::max(a, b), c)); if (std::fabs(std::log2(b / mid)) > 0.4f) f[i] = mid; }
         else if (f[i] > 0.f && f[i - 1] <= 0.f && f[i + 1] <= 0.f) f[i] = 0.f;
     }
+    for (size_t i = 1; i < f.size(); ++i) if (f[i] > 0.f && f[i - 1] > 0.f && std::fabs(12.f * std::log2(f[i] / f[i - 1])) > 4.f) f[i] = 0.f;   // a leap of more than 4 semitones in one frame is a slip, or the first frame of a new note
+    for (size_t i = 0; i < f.size();) {   // a clear pitch lasts more than 3 frames
+        if (!(f[i] > 0.f)) { ++i; continue; } size_t e = i; while (e < f.size() && f[e] > 0.f) ++e;
+        if (e - i < 3) for (size_t q = i; q < e; ++q) f[q] = 0.f; i = e;
+    }
     return pf;
 }
 
