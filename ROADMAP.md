@@ -5,13 +5,17 @@ Audio editor.
 ## Done
 - [x] Editing model in pure C++ with unit tests (edits, undo / redo, peaks, WAV read and write)
 - [x] JUCE desktop app with waveform, selection, edits, play and save, CI (core tests, configure, build)
+- [x] Cheap edits (store only the changed part), peak pyramid, zoom and scroll
+- [x] Sampler engine with FX chain (drive, squash, duck, delay, reverb), tested
+- [x] VST3 and standalone sampler, all controls automatable, pluginval level 5 on Linux and Windows in CI
+- [x] Interactive mockup v3 with Editor, Sampler and FX tabs
 
 ## Next
-- [ ] Try it on real files and long files; make edits cheaper in memory (store changed ranges instead of full copies)
-- [ ] Zoom and scroll, selection snapping to zero crossings
-- [ ] cat-ui window from the mockup (wood cheeks, spectrogram, meters with dB scales) drawn through `catui::RenderGate`
+- [ ] Try it on real files and long files by ear
+- [ ] Selection snapping to zero crossings
+- [ ] Sample editing inside the plugin (load, trim and loop on the waveform), then the editor as a VST3 too
+- [ ] cat-ui window from the mockup (app and plugin) (wood cheeks, spectrogram, meters with dB scales) drawn through `catui::RenderGate`
 - [ ] Other export formats (FLAC, OGG) and a settings page
-- [ ] VST3 version from the same code
 - [ ] Hand-off to and from CATalog
 
 ## Every cat plugin

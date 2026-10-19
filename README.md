@@ -4,13 +4,18 @@
 
 Audio editor as VST and desktop app from one install (Linux, Windows, macOS).
 
+## What it is
+An audio editor first: open a file, cut, copy, paste, trim, silence, fade, gain, normalise, reverse, invert, remove DC, undo, save WAV. It is not a pitch corrector or an autotune.
+It is also a **sampler with FX**: load a sample, play it from MIDI (keys or slices) with an amp envelope, filter, loop, and a chain of drive, squash, duck, delay and reverb.
+
 ## Status
 Early. What exists today:
-- A tested pure C++ editing model (`src/core`): cut, copy, paste, delete, trim, silence, fades (linear, exponential, s-curve), gain, normalise, reverse, invert, remove DC, 25 step undo and redo, peak data for drawing, and WAV read / write (16 bit with dither, 24 bit, 32 bit float).
-- A JUCE desktop app (`src/app`): open a file, see the waveform with a dB scale, select, edit, play, undo, save as 24 bit WAV. Plain JUCE buttons for now.
-- Not yet: the cat-ui window from the [mockup](docs/mockup/) (wood cheeks, zoom, spectrogram, meters), the VST3 version, zoom and scroll, recording, the hand-off to and from CATalog. Nothing here has been tried by ear or on long files yet; every edit makes a full copy of the audio, so very long files use a lot of memory.
+- **Core (`src/core`, pure C++, tested):** the editing model with cheap undo (25 steps, an edit stores only the part it changed), a peak pyramid for long files, zoom maths, WAV read and write (16 bit with dither, 24 bit, 32 bit float), and the sampler engine (16 voices, ADSR, state variable filter, loop with crossfade, even or transient slices, mono glide) with the FX chain.
+- **Desktop app (`src/app`):** open a file, waveform with a dB scale, zoom and scroll (mouse wheel zooms around the pointer, shift or sideways wheel scrolls, buttons for zoom in / out / fit / selection; zoom goes down to 1/32 sample per pixel), select, edit, play, undo, save as 24 bit WAV.
+- **VST3 sampler and standalone (`src/plugin`):** every control is a host automatable parameter (65 of them, listed in `src/core/Params.h`). Load a sample, play it by MIDI, optional sidechain input for the duck. Checked with pluginval level 5 on Linux and Windows in CI. Plain JUCE controls for now; the sample path is saved in the project, the audio is not.
+- **Not yet:** the cat-ui window from the [mockup](docs/mockup/purrfectcut.html), spectrogram, recording, the hand-off to and from CATalog, the editor inside the plugin. Nothing here has been tried by ear or on very long files yet.
 
-Run the model tests: `sh tests/run.sh` (needs only g++).
+Run the core tests: `sh tests/run.sh` (needs only g++), or `ctest` after a CMake build.
 
 <p align="center">
   <a href="https://ko-fi.com/studio87"><img src="https://img.shields.io/badge/Support_Studio_87-on_Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white" alt="Support Studio 87 on Ko-fi"></a>

@@ -1,5 +1,7 @@
 // Purrfect Cut: the editing model (pure C++, no JUCE). One stereo document with a selection, a cursor, a clipboard and
-// undo / redo. Every edit builds a new immutable audio buffer, so undo is just going back to the previous one.
+// undo / redo. The audio lives in one pair of vectors and every edit is recorded as a few "splices": the piece that was
+// taken out and the piece that was put in. Undo and redo just swap those pieces back, so an edit costs memory in
+// proportion to the part you changed, not to the length of the file. A peak pyramid makes drawing a long file cheap.
 #pragma once
 #include <vector>
 #include <memory>
@@ -13,7 +15,6 @@
 namespace purrfect {
 
 struct Audio { std::vector<float> L, R; size_t size() const { return L.size(); } };
-using AudioPtr = std::shared_ptr<const Audio>;
 
 enum class FadeCurve { Linear, Exponential, SCurve };
 inline float fadeShape(FadeCurve c, float x) {
@@ -26,16 +27,20 @@ inline float fadeShape(FadeCurve c, float x) {
 class EditDoc {
 public:
     static constexpr size_t kUndoDepth = 25;
+    size_t undoByteLimit = (size_t) 768 << 20;   // oldest undo steps are dropped beyond this (the newest one is always kept)
     double sampleRate = 44100;
 
     void set(std::vector<float> l, std::vector<float> r, double sr) {
         if (r.size() != l.size()) r = l;
-        cur_ = std::make_shared<Audio>(Audio { std::move(l), std::move(r) }); sampleRate = sr; undo_.clear(); redo_.clear(); selA = selB = 0; cursor = 0; dirty = false;
+        cur_ = Audio { std::move(l), std::move(r) }; sampleRate = sr; undo_.clear(); redo_.clear(); selA = selB = 0; cursor = 0; dirty = false; ++ver_;
     }
-    bool empty() const { return !cur_ || cur_->size() == 0; }
-    size_t size() const { return cur_ ? cur_->size() : 0; }
-    AudioPtr audio() const { return cur_; }
+    bool empty() const { return cur_.size() == 0; }
+    size_t size() const { return cur_.size(); }
+    // The audio itself. It changes in place when you edit, so stop anything that is reading it before you edit (the app does).
+    const Audio* audio() const { return &cur_; }
     double seconds() const { return (double) size() / sampleRate; }
+    uint64_t version() const { return ver_; }      // goes up with every edit, undo and redo
+    size_t undoBytes() const { size_t b = 0; for (auto& e : undo_) b += e.bytes(); return b; }
 
     // selection [selA, selB); empty selection means "the whole thing" for effects, "the cursor" for paste
     size_t selA = 0, selB = 0, cursor = 0; bool dirty = false;
@@ -45,67 +50,98 @@ public:
     void setCursor(size_t p) { cursor = std::min(p, size()); }
 
     bool canUndo() const { return !undo_.empty(); } bool canRedo() const { return !redo_.empty(); }
-    bool hasClip() const { return clip_ && clip_->size() > 0; }
-    AudioPtr clipboard() const { return clip_; }
+    bool hasClip() const { return clip_.size() > 0; }
+    const Audio* clipboard() const { return &clip_; }
 
     // ---- edits ----
     bool copy() { if (!hasSel()) return false; clip_ = slice(selA, selB); return true; }
     bool cut() { if (!hasSel()) return false; clip_ = slice(selA, selB); return del(); }
     bool del() {
-        if (!hasSel()) return false; const size_t a = selA, b = selB; auto n = std::make_shared<Audio>();
-        n->L.reserve(size() - (b - a)); n->R.reserve(size() - (b - a));
-        n->L.insert(n->L.end(), cur_->L.begin(), cur_->L.begin() + (long) a); n->L.insert(n->L.end(), cur_->L.begin() + (long) b, cur_->L.end());
-        n->R.insert(n->R.end(), cur_->R.begin(), cur_->R.begin() + (long) a); n->R.insert(n->R.end(), cur_->R.begin() + (long) b, cur_->R.end());
-        push(n); selA = selB = a; cursor = a; return true;
+        if (!hasSel()) return false; const size_t a = selA; Edit e = begin(); splice(e, a, selB - a, Audio {}); finish(e); selA = selB = a; cursor = a; e_after(); return true;
     }
     // Paste replaces the selection, or goes in at the cursor.
     bool paste() {
-        if (!hasClip() || !cur_) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; auto n = std::make_shared<Audio>();
-        n->L.insert(n->L.end(), cur_->L.begin(), cur_->L.begin() + (long) a); n->L.insert(n->L.end(), clip_->L.begin(), clip_->L.end()); n->L.insert(n->L.end(), cur_->L.begin() + (long) b, cur_->L.end());
-        n->R.insert(n->R.end(), cur_->R.begin(), cur_->R.begin() + (long) a); n->R.insert(n->R.end(), clip_->R.begin(), clip_->R.end()); n->R.insert(n->R.end(), cur_->R.begin() + (long) b, cur_->R.end());
-        push(n); selA = a; selB = a + clip_->size(); cursor = selB; return true;
+        if (!hasClip() || empty()) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; Edit e = begin(); splice(e, a, b - a, clip_); finish(e);
+        selA = a; selB = a + clip_.size(); cursor = selB; e_after(); return true;
     }
-    bool trim() { if (!hasSel()) return false; auto n = slice(selA, selB); push(n); selA = selB = 0; cursor = 0; return true; }
+    bool trim() { if (!hasSel()) return false; const size_t a = selA, b = selB; Edit e = begin(); splice(e, b, size() - b, Audio {}); splice(e, 0, a, Audio {}); finish(e); selA = selB = 0; cursor = 0; e_after(); return true; }
+    // Replace the selection (or the whole file) with new audio, for example the result of effects or a render. The new audio ends up selected.
+    bool replace(const Audio& a) {
+        if (empty() || a.size() == 0) return false; const auto [x, y] = range(); Edit e = begin(); splice(e, x, y - x, a); finish(e); selA = x; selB = x + a.size(); cursor = x; e_after(); return true;
+    }
     bool silence() { return fx([](float*, float*, size_t) {}, true, true); }
     bool fadeIn(FadeCurve c = FadeCurve::Linear) { return fx([c](float* l, float* r, size_t n) { for (size_t i = 0; i < n; ++i) { const float g = fadeShape(c, (float) i / (float) n); l[i] *= g; r[i] *= g; } }); }
     bool fadeOut(FadeCurve c = FadeCurve::Linear) { return fx([c](float* l, float* r, size_t n) { for (size_t i = 0; i < n; ++i) { const float g = fadeShape(c, 1.f - (float) i / (float) n); l[i] *= g; r[i] *= g; } }); }
     bool gain(float db) { const float g = std::pow(10.f, db / 20.f); return fx([g](float* l, float* r, size_t n) { for (size_t i = 0; i < n; ++i) { l[i] *= g; r[i] *= g; } }); }
     // Scale so the loudest sample of the range reaches targetDb. False if the range is silent.
     bool normalize(float targetDb = -1.f) {
-        const auto [a, b] = range(); float pk = 0; for (size_t i = a; i < b; ++i) pk = std::max(pk, std::max(std::fabs(cur_->L[i]), std::fabs(cur_->R[i])));
+        if (empty()) return false; const auto [a, b] = range(); float pk = 0; for (size_t i = a; i < b; ++i) pk = std::max(pk, std::max(std::fabs(cur_.L[i]), std::fabs(cur_.R[i])));
         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
     }
     bool reverse() { return fx([](float* l, float* r, size_t n) { std::reverse(l, l + n); std::reverse(r, r + n); }); }
     bool invert() { return fx([](float* l, float* r, size_t n) { for (size_t i = 0; i < n; ++i) { l[i] = -l[i]; r[i] = -r[i]; } }); }
     bool removeDc() { return fx([](float* l, float* r, size_t n) { double sl = 0, sr = 0; for (size_t i = 0; i < n; ++i) { sl += l[i]; sr += r[i]; } sl /= (double) n; sr /= (double) n; for (size_t i = 0; i < n; ++i) { l[i] -= (float) sl; r[i] -= (float) sr; } }); }
 
-    bool undo() { if (undo_.empty()) return false; redo_.push_back({ cur_, selA, selB, cursor }); auto s = undo_.back(); undo_.pop_back(); restore(s); return true; }
-    bool redo() { if (redo_.empty()) return false; undo_.push_back({ cur_, selA, selB, cursor }); auto s = redo_.back(); redo_.pop_back(); restore(s); return true; }
+    bool undo() {
+        if (undo_.empty()) return false; Edit e = std::move(undo_.back()); undo_.pop_back();
+        for (size_t i = e.sp.size(); i-- > 0;) apply(e.sp[i].pos, e.sp[i].inserted.size(), e.sp[i].removed);
+        restore(e.before); redo_.push_back(std::move(e)); return true;
+    }
+    bool redo() {
+        if (redo_.empty()) return false; Edit e = std::move(redo_.back()); redo_.pop_back();
+        for (size_t i = 0; i < e.sp.size(); ++i) apply(e.sp[i].pos, e.sp[i].removed.size(), e.sp[i].inserted);
+        restore(e.after); undo_.push_back(std::move(e)); return true;
+    }
 
     // Peak pairs for drawing: min and max of each of `columns` equal slices of [from, to), mono mix of both channels.
+    // Long ranges are answered from a pyramid, so zoomed-out drawing of an hour of audio stays quick.
     void peaks(size_t from, size_t to, int columns, std::vector<float>& mins, std::vector<float>& maxs) const {
         mins.assign((size_t) std::max(0, columns), 0.f); maxs = mins; if (empty() || to <= from || columns <= 0) return; to = std::min(to, size());
+        const double step = (double) (to - from) / columns; const Level* lv = nullptr; if (step >= 16.0 * kBlockBig) lv = &pyr(1); else if (step >= 16.0 * kBlockSmall) lv = &pyr(0);
         for (int c = 0; c < columns; ++c) {
-            const size_t a = from + (size_t)((double)(to - from) * c / columns), b = std::max(a + 1, from + (size_t)((double)(to - from) * (c + 1) / columns)); float lo = 1e9f, hi = -1e9f;
-            for (size_t i = a; i < b && i < size(); ++i) { const float v = 0.5f * (cur_->L[i] + cur_->R[i]); lo = std::min(lo, v); hi = std::max(hi, v); }
+            const size_t a = from + (size_t) ((double) (to - from) * c / columns), b = std::max(a + 1, from + (size_t) ((double) (to - from) * (c + 1) / columns)); float lo = 1e9f, hi = -1e9f;
+            if (lv) { const size_t i0 = a / lv->block, i1 = std::min(lv->mn.size(), (b + lv->block - 1) / lv->block); for (size_t i = i0; i < i1; ++i) { lo = std::min(lo, lv->mn[i]); hi = std::max(hi, lv->mx[i]); } }
+            else for (size_t i = a; i < b && i < size(); ++i) { const float v = 0.5f * (cur_.L[i] + cur_.R[i]); lo = std::min(lo, v); hi = std::max(hi, v); }
             mins[(size_t) c] = lo > hi ? 0.f : lo; maxs[(size_t) c] = lo > hi ? 0.f : hi;
         }
     }
-    float peak() const { float p = 0; if (cur_) for (size_t i = 0; i < size(); ++i) p = std::max(p, std::max(std::fabs(cur_->L[i]), std::fabs(cur_->R[i]))); return p; }
+    float peak() const { float p = 0; for (size_t i = 0; i < size(); ++i) p = std::max(p, std::max(std::fabs(cur_.L[i]), std::fabs(cur_.R[i]))); return p; }
 
 private:
-    struct State { AudioPtr a; size_t selA, selB, cursor; };
-    AudioPtr cur_, clip_; std::vector<State> undo_, redo_;
+    static constexpr size_t kBlockSmall = 64, kBlockBig = 4096;
+    struct State { size_t selA, selB, cursor; };
+    struct Splice { size_t pos; Audio removed, inserted; };
+    struct Edit { State before {}, after {}; std::vector<Splice> sp; size_t bytes() const { size_t b = 0; for (auto& s : sp) b += (s.removed.size() + s.inserted.size()) * 8; return b; } };
+    struct Level { size_t block = 1; std::vector<float> mn, mx; };
+    Audio cur_, clip_; std::vector<Edit> undo_, redo_; uint64_t ver_ = 1; mutable uint64_t pyrVer_ = 0; mutable Level pyr_[2]; Edit pending_;
     std::pair<size_t, size_t> range() const { return hasSel() ? std::make_pair(selA, selB) : std::make_pair((size_t) 0, size()); }
-    std::shared_ptr<Audio> slice(size_t a, size_t b) const { auto n = std::make_shared<Audio>(); n->L.assign(cur_->L.begin() + (long) a, cur_->L.begin() + (long) b); n->R.assign(cur_->R.begin() + (long) a, cur_->R.begin() + (long) b); return n; }
-    void push(AudioPtr n) { undo_.push_back({ cur_, selA, selB, cursor }); if (undo_.size() > kUndoDepth) undo_.erase(undo_.begin()); redo_.clear(); cur_ = std::move(n); dirty = true; }
-    void restore(const State& s) { cur_ = s.a; selA = std::min(s.selA, size()); selB = std::min(s.selB, size()); cursor = std::min(s.cursor, size()); dirty = true; }
+    Audio slice(size_t a, size_t b) const { Audio n; n.L.assign(cur_.L.begin() + (long) a, cur_.L.begin() + (long) b); n.R.assign(cur_.R.begin() + (long) a, cur_.R.begin() + (long) b); return n; }
+    Edit begin() const { Edit e; e.before = { selA, selB, cursor }; return e; }
+    // Take `rem` samples at pos out and put `ins` in. Records both pieces in the edit.
+    void splice(Edit& e, size_t pos, size_t rem, const Audio& ins) {
+        Splice s; s.pos = pos; s.removed = slice(pos, pos + rem); s.inserted = ins; apply(pos, rem, ins); e.sp.push_back(std::move(s));
+    }
+    void apply(size_t pos, size_t rem, const Audio& ins) {
+        if (rem == ins.size()) { std::copy(ins.L.begin(), ins.L.end(), cur_.L.begin() + (long) pos); std::copy(ins.R.begin(), ins.R.end(), cur_.R.begin() + (long) pos); }
+        else { cur_.L.erase(cur_.L.begin() + (long) pos, cur_.L.begin() + (long) (pos + rem)); cur_.L.insert(cur_.L.begin() + (long) pos, ins.L.begin(), ins.L.end());
+               cur_.R.erase(cur_.R.begin() + (long) pos, cur_.R.begin() + (long) (pos + rem)); cur_.R.insert(cur_.R.begin() + (long) pos, ins.R.begin(), ins.R.end()); }
+        ++ver_;
+    }
+    void finish(Edit& e) { pending_ = std::move(e); }
+    void e_after() { pending_.after = { selA, selB, cursor }; undo_.push_back(std::move(pending_)); pending_ = Edit(); redo_.clear(); dirty = true; while (undo_.size() > kUndoDepth || (undo_.size() > 1 && undoBytes() > undoByteLimit)) undo_.erase(undo_.begin()); }
+    void restore(const State& s) { selA = std::min(s.selA, size()); selB = std::min(s.selB, size()); cursor = std::min(s.cursor, size()); dirty = true; }
+    // An in-place effect on the range. The piece before and after is stored.
     template <class F> bool fx(F f, bool zero = false, bool needSel = false) {
         if (empty()) return false; if (needSel && !hasSel()) return false;
-        const auto [a, b] = range(); if (b <= a) return false; auto n = std::make_shared<Audio>(*cur_);
-        if (zero) { std::fill(n->L.begin() + (long) a, n->L.begin() + (long) b, 0.f); std::fill(n->R.begin() + (long) a, n->R.begin() + (long) b, 0.f); }
-        else f(n->L.data() + a, n->R.data() + a, b - a);
-        push(n); return true;
+        const auto [a, b] = range(); if (b <= a) return false; Edit e = begin(); Audio ins = slice(a, b);
+        if (zero) { std::fill(ins.L.begin(), ins.L.end(), 0.f); std::fill(ins.R.begin(), ins.R.end(), 0.f); } else f(ins.L.data(), ins.R.data(), b - a);
+        splice(e, a, b - a, ins); finish(e); e_after(); return true;
+    }
+    const Level& pyr(int i) const {
+        if (pyrVer_ != ver_) { for (int k = 0; k < 2; ++k) { Level& L = pyr_[k]; L.block = k ? kBlockBig : kBlockSmall; const size_t nb = (size() + L.block - 1) / L.block; L.mn.assign(nb, 0.f); L.mx.assign(nb, 0.f);
+                for (size_t b = 0; b < nb; ++b) { float lo = 1e9f, hi = -1e9f; const size_t a = b * L.block, z = std::min(size(), a + L.block); for (size_t j = a; j < z; ++j) { const float v = 0.5f * (cur_.L[j] + cur_.R[j]); lo = std::min(lo, v); hi = std::max(hi, v); } L.mn[b] = lo; L.mx[b] = hi; } }
+            pyrVer_ = ver_; }
+        return pyr_[i];
     }
 };
 
