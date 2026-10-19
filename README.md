@@ -14,6 +14,7 @@ Early work in progress.
 ☕ Free and open source, made by one person. If it helps your music, a coffee on [Ko-fi](https://ko-fi.com/studio87) keeps it coming. 💜
 
 ## Docs
+- [Interactive mockups](docs/README.md)
 - [Roadmap](ROADMAP.md)
 
 ## License
