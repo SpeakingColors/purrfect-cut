@@ -22,7 +22,7 @@ CMake Warning at build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:1769 (m
 Call Stack (most recent call first):
   build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:2165 (_juce_set_fallback_properties)
   build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:2237 (_juce_initialise_target)
-  CMakeLists.txt:27 (juce_add_gui_app)
+  CMakeLists.txt:37 (juce_add_gui_app)
 
 
 CMake Warning at build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:1769 (message):
@@ -32,11 +32,11 @@ CMake Warning at build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:1769 (m
 Call Stack (most recent call first):
   build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:2165 (_juce_set_fallback_properties)
   build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake:2248 (_juce_initialise_target)
-  CMakeLists.txt:35 (juce_add_plugin)
+  CMakeLists.txt:45 (juce_add_plugin)
 
 
--- Configuring done (112.8s)
--- Generating done (0.1s)
+-- Configuring done (154.3s)
+-- Generating done (0.2s)
 CMake Warning (unused-cli):
   Manually-specified variables were not used by the project:
 
@@ -65,232 +65,75 @@ MSBuild version 18.10.1-1.26427.6+3cd27c13e for .NET Framework
   test_pitch.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_pitch.exe
 Test project D:/a/purrfect-cut/purrfect-cut/build
     Start 1: core
-1/3 Test #1: core .............................   Passed    0.03 sec
+1/8 Test #1: core .............................   Passed    0.02 sec
     Start 2: sampler_and_view
-2/3 Test #2: sampler_and_view .................   Passed    1.57 sec
+2/8 Test #2: sampler_and_view .................   Passed    1.72 sec
     Start 3: pitch
-3/3 Test #3: pitch ............................   Passed    1.89 sec
+3/8 Test #3: pitch ............................   Passed    2.49 sec
+    Start 4: track
+Could not find executable D:/a/purrfect-cut/purrfect-cut/build/Release/test_track.exe
+Looked in the following places:
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_track.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_track.exe.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_track.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_track.exe.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_track.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_track.exe.exe
+Unable to find executable: D:/a/purrfect-cut/purrfect-cut/build/Release/test_track.exe
+4/8 Test #4: track ............................***Not Run   0.00 sec
+    Start 5: poly
+Could not find executable D:/a/purrfect-cut/purrfect-cut/build/Release/test_poly.exe
+Looked in the following places:
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_poly.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_poly.exe.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_poly.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_poly.exe.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_poly.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_poly.exe.exe
+Unable to find executable: D:/a/purrfect-cut/purrfect-cut/build/Release/test_poly.exe
+5/8 Test #5: poly .............................***Not Run   0.00 sec
+    Start 6: spectral
+Could not find executable D:/a/purrfect-cut/purrfect-cut/build/Release/test_spectral.exe
+Looked in the following places:
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_spectral.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_spectral.exe.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_spectral.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_spectral.exe.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_spectral.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_spectral.exe.exe
+Unable to find executable: D:/a/purrfect-cut/purrfect-cut/build/Release/test_spectral.exe
+6/8 Test #6: spectral .........................***Not Run   0.00 sec
+    Start 7: notes
+Could not find executable D:/a/purrfect-cut/purrfect-cut/build/Release/test_notes.exe
+Looked in the following places:
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_notes.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_notes.exe.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_notes.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_notes.exe.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_notes.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_notes.exe.exe
+Unable to find executable: D:/a/purrfect-cut/purrfect-cut/build/Release/test_notes.exe
+7/8 Test #7: notes ............................***Not Run   0.00 sec
+    Start 8: session
+Could not find executable D:/a/purrfect-cut/purrfect-cut/build/Release/test_session.exe
+Looked in the following places:
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_session.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/test_session.exe.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_session.exe
+D:/a/purrfect-cut/purrfect-cut/build/Release/Release/test_session.exe.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_session.exe
+Release/D:/a/purrfect-cut/purrfect-cut/build/Release/test_session.exe.exe
+Unable to find executable: D:/a/purrfect-cut/purrfect-cut/build/Release/test_session.exe
+8/8 Test #8: session ..........................***Not Run   0.00 sec
 
-100% tests passed out of 3
+38% tests passed, 5 tests failed out of 8
 
-Total Test time (real) =   3.52 sec
-MSBuild version 18.10.1-1.26427.6+3cd27c13e for .NET Framework
+Total Test time (real) =   4.36 sec
 
-  Checking File Globs
-  Generating PurrfectCutSampler_artefacts/JuceLibraryCode/PurrfectCutSampler_resources.rc
-  Generating PurrfectCut_artefacts/JuceLibraryCode/PurrfectCut_resources.rc
-  Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-  Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-  Building VST3 manifest helper for PurrfectCutSampler
-  PurrfectCut_rc_lib.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut_rc_lib.dir\Release\PurrfectCut_rc_lib.lib
-  PurrfectCutSampler_rc_lib.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_rc_lib.dir\Release\PurrfectCutSampler_rc_lib.lib
-  -- The CXX compiler identification is MSVC 19.51.36260.0
-  -- Detecting CXX compiler ABI info
-  -- Detecting CXX compiler ABI info - done
-  -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
-  -- Detecting CXX compile features
-  -- Detecting CXX compile features - done
-  -- Configuring done (1.7s)
-  -- Generating done (0.0s)
-  -- Build files have been written to: D:/a/purrfect-cut/purrfect-cut/build/vst3_helpers/PurrfectCutSampler
-  MSBuild version 18.10.1-1.26427.6+3cd27c13e for .NET Framework
-  
-    1>Checking Build System
-    Building Custom Rule D:/a/purrfect-cut/purrfect-cut/build/_deps/juce-src/extras/Build/CMake/juce_vst3_helper/CMakeLists.txt
-    juce_VST3ManifestHelper.cpp
-    vst3_helper.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\vst3_helpers\PurrfectCutSampler\vst3_helper.exe
-    Building Custom Rule D:/a/purrfect-cut/purrfect-cut/build/_deps/juce-src/extras/Build/CMake/juce_vst3_helper/CMakeLists.txt
-  Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-  Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-  PluginProcessor.cpp
-  PluginEditor.cpp
-  juce_audio_processors.cpp
-  juce_gui_extra.cpp
-  juce_gui_basics.cpp
-  juce_gui_basics_2.cpp
-  juce_gui_basics_3.cpp
-  juce_gui_basics_4.cpp
-D:\a\purrfect-cut\purrfect-cut\build\_deps\juce-src\modules\juce_gui_basics\juce_gui_basics.cpp(61): warning : This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler.vcxproj]
-  juce_gui_basics_5.cpp
-  juce_graphics.cpp
-  juce_graphics_Harfbuzz.cpp
-  juce_events.cpp
-  juce_core.cpp
-  juce_core_CompilationTime.cpp
-  juce_data_structures.cpp
-  juce_audio_processors_headless.cpp
-  juce_audio_processors_headless_ara.cpp
-  juce_audio_processors_headless_lv2_libs.cpp
-  juce_audio_basics.cpp
-  juce_audio_utils.cpp
-  juce_audio_formats.cpp
-  juce_audio_devices.cpp
-  juce_graphics_Sheenbidi.c
-  PurrfectCutSampler.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\Purrfect Cut Sampler_SharedCode.lib
-  Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-  juce_audio_plugin_client_AAX.cpp
-  juce_audio_plugin_client_AAX_utils.cpp
-  juce_audio_plugin_client_ARA.cpp
-  juce_audio_plugin_client_LV2.cpp
-  juce_audio_plugin_client_Standalone.cpp
-  juce_audio_plugin_client_Unity.cpp
-  juce_audio_plugin_client_VST2.cpp
-  juce_audio_plugin_client_VST3.cpp
-     Creating library D:/a/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.lib and object D:/a/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.exp
-  PurrfectCutSampler_VST3.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\VST3\Purrfect Cut Sampler.vst3\Contents\x86_64-win\Purrfect Cut Sampler.vst3
-  removing moduleinfo.json
-  creating D:/a/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3/Contents/Resources/moduleinfo.json
-  Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-  test_core.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_core.exe
-  test_more.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_more.exe
-  Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-  test_pitch.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_pitch.exe
-  Main.cpp
-  juce_audio_utils.cpp
-  juce_audio_processors.cpp
-  juce_audio_plugin_client_AAX.cpp
-  juce_gui_extra.cpp
-  juce_audio_plugin_client_AAX_utils.cpp
-  juce_audio_plugin_client_ARA.cpp
-  juce_audio_plugin_client_LV2.cpp
-  juce_audio_plugin_client_Standalone.cpp
-  juce_audio_plugin_client_Unity.cpp
-  juce_audio_plugin_client_VST2.cpp
-  juce_audio_plugin_client_VST3.cpp
-  juce_gui_basics.cpp
-  juce_gui_basics_2.cpp
-  juce_gui_basics_3.cpp
-  juce_gui_basics_4.cpp
-  PurrfectCutSampler_Standalone.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\Standalone\Purrfect Cut Sampler.exe
-  juce_gui_basics_5.cpp
-  juce_graphics.cpp
-  juce_graphics_Harfbuzz.cpp
-  juce_events.cpp
-  juce_core.cpp
-  juce_core_CompilationTime.cpp
-  juce_data_structures.cpp
-  juce_audio_processors_headless.cpp
-  juce_audio_processors_headless_ara.cpp
-  juce_audio_processors_headless_lv2_libs.cpp
-  juce_audio_basics.cpp
-  juce_audio_formats.cpp
-  juce_audio_devices.cpp
-  juce_graphics_Sheenbidi.c
-  PurrfectCut.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut_artefacts\Release\Purrfect Cut.exe
-  Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
-Started validating: D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\VST3\Purrfect Cut Sampler.vst3
-Random seed: 0x4679c2d
-Validation started
-Strictness level: 5
------------------------------------------------------------------
-Starting tests in: pluginval / Scan for plugins located in: D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\VST3\Purrfect Cut Sampler.vst3...
-Num plugins found: 1
-
-Testing plugin: VST3-Purrfect Cut Sampler-75c01ac-b96865f4
-Studio 87: Purrfect Cut Sampler v0.2.0
-Completed tests in pluginval / Scan for plugins located in: D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\VST3\Purrfect Cut Sampler.vst3
------------------------------------------------------------------
-Starting tests in: pluginval / Open plugin (cold)...
-Completed tests in pluginval / Open plugin (cold)
------------------------------------------------------------------
-Starting tests in: pluginval / Open plugin (warm)...
-Running tests 1 times
-Completed tests in pluginval / Open plugin (warm)
------------------------------------------------------------------
-Starting tests in: pluginval / Plugin info...
-
-Plugin name: Purrfect Cut Sampler
-Alternative names: Purrfect Cut Sampler
-SupportsDoublePrecision: no
-Reported latency: 0
-Reported taillength: 8
-Completed tests in pluginval / Plugin info
------------------------------------------------------------------
-Starting tests in: pluginval / Plugin programs...
-Num programs: 0
-All program names checked
-Completed tests in pluginval / Plugin programs
------------------------------------------------------------------
-Starting tests in: pluginval / Editor...
-Completed tests in pluginval / Editor
------------------------------------------------------------------
-Starting tests in: pluginval / Open editor whilst processing...
-Completed tests in pluginval / Open editor whilst processing
------------------------------------------------------------------
-Starting tests in: pluginval / Audio processing...
-Testing with sample rate [44100] and block size [64]
-Testing with sample rate [44100] and block size [128]
-Testing with sample rate [44100] and block size [256]
-Testing with sample rate [44100] and block size [512]
-Testing with sample rate [44100] and block size [1024]
-Testing with sample rate [48000] and block size [64]
-Testing with sample rate [48000] and block size [128]
-Testing with sample rate [48000] and block size [256]
-Testing with sample rate [48000] and block size [512]
-Testing with sample rate [48000] and block size [1024]
-Testing with sample rate [96000] and block size [64]
-Testing with sample rate [96000] and block size [128]
-Testing with sample rate [96000] and block size [256]
-Testing with sample rate [96000] and block size [512]
-Testing with sample rate [96000] and block size [1024]
-Completed tests in pluginval / Audio processing
------------------------------------------------------------------
-Starting tests in: pluginval / Plugin state...
-Completed tests in pluginval / Plugin state
------------------------------------------------------------------
-Starting tests in: pluginval / Automation...
-Testing with sample rate [44100] and block size [64] and sub-block size [32]
-Testing with sample rate [44100] and block size [128] and sub-block size [32]
-Testing with sample rate [44100] and block size [256] and sub-block size [32]
-Testing with sample rate [44100] and block size [512] and sub-block size [32]
-Testing with sample rate [44100] and block size [1024] and sub-block size [32]
-Testing with sample rate [48000] and block size [64] and sub-block size [32]
-Testing with sample rate [48000] and block size [128] and sub-block size [32]
-Testing with sample rate [48000] and block size [256] and sub-block size [32]
-Testing with sample rate [48000] and block size [512] and sub-block size [32]
-Testing with sample rate [48000] and block size [1024] and sub-block size [32]
-Testing with sample rate [96000] and block size [64] and sub-block size [32]
-Testing with sample rate [96000] and block size [128] and sub-block size [32]
-Testing with sample rate [96000] and block size [256] and sub-block size [32]
-Testing with sample rate [96000] and block size [512] and sub-block size [32]
-Testing with sample rate [96000] and block size [1024] and sub-block size [32]
-Completed tests in pluginval / Automation
------------------------------------------------------------------
-Starting tests in: pluginval / Editor Automation...
-Completed tests in pluginval / Editor Automation
------------------------------------------------------------------
-Starting tests in: pluginval / Automatable Parameters...
-Completed tests in pluginval / Automatable Parameters
------------------------------------------------------------------
-Starting tests in: pluginval / auval...
-Completed tests in pluginval / auval
------------------------------------------------------------------
-Starting tests in: pluginval / vst3 validator...
-INFO: Skipping vst3 validator as validator path hasn't been set
-Completed tests in pluginval / vst3 validator
------------------------------------------------------------------
-Starting tests in: pluginval / Basic bus...
-Completed tests in pluginval / Basic bus
------------------------------------------------------------------
-Starting tests in: pluginval / Listing available buses...
-Inputs:
-	Named layouts: Stereo
-	Discrete layouts: None
-Outputs:
-	Named layouts: Stereo
-	Discrete layouts: None
-Main bus num input channels: 0
-Main bus num output channels: 2
-Completed tests in pluginval / Listing available buses
------------------------------------------------------------------
-Starting tests in: pluginval / Enabling all buses...
-Completed tests in pluginval / Enabling all buses
------------------------------------------------------------------
-Starting tests in: pluginval / Disabling non-main busses...
-Completed tests in pluginval / Disabling non-main busses
------------------------------------------------------------------
-Starting tests in: pluginval / Restoring default layout...
-Main bus num input channels: 0
-Main bus num output channels: 2
-Completed tests in pluginval / Restoring default layout
-SUCCESS
+The following tests FAILED:
+	  4 - track (Not Run)
+	  5 - poly (Not Run)
+	  6 - spectral (Not Run)
+	  7 - notes (Not Run)
+	  8 - session (Not Run)
+Errors while running CTest
