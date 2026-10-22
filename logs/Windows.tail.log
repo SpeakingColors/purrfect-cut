@@ -35,8 +35,8 @@ Call Stack (most recent call first):
   CMakeLists.txt:45 (juce_add_plugin)
 
 
--- Configuring done (110.0s)
--- Generating done (0.2s)
+-- Configuring done (123.2s)
+-- Generating done (0.4s)
 CMake Warning (unused-cli):
   Manually-specified variables were not used by the project:
 
@@ -67,9 +67,9 @@ Test project D:/a/purrfect-cut/purrfect-cut/build
     Start 1: core
 1/8 Test #1: core .............................   Passed    0.02 sec
     Start 2: sampler_and_view
-2/8 Test #2: sampler_and_view .................   Passed    1.33 sec
+2/8 Test #2: sampler_and_view .................   Passed    1.63 sec
     Start 3: pitch
-3/8 Test #3: pitch ............................   Passed    2.00 sec
+3/8 Test #3: pitch ............................   Passed    2.33 sec
     Start 4: track
 Could not find executable D:/a/purrfect-cut/purrfect-cut/build/Release/test_track.exe
 Looked in the following places:
@@ -128,7 +128,7 @@ Unable to find executable: D:/a/purrfect-cut/purrfect-cut/build/Release/test_ses
 
 38% tests passed, 5 tests failed out of 8
 
-Total Test time (real) =   3.40 sec
+Total Test time (real) =   4.04 sec
 
 The following tests FAILED:
 	  4 - track (Not Run)
