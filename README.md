@@ -6,6 +6,8 @@ Audio editor as VST and desktop app from one install (Linux, Windows, macOS).
 
 **Manual:** [PDF, opens in the browser](https://github.com/SpeakingColors/purrfect-cut/blob/main/docs/purrfect-cut-manual.pdf)
 
+<p align="center"><img src="docs/screenshot.png" alt="Purrfect Cut editor" width="900"></p>
+
 ## What it is
 An audio editor first: open a file, cut, copy, paste, trim, silence, fade, gain, normalise, reverse, invert, remove DC, undo, save WAV. It also has three pitch pages for single voices and leads: Auto-Tune (key, scale, retune speed, humanize, note mask, formant keep, vibrato keep, robot), a Melodyne-style Pitch Editor (YIN note blobs on a piano roll: drag pitch and time, snap to scale, vibrato, drift, formant per note), and a Harmonizer. One note at a time only (no chords); pitch detection is unreliable below about 75 Hz.
 It is also a **sampler with FX**: load a sample, play it from MIDI (keys or slices) with an amp envelope, filter, loop, and a chain of drive, squash, duck, delay and reverb.
