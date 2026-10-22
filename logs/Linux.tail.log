@@ -1,5 +1,5 @@
--- The C compiler identification is GNU 13.3.0
--- The CXX compiler identification is GNU 13.3.0
+-- The C compiler identification is GNU 15.2.0
+-- The CXX compiler identification is GNU 15.2.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
 -- Check for working C compiler: /usr/bin/cc - skipped
@@ -10,19 +10,19 @@
 -- Check for working CXX compiler: /usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
+-- Found PkgConfig: /usr/bin/pkg-config (found version "2.5.1")
 -- Checking for module 'alsa'
---   Found alsa, version 1.2.11
+--   Found alsa, version 1.2.15.3
 -- Checking for modules 'freetype2;fontconfig'
---   Found freetype2, version 26.1.20
---   Found fontconfig, version 2.15.0
+--   Found freetype2, version 26.5.20
+--   Found fontconfig, version 2.17.1
 -- Checking for module 'gl'
 --   Found gl, version 1.2
 -- Checking for module 'libcurl'
---   Package 'libcurl', required by 'virtual:world', not found
+--   Package 'libcurl' not found
 -- Checking for modules 'webkit2gtk-4.0;gtk+-x11-3.0'
---   Package 'webkit2gtk-4.0', required by 'virtual:world', not found
---   Package 'gtk+-x11-3.0', required by 'virtual:world', not found
+--   Package 'webkit2gtk-4.0' not found
+--   Package 'gtk+-x11-3.0' not found
 -- Configuring juceaide
 -- Building juceaide
 -- Exporting juceaide
@@ -47,8 +47,8 @@ Call Stack (most recent call first):
   CMakeLists.txt:45 (juce_add_plugin)
 
 
--- Configuring done (66.7s)
--- Generating done (0.0s)
+-- Configuring done (95.8s)
+-- Generating done (0.1s)
 -- Build files have been written to: /home/runner/work/purrfect-cut/purrfect-cut/build
 [ 50%] Building CXX object CMakeFiles/test_core.dir/tests/test_core.cpp.o
 [100%] Linking CXX executable test_core
@@ -59,14 +59,13 @@ Call Stack (most recent call first):
 [ 50%] Building CXX object CMakeFiles/test_pitch.dir/tests/test_pitch.cpp.o
 [100%] Linking CXX executable test_pitch
 [100%] Built target test_pitch
-Internal ctest changing into directory: /home/runner/work/purrfect-cut/purrfect-cut/build
 Test project /home/runner/work/purrfect-cut/purrfect-cut/build
     Start 1: core
 1/8 Test #1: core .............................   Passed    0.00 sec
     Start 2: sampler_and_view
-2/8 Test #2: sampler_and_view .................   Passed    0.93 sec
+2/8 Test #2: sampler_and_view .................   Passed    1.24 sec
     Start 3: pitch
-3/8 Test #3: pitch ............................   Passed    1.22 sec
+3/8 Test #3: pitch ............................   Passed    2.00 sec
     Start 4: track
 Could not find executable /home/runner/work/purrfect-cut/purrfect-cut/build/test_track
 Looked in the following places:
@@ -155,7 +154,7 @@ Unable to find executable: /home/runner/work/purrfect-cut/purrfect-cut/build/tes
 
 38% tests passed, 5 tests failed out of 8
 
-Total Test time (real) =   2.22 sec
+Total Test time (real) =   3.49 sec
 
 The following tests FAILED:
 	  4 - track (Not Run)
