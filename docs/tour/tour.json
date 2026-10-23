@@ -1,0 +1,2778 @@
+{
+ "title": "Purrfect Cut",
+ "page": "docs/mockup/purrfectcut.html",
+ "tabs": [
+  {
+   "label": "Editor",
+   "img": "window_1.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 9,
+     "name": "Editor",
+     "tip": "Waveform editor: select, cut, copy, paste, trim, fades, normalize, reverse and more, with undo.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 10,
+     "name": "Sampler",
+     "tip": "Turn the audio (or your selection) into an instrument: play it from a keyboard or MIDI, with pitch, loop, slices, envelope and filter.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 11,
+     "name": "FX",
+     "tip": "Drive, Transistor and Fuzz from PurrOne, squash, duck, delay and reverb from the shimmer plugin. Works on the sampler, or on the preview, or can be applied to the audio.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 12,
+     "name": "Auto-Tune",
+     "tip": "Auto-Tune and pitch corrector: pulls a voice or lead onto the notes of a key, from natural to hard and robotic. Runs live in the plugin.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 13,
+     "name": "Pitch Editor",
+     "tip": "Melodyne style editor: the pitch of the file becomes note blobs on a piano roll. Drag notes up, down and sideways, change vibrato, drift and formants per note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 14,
+     "name": "Harmony",
+     "tip": "Harmony voices (thirds, fifths, octaves that follow the key) and a robot voice locked to one note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 15,
+     "name": "Test audio",
+     "tip": "Pick a test sound to edit. Reloading it throws away your edits.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 16,
+     "name": "Open file",
+     "tip": "Open your own audio file (wav, mp3, flac, ogg). It is edited in this browser tab only and never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 17,
+     "name": "Play",
+     "tip": "Play from the cursor, or the selection. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 18,
+     "name": "Loop",
+     "tip": "Loop the selection while playing. Shortcut: L (Editor).",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 19,
+     "name": "Undo",
+     "tip": "Undo the last edit. Shortcut: Ctrl+Z.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 20,
+     "name": "Redo",
+     "tip": "Redo. Shortcut: Ctrl+Y.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 21,
+     "name": "Export WAV",
+     "tip": "Save the edited audio as a 16-bit WAV file to your computer.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 22,
+     "name": "Send to CATalog",
+     "tip": "Hand the edited audio to CATalog's library. Plugin and desktop app only.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 23,
+     "name": "Automation list",
+     "tip": "List of every control. In the plugin each one is a host parameter you can automate and MIDI map.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 24,
+     "name": "CUT",
+     "tip": "Remove the selection and keep a copy. Shortcut: Ctrl+X.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 25,
+     "name": "COPY",
+     "tip": "Copy the selection. Shortcut: Ctrl+C.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 26,
+     "name": "PASTE",
+     "tip": "Insert the copy at the cursor, or over the selection. Shortcut: Ctrl+V.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 27,
+     "name": "DELETE",
+     "tip": "Remove the selection. Shortcut: Delete.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 28,
+     "name": "SILENCE",
+     "tip": "Replace the selection with silence.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 29,
+     "name": "TRIM",
+     "tip": "Keep only the selection and remove the rest.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 30,
+     "name": "FADE IN",
+     "tip": "Ramp the selection (or whole file) up from silence with the chosen curve.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 31,
+     "name": "FADE OUT",
+     "tip": "Ramp the selection (or whole file) down to silence.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 32,
+     "name": "NORMALIZE",
+     "tip": "Raise or lower the selection (or whole file) so its peak hits the target level.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 33,
+     "name": "GAIN",
+     "tip": "Apply the gain amount below to the selection (or whole file).",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 34,
+     "name": "REVERSE",
+     "tip": "Play the selection backwards.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 35,
+     "name": "INVERT",
+     "tip": "Flip the polarity of the selection.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 36,
+     "name": "REMOVE DC",
+     "tip": "Remove a constant offset from the selection.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 37,
+     "name": "Zoom out",
+     "tip": "Zoom out. Mouse wheel works too.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 38,
+     "name": "Zoom in",
+     "tip": "Zoom in.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 39,
+     "name": "FIT",
+     "tip": "Show the whole file.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 40,
+     "name": "SELECTION",
+     "tip": "Zoom to the selection.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 41,
+     "name": "Waveform",
+     "tip": "Drag to select. Shift-click extends the selection, drag its orange edges to adjust, double-click selects everything. Mouse wheel zooms, Shift+wheel scrolls.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 42,
+     "name": "Overview",
+     "tip": "The whole file. Drag the pink window to scroll.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 43,
+     "name": "Gain",
+     "tip": "Amount used by the Gain button. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 44,
+     "name": "Norm to",
+     "tip": "Peak level the Normalize button aims for. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 45,
+     "name": "Fade curve",
+     "tip": "Shape of the fades.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 46,
+     "name": "Scale",
+     "tip": "Linear shows the sample values; dB shows quiet detail better.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 47,
+     "name": "View",
+     "tip": "Waveform, or a spectrogram of the visible part (low frequencies at the bottom).",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 48,
+     "name": "Snap to zero",
+     "tip": "Selection edges and the cursor jump to the nearest zero crossing, so cuts do not click.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 49,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "Sampler",
+   "img": "window_2.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Editor",
+     "tip": "Waveform editor: select, cut, copy, paste, trim, fades, normalize, reverse and more, with undo.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Sampler",
+     "tip": "Turn the audio (or your selection) into an instrument: play it from a keyboard or MIDI, with pitch, loop, slices, envelope and filter.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "FX",
+     "tip": "Drive, Transistor and Fuzz from PurrOne, squash, duck, delay and reverb from the shimmer plugin. Works on the sampler, or on the preview, or can be applied to the audio.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto-Tune",
+     "tip": "Auto-Tune and pitch corrector: pulls a voice or lead onto the notes of a key, from natural to hard and robotic. Runs live in the plugin.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Pitch Editor",
+     "tip": "Melodyne style editor: the pitch of the file becomes note blobs on a piano roll. Drag notes up, down and sideways, change vibrato, drift and formants per note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Harmony",
+     "tip": "Harmony voices (thirds, fifths, octaves that follow the key) and a robot voice locked to one note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Test audio",
+     "tip": "Pick a test sound to edit. Reloading it throws away your edits.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Open file",
+     "tip": "Open your own audio file (wav, mp3, flac, ogg). It is edited in this browser tab only and never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "Play",
+     "tip": "Play from the cursor, or the selection. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 19,
+     "name": "Undo",
+     "tip": "Undo the last edit. Shortcut: Ctrl+Z.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Redo",
+     "tip": "Redo. Shortcut: Ctrl+Y.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Export WAV",
+     "tip": "Save the edited audio as a 16-bit WAV file to your computer.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Send to CATalog",
+     "tip": "Hand the edited audio to CATalog's library. Plugin and desktop app only.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 23,
+     "name": "Automation list",
+     "tip": "List of every control. In the plugin each one is a host parameter you can automate and MIDI map.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 41,
+     "name": "Waveform",
+     "tip": "Drag to select. Shift-click extends the selection, drag its orange edges to adjust, double-click selects everything. Mouse wheel zooms, Shift+wheel scrolls.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 42,
+     "name": "Overview",
+     "tip": "The whole file. Drag the pink window to scroll.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 51,
+     "name": "Mode",
+     "tip": "Keys: the sample is pitched across the keyboard. Slices: the sample is cut into pieces and each piece sits on its own key from C4 up.",
+     "kind": "button",
+     "sec": "Pitch and play",
+     "fresh": true
+    },
+    {
+     "n": 52,
+     "name": "Voices",
+     "tip": "Poly: chords and overlapping notes. Mono: one note at a time, with glide between notes.",
+     "kind": "button",
+     "sec": "Pitch and play",
+     "fresh": true
+    },
+    {
+     "n": 53,
+     "name": "Root",
+     "tip": "The key that plays the sample at its original pitch. Double-click resets.",
+     "kind": "button",
+     "sec": "Pitch and play",
+     "fresh": true
+    },
+    {
+     "n": 54,
+     "name": "Tune",
+     "tip": "Transposes everything in semitones. Double-click resets.",
+     "kind": "button",
+     "sec": "Pitch and play",
+     "fresh": true
+    },
+    {
+     "n": 55,
+     "name": "Fine",
+     "tip": "Fine tune in cents. Double-click resets.",
+     "kind": "button",
+     "sec": "Pitch and play",
+     "fresh": true
+    },
+    {
+     "n": 56,
+     "name": "Bend",
+     "tip": "Pitch bend amount. A MIDI pitch wheel adds up to 2 semitones on top. Double-click resets.",
+     "kind": "button",
+     "sec": "Pitch and play",
+     "fresh": true
+    },
+    {
+     "n": 57,
+     "name": "Glide",
+     "tip": "Mono mode: slide time between notes. Double-click resets.",
+     "kind": "button",
+     "sec": "Pitch and play",
+     "fresh": true
+    },
+    {
+     "n": 58,
+     "name": "Resample",
+     "tip": "Plays the sample at its root note through the amp, filter and FX, and replaces the selection (or the whole file) with the result. Undo brings the old audio back.",
+     "kind": "button",
+     "sec": "SampleResample",
+     "fresh": true
+    },
+    {
+     "n": 59,
+     "name": "Start",
+     "tip": "Where in the sample (or selection) the note begins. Also the orange line on the waveform. Double-click resets.",
+     "kind": "button",
+     "sec": "SampleResample",
+     "fresh": true
+    },
+    {
+     "n": 60,
+     "name": "Loop",
+     "tip": "Keys mode: keeps repeating between the two green markers while the key is held. Drag the markers on the waveform.",
+     "kind": "button",
+     "sec": "SampleResample",
+     "fresh": true
+    },
+    {
+     "n": 61,
+     "name": "Loop L",
+     "tip": "Loop start inside the sample. Drag the green L marker on the waveform. Double-click resets.",
+     "kind": "button",
+     "sec": "SampleResample",
+     "fresh": true
+    },
+    {
+     "n": 62,
+     "name": "Loop R",
+     "tip": "Loop end inside the sample. Drag the green R marker on the waveform. Double-click resets.",
+     "kind": "button",
+     "sec": "SampleResample",
+     "fresh": true
+    },
+    {
+     "n": 63,
+     "name": "Reverse",
+     "tip": "Plays the sample backwards.",
+     "kind": "button",
+     "sec": "SampleResample",
+     "fresh": true
+    },
+    {
+     "n": 64,
+     "name": "Slice by",
+     "tip": "Even grid: equal pieces. Transients: cuts where the sound hits (drums, chops).",
+     "kind": "button",
+     "sec": "SampleResample",
+     "fresh": true
+    },
+    {
+     "n": 65,
+     "name": "Slices",
+     "tip": "How many pieces in Slices mode. Slice 1 is C4, slice 2 is C#4, and so on. Double-click resets.",
+     "kind": "button",
+     "sec": "SampleResample",
+     "fresh": true
+    },
+    {
+     "n": 66,
+     "name": "Attack",
+     "tip": "Fade in time. Double-click resets.",
+     "kind": "button",
+     "sec": "Amp",
+     "fresh": true
+    },
+    {
+     "n": 67,
+     "name": "Decay",
+     "tip": "Time to fall from the peak to the sustain level. Double-click resets.",
+     "kind": "button",
+     "sec": "Amp",
+     "fresh": true
+    },
+    {
+     "n": 68,
+     "name": "Sust",
+     "tip": "Level while the key is held. Double-click resets.",
+     "kind": "button",
+     "sec": "Amp",
+     "fresh": true
+    },
+    {
+     "n": 69,
+     "name": "Rel",
+     "tip": "Fade out time after you let go. Double-click resets.",
+     "kind": "button",
+     "sec": "Amp",
+     "fresh": true
+    },
+    {
+     "n": 70,
+     "name": "Gain",
+     "tip": "Level of the sampler. Double-click resets.",
+     "kind": "button",
+     "sec": "Amp",
+     "fresh": true
+    },
+    {
+     "n": 71,
+     "name": "Vel",
+     "tip": "How much the key velocity changes the volume. Double-click resets.",
+     "kind": "button",
+     "sec": "Amp",
+     "fresh": true
+    },
+    {
+     "n": 72,
+     "name": "Pan",
+     "tip": "Stereo position. Double-click resets.",
+     "kind": "button",
+     "sec": "Amp",
+     "fresh": true
+    },
+    {
+     "n": 73,
+     "name": "Type",
+     "tip": "Filter on every note.",
+     "kind": "button",
+     "sec": "Filter",
+     "fresh": true
+    },
+    {
+     "n": 74,
+     "name": "Cutoff",
+     "tip": "Filter frequency. Double-click resets.",
+     "kind": "button",
+     "sec": "Filter",
+     "fresh": true
+    },
+    {
+     "n": 75,
+     "name": "Reson",
+     "tip": "Emphasis at the cutoff. Double-click resets.",
+     "kind": "button",
+     "sec": "Filter",
+     "fresh": true
+    },
+    {
+     "n": 76,
+     "name": "Env",
+     "tip": "How far the amp envelope moves the cutoff, up to 5 octaves. Negative sweeps down. Double-click resets.",
+     "kind": "button",
+     "sec": "Filter",
+     "fresh": true
+    },
+    {
+     "n": 77,
+     "name": "Track",
+     "tip": "Higher keys open the filter more. Double-click resets.",
+     "kind": "button",
+     "sec": "Filter",
+     "fresh": true
+    },
+    {
+     "n": 78,
+     "name": "Oct −",
+     "tip": "Move the computer keyboard one octave down.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 79,
+     "name": "Oct +",
+     "tip": "Move the computer keyboard one octave up.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 80,
+     "name": "Panic",
+     "tip": "Stops every sounding note at once.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 81,
+     "name": "MIDI",
+     "tip": "Connect a MIDI keyboard (asks your browser for permission). Note on and off and pitch bend are used.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 49,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "FX",
+   "img": "window_3.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Editor",
+     "tip": "Waveform editor: select, cut, copy, paste, trim, fades, normalize, reverse and more, with undo.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Sampler",
+     "tip": "Turn the audio (or your selection) into an instrument: play it from a keyboard or MIDI, with pitch, loop, slices, envelope and filter.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "FX",
+     "tip": "Drive, Transistor and Fuzz from PurrOne, squash, duck, delay and reverb from the shimmer plugin. Works on the sampler, or on the preview, or can be applied to the audio.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto-Tune",
+     "tip": "Auto-Tune and pitch corrector: pulls a voice or lead onto the notes of a key, from natural to hard and robotic. Runs live in the plugin.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Pitch Editor",
+     "tip": "Melodyne style editor: the pitch of the file becomes note blobs on a piano roll. Drag notes up, down and sideways, change vibrato, drift and formants per note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Harmony",
+     "tip": "Harmony voices (thirds, fifths, octaves that follow the key) and a robot voice locked to one note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Test audio",
+     "tip": "Pick a test sound to edit. Reloading it throws away your edits.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Open file",
+     "tip": "Open your own audio file (wav, mp3, flac, ogg). It is edited in this browser tab only and never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "Play",
+     "tip": "Play from the cursor, or the selection. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 19,
+     "name": "Undo",
+     "tip": "Undo the last edit. Shortcut: Ctrl+Z.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Redo",
+     "tip": "Redo. Shortcut: Ctrl+Y.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Export WAV",
+     "tip": "Save the edited audio as a 16-bit WAV file to your computer.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Send to CATalog",
+     "tip": "Hand the edited audio to CATalog's library. Plugin and desktop app only.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 23,
+     "name": "Automation list",
+     "tip": "List of every control. In the plugin each one is a host parameter you can automate and MIDI map.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 41,
+     "name": "Waveform",
+     "tip": "Drag to select. Shift-click extends the selection, drag its orange edges to adjust, double-click selects everything. Mouse wheel zooms, Shift+wheel scrolls.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 42,
+     "name": "Overview",
+     "tip": "The whole file. Drag the pink window to scroll.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 82,
+     "name": "On",
+     "tip": "Turns Drive on or off.",
+     "kind": "button",
+     "sec": "DriveOn",
+     "fresh": true
+    },
+    {
+     "n": 83,
+     "name": "Drive",
+     "tip": "PurrOne's tanh drive. Smooth and round. Past 80 % a second stage stacks on. Double-click resets.",
+     "kind": "button",
+     "sec": "DriveOn",
+     "fresh": true
+    },
+    {
+     "n": 84,
+     "name": "Trans",
+     "tip": "PurrOne's Neve style transistor stage: asymmetric clipping, warm even harmonics, a bit more low end. Double-click resets.",
+     "kind": "button",
+     "sec": "DriveOn",
+     "fresh": true
+    },
+    {
+     "n": 85,
+     "name": "Fuzz",
+     "tip": "PurrOne's fuzz: harder and lopsided. Past 80 % it adds an octave up growl. Double-click resets.",
+     "kind": "button",
+     "sec": "DriveOn",
+     "fresh": true
+    },
+    {
+     "n": 86,
+     "name": "Mix",
+     "tip": "Dry/wet of the three stages together. Double-click resets.",
+     "kind": "button",
+     "sec": "DriveOn",
+     "fresh": true
+    },
+    {
+     "n": 87,
+     "name": "On",
+     "tip": "Turns Squash on or off.",
+     "kind": "button",
+     "sec": "SquashOn",
+     "fresh": true
+    },
+    {
+     "n": 88,
+     "name": "Depth",
+     "tip": "Three band push: quiet parts up, loud parts down (OTT style). Dense, bright, loud. Double-click resets.",
+     "kind": "button",
+     "sec": "SquashOn",
+     "fresh": true
+    },
+    {
+     "n": 89,
+     "name": "Mix",
+     "tip": "Dry/wet of the squash. Double-click resets.",
+     "kind": "button",
+     "sec": "SquashOn",
+     "fresh": true
+    },
+    {
+     "n": 90,
+     "name": "On",
+     "tip": "Turns Duck on or off.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 91,
+     "name": "Amount",
+     "tip": "How deep the level dips. Double-click resets.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 92,
+     "name": "Shape",
+     "tip": "Pick the dip shape: pump like a sidechain kick, saw, sine, triangle, trance gate and more.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 93,
+     "name": "Rate",
+     "tip": "Speed of the shape as a note length at the tempo, or Free for a rate in Hz.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 94,
+     "name": "Tempo",
+     "tip": "Tempo for the synced rates. The plugin follows the host tempo. Double-click resets.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 95,
+     "name": "Free Hz",
+     "tip": "Speed when Rate is Free. Double-click resets.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 96,
+     "name": "Ducks",
+     "tip": "Before echoes: the sound dips and the delay and reverb tails keep ringing. Tails only: the dry sound stays and only the delay and reverb dip. Everything: the whole output dips.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 97,
+     "name": "Source",
+     "tip": "Shape: the dip follows the chosen shape. Sidechain: the dip follows the loudness of the audio you are previewing in the Editor (the plugin uses its sidechain input). Turn off 'Preview through FX' to use it.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 98,
+     "name": "Restart on key",
+     "tip": "The shape starts from the top every time you press a key.",
+     "kind": "button",
+     "sec": "DuckOn",
+     "fresh": true
+    },
+    {
+     "n": 99,
+     "name": "On",
+     "tip": "Turns Delay on or off.",
+     "kind": "button",
+     "sec": "DelayOn",
+     "fresh": true
+    },
+    {
+     "n": 100,
+     "name": "Time",
+     "tip": "Time between repeats. Double-click resets.",
+     "kind": "button",
+     "sec": "DelayOn",
+     "fresh": true
+    },
+    {
+     "n": 101,
+     "name": "Feedbk",
+     "tip": "How much of each repeat goes back in. Double-click resets.",
+     "kind": "button",
+     "sec": "DelayOn",
+     "fresh": true
+    },
+    {
+     "n": 102,
+     "name": "Shift",
+     "tip": "Pitch change at every repeat (shimmer delay). Double-click resets.",
+     "kind": "button",
+     "sec": "DelayOn",
+     "fresh": true
+    },
+    {
+     "n": 103,
+     "name": "Shimmer",
+     "tip": "How much of each repeat is shifted. 0 is a plain delay. Double-click resets.",
+     "kind": "button",
+     "sec": "DelayOn",
+     "fresh": true
+    },
+    {
+     "n": 104,
+     "name": "Damp",
+     "tip": "Darkens every repeat. Double-click resets.",
+     "kind": "button",
+     "sec": "DelayOn",
+     "fresh": true
+    },
+    {
+     "n": 105,
+     "name": "Mix",
+     "tip": "Dry/wet of the delay. Double-click resets.",
+     "kind": "button",
+     "sec": "DelayOn",
+     "fresh": true
+    },
+    {
+     "n": 106,
+     "name": "On",
+     "tip": "Turns Reverb on or off.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 107,
+     "name": "Type",
+     "tip": "Plate: bright, short to medium. Hall: bigger and smoother. Shimmer types add a pitch shifted copy into the tail. Velvet: two halls blended.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 108,
+     "name": "Decay",
+     "tip": "Length of the tail. Double-click resets.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 109,
+     "name": "Size",
+     "tip": "Small room or big room. Double-click resets.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 110,
+     "name": "Pre-dly",
+     "tip": "Gap before the tail starts. Double-click resets.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 111,
+     "name": "Mod",
+     "tip": "Slow movement in the tail. Double-click resets.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 112,
+     "name": "Damp",
+     "tip": "Highs die away faster when lower. Double-click resets.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 113,
+     "name": "Pitch",
+     "tip": "Pitch of the shimmer copy (shimmer types only). Double-click resets.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 114,
+     "name": "Shimmer",
+     "tip": "Amount of the shimmer copy. Double-click resets.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 115,
+     "name": "Mix",
+     "tip": "Dry/wet of the reverb. Double-click resets.",
+     "kind": "button",
+     "sec": "ReverbOn",
+     "fresh": true
+    },
+    {
+     "n": 116,
+     "name": "Width",
+     "tip": "Stereo width. 0 is mono, 200 % extra wide. Double-click resets.",
+     "kind": "button",
+     "sec": "Output",
+     "fresh": true
+    },
+    {
+     "n": 117,
+     "name": "Level",
+     "tip": "Output level of the sampler and FX. Double-click resets.",
+     "kind": "button",
+     "sec": "Output",
+     "fresh": true
+    },
+    {
+     "n": 118,
+     "name": "Preview through FX",
+     "tip": "On: the Editor preview (Play) also goes through the FX chain. Off: the preview stays clean and only the sampler gets the FX.",
+     "kind": "button",
+     "sec": "Output",
+     "fresh": true
+    },
+    {
+     "n": 119,
+     "name": "Apply FX to audio",
+     "tip": "Runs the selection (or the whole file) through the FX chain and writes the result into the audio, including the reverb and delay tail. Undo brings the old audio back.",
+     "kind": "button",
+     "sec": "Output",
+     "fresh": true
+    },
+    {
+     "n": 78,
+     "name": "Oct −",
+     "tip": "Move the computer keyboard one octave down.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 79,
+     "name": "Oct +",
+     "tip": "Move the computer keyboard one octave up.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 80,
+     "name": "Panic",
+     "tip": "Stops every sounding note at once.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 81,
+     "name": "MIDI",
+     "tip": "Connect a MIDI keyboard (asks your browser for permission). Note on and off and pitch bend are used.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 49,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "Auto-Tune",
+   "img": "window_4.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Editor",
+     "tip": "Waveform editor: select, cut, copy, paste, trim, fades, normalize, reverse and more, with undo.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Sampler",
+     "tip": "Turn the audio (or your selection) into an instrument: play it from a keyboard or MIDI, with pitch, loop, slices, envelope and filter.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "FX",
+     "tip": "Drive, Transistor and Fuzz from PurrOne, squash, duck, delay and reverb from the shimmer plugin. Works on the sampler, or on the preview, or can be applied to the audio.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto-Tune",
+     "tip": "Auto-Tune and pitch corrector: pulls a voice or lead onto the notes of a key, from natural to hard and robotic. Runs live in the plugin.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Pitch Editor",
+     "tip": "Melodyne style editor: the pitch of the file becomes note blobs on a piano roll. Drag notes up, down and sideways, change vibrato, drift and formants per note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Harmony",
+     "tip": "Harmony voices (thirds, fifths, octaves that follow the key) and a robot voice locked to one note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Test audio",
+     "tip": "Pick a test sound to edit. Reloading it throws away your edits.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Open file",
+     "tip": "Open your own audio file (wav, mp3, flac, ogg). It is edited in this browser tab only and never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "Play",
+     "tip": "Play from the cursor, or the selection. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 19,
+     "name": "Undo",
+     "tip": "Undo the last edit. Shortcut: Ctrl+Z.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Redo",
+     "tip": "Redo. Shortcut: Ctrl+Y.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Export WAV",
+     "tip": "Save the edited audio as a 16-bit WAV file to your computer.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Send to CATalog",
+     "tip": "Hand the edited audio to CATalog's library. Plugin and desktop app only.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 23,
+     "name": "Automation list",
+     "tip": "List of every control. In the plugin each one is a host parameter you can automate and MIDI map.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 120,
+     "name": "Key",
+     "tip": "The key. Notes outside the scale are pulled to the nearest note inside it.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 121,
+     "name": "Scale",
+     "tip": "The scale. Chromatic lets every note through (the pitch is rounded to the nearest semitone).",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 122,
+     "name": "Allow or block C on top of the scale",
+     "tip": "Allow or block C on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 123,
+     "name": "Allow or block C# on top of the scale",
+     "tip": "Allow or block C# on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 124,
+     "name": "Allow or block D on top of the scale",
+     "tip": "Allow or block D on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 125,
+     "name": "Allow or block D# on top of the scale",
+     "tip": "Allow or block D# on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 126,
+     "name": "Allow or block E on top of the scale",
+     "tip": "Allow or block E on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 127,
+     "name": "Allow or block F on top of the scale",
+     "tip": "Allow or block F on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 128,
+     "name": "Allow or block F# on top of the scale",
+     "tip": "Allow or block F# on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 129,
+     "name": "Allow or block G on top of the scale",
+     "tip": "Allow or block G on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 130,
+     "name": "Allow or block G# on top of the scale",
+     "tip": "Allow or block G# on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 131,
+     "name": "Allow or block A on top of the scale",
+     "tip": "Allow or block A on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 132,
+     "name": "Allow or block A# on top of the scale",
+     "tip": "Allow or block A# on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 133,
+     "name": "Allow or block B on top of the scale",
+     "tip": "Allow or block B on top of the scale. You can also click the keys on the left of the graph.",
+     "kind": "button",
+     "sec": "Key and scale",
+     "fresh": true
+    },
+    {
+     "n": 134,
+     "name": "On",
+     "tip": "Turns Auto-Tune on or off.",
+     "kind": "button",
+     "sec": "Auto-TuneOn",
+     "fresh": true
+    },
+    {
+     "n": 135,
+     "name": "Speed",
+     "tip": "Retune speed. 0 snaps at once (the hard, robotic effect). 20 to 60 ms is a clean modern vocal, 100 ms and up keeps it natural. Double-click resets.",
+     "kind": "button",
+     "sec": "Auto-TuneOn",
+     "fresh": true
+    },
+    {
+     "n": 136,
+     "name": "Amount",
+     "tip": "How far the pitch is pulled towards the note. 100 % lands on it, 50 % lands half way. Double-click resets.",
+     "kind": "button",
+     "sec": "Auto-TuneOn",
+     "fresh": true
+    },
+    {
+     "n": 137,
+     "name": "Humanize",
+     "tip": "Slows the correction down the longer a note is held, so long notes can drift a little like a real singer. Double-click resets.",
+     "kind": "button",
+     "sec": "Auto-TuneOn",
+     "fresh": true
+    },
+    {
+     "n": 138,
+     "name": "Vibrato",
+     "tip": "How much of the singer's own vibrato is kept. 0 flattens it (robotic), 100 % keeps all of it. Double-click resets.",
+     "kind": "button",
+     "sec": "Auto-TuneOn",
+     "fresh": true
+    },
+    {
+     "n": 139,
+     "name": "Keep",
+     "tip": "Formant keep. 100 % keeps the vowel colour when the pitch moves (the voice keeps its character). 0 resamples, so the voice gets smaller or bigger with the pitch. Double-click resets.",
+     "kind": "button",
+     "sec": "Voice",
+     "fresh": true
+    },
+    {
+     "n": 140,
+     "name": "Shift",
+     "tip": "Formant shift. Moves the formants on their own: up for a smaller, younger voice, down for a bigger one. The pitch stays. Double-click resets.",
+     "kind": "button",
+     "sec": "Voice",
+     "fresh": true
+    },
+    {
+     "n": 141,
+     "name": "A4",
+     "tip": "The reference pitch for A4. 440 Hz is standard. Double-click resets.",
+     "kind": "button",
+     "sec": "Voice",
+     "fresh": true
+    },
+    {
+     "n": 142,
+     "name": "Original",
+     "tip": "Plays the file as it is, to compare.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": true
+    },
+    {
+     "n": 143,
+     "name": "Processed",
+     "tip": "Plays the file with the pitch changes. Space plays it from the cursor.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": true
+    },
+    {
+     "n": 144,
+     "name": "Apply to audio",
+     "tip": "Writes the processed pitch into the file (all of it). Undo brings the old audio back.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": true
+    },
+    {
+     "n": 49,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "Pitch Editor",
+   "img": "window_5.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Editor",
+     "tip": "Waveform editor: select, cut, copy, paste, trim, fades, normalize, reverse and more, with undo.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Sampler",
+     "tip": "Turn the audio (or your selection) into an instrument: play it from a keyboard or MIDI, with pitch, loop, slices, envelope and filter.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "FX",
+     "tip": "Drive, Transistor and Fuzz from PurrOne, squash, duck, delay and reverb from the shimmer plugin. Works on the sampler, or on the preview, or can be applied to the audio.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto-Tune",
+     "tip": "Auto-Tune and pitch corrector: pulls a voice or lead onto the notes of a key, from natural to hard and robotic. Runs live in the plugin.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Pitch Editor",
+     "tip": "Melodyne style editor: the pitch of the file becomes note blobs on a piano roll. Drag notes up, down and sideways, change vibrato, drift and formants per note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Harmony",
+     "tip": "Harmony voices (thirds, fifths, octaves that follow the key) and a robot voice locked to one note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Test audio",
+     "tip": "Pick a test sound to edit. Reloading it throws away your edits.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Open file",
+     "tip": "Open your own audio file (wav, mp3, flac, ogg). It is edited in this browser tab only and never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "Play",
+     "tip": "Play from the cursor, or the selection. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 19,
+     "name": "Undo",
+     "tip": "Undo the last edit. Shortcut: Ctrl+Z.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Redo",
+     "tip": "Redo. Shortcut: Ctrl+Y.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Export WAV",
+     "tip": "Save the edited audio as a 16-bit WAV file to your computer.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Send to CATalog",
+     "tip": "Hand the edited audio to CATalog's library. Plugin and desktop app only.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 23,
+     "name": "Automation list",
+     "tip": "List of every control. In the plugin each one is a host parameter you can automate and MIDI map.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 145,
+     "name": "Pitch",
+     "tip": "Moves the note up or down. You can also drag the note in the graph. Fine: hold Alt while dragging. Double-click resets.",
+     "kind": "button",
+     "sec": "Selected note",
+     "fresh": true
+    },
+    {
+     "n": 146,
+     "name": "Vibrato",
+     "tip": "Scales the note's own vibrato: 0 flat, 100 % as sung, 200 % twice as wide. The pink diamond above the note does the same. Double-click resets.",
+     "kind": "button",
+     "sec": "Selected note",
+     "fresh": true
+    },
+    {
+     "n": 147,
+     "name": "Drift",
+     "tip": "Straightens slow drift away from the note's centre (a note that sags or climbs). The orange dot under the note does the same. Double-click resets.",
+     "kind": "button",
+     "sec": "Selected note",
+     "fresh": true
+    },
+    {
+     "n": 148,
+     "name": "Fmt shift",
+     "tip": "Formant shift for this note only. The purple square on the right of the note does the same. Double-click resets.",
+     "kind": "button",
+     "sec": "Selected note",
+     "fresh": true
+    },
+    {
+     "n": 149,
+     "name": "Snap",
+     "tip": "While you drag a note: Off is free, Semitone lands on whole notes, Scale lands on notes of the key set on the Auto-Tune page.",
+     "kind": "button",
+     "sec": "Whole file",
+     "fresh": true
+    },
+    {
+     "n": 150,
+     "name": "Glide",
+     "tip": "How smoothly the pitch moves from one edited note to the next. Double-click resets.",
+     "kind": "button",
+     "sec": "Whole file",
+     "fresh": true
+    },
+    {
+     "n": 151,
+     "name": "Keep",
+     "tip": "100 % keeps the vowel colour when notes move. 0 lets the voice change size with the pitch. Double-click resets.",
+     "kind": "button",
+     "sec": "Whole file",
+     "fresh": true
+    },
+    {
+     "n": 152,
+     "name": "Snap all",
+     "tip": "Moves every note to the nearest note of the scale.",
+     "kind": "button",
+     "sec": "Notes",
+     "fresh": true
+    },
+    {
+     "n": 153,
+     "name": "Reset note",
+     "tip": "Puts the selected note back as it was sung.",
+     "kind": "button",
+     "sec": "Notes",
+     "fresh": true
+    },
+    {
+     "n": 154,
+     "name": "Reset all",
+     "tip": "Puts every note back as it was sung.",
+     "kind": "button",
+     "sec": "Notes",
+     "fresh": true
+    },
+    {
+     "n": 142,
+     "name": "Original",
+     "tip": "Plays the file as it is, to compare.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": false
+    },
+    {
+     "n": 143,
+     "name": "Processed",
+     "tip": "Plays the file with the pitch changes. Space plays it from the cursor.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": false
+    },
+    {
+     "n": 144,
+     "name": "Apply to audio",
+     "tip": "Writes the processed pitch into the file (all of it). Undo brings the old audio back.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": false
+    },
+    {
+     "n": 49,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "Harmony",
+   "img": "window_6.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Editor",
+     "tip": "Waveform editor: select, cut, copy, paste, trim, fades, normalize, reverse and more, with undo.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Sampler",
+     "tip": "Turn the audio (or your selection) into an instrument: play it from a keyboard or MIDI, with pitch, loop, slices, envelope and filter.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "FX",
+     "tip": "Drive, Transistor and Fuzz from PurrOne, squash, duck, delay and reverb from the shimmer plugin. Works on the sampler, or on the preview, or can be applied to the audio.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto-Tune",
+     "tip": "Auto-Tune and pitch corrector: pulls a voice or lead onto the notes of a key, from natural to hard and robotic. Runs live in the plugin.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Pitch Editor",
+     "tip": "Melodyne style editor: the pitch of the file becomes note blobs on a piano roll. Drag notes up, down and sideways, change vibrato, drift and formants per note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Harmony",
+     "tip": "Harmony voices (thirds, fifths, octaves that follow the key) and a robot voice locked to one note.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Test audio",
+     "tip": "Pick a test sound to edit. Reloading it throws away your edits.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Open file",
+     "tip": "Open your own audio file (wav, mp3, flac, ogg). It is edited in this browser tab only and never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "Play",
+     "tip": "Play from the cursor, or the selection. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 19,
+     "name": "Undo",
+     "tip": "Undo the last edit. Shortcut: Ctrl+Z.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Redo",
+     "tip": "Redo. Shortcut: Ctrl+Y.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Export WAV",
+     "tip": "Save the edited audio as a 16-bit WAV file to your computer.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Send to CATalog",
+     "tip": "Hand the edited audio to CATalog's library. Plugin and desktop app only.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 23,
+     "name": "Automation list",
+     "tip": "List of every control. In the plugin each one is a host parameter you can automate and MIDI map.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 155,
+     "name": "On",
+     "tip": "Turns Harmony on or off.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 156,
+     "name": "Mix",
+     "tip": "Level of all harmony voices together, against the main voice. Double-click resets.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 157,
+     "name": "Follow scale",
+     "tip": "On: each voice is pulled into the key, so a third stays a third of the scale (major or minor as the key needs). Off: exact intervals.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 158,
+     "name": "Voice 1",
+     "tip": "Interval of voice 1 from the singer, in semitones (4 is a third, 7 a fifth, 12 an octave). Double-click resets.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 159,
+     "name": "Level 1",
+     "tip": "Level of voice 1. 0 switches it off. Double-click resets.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 160,
+     "name": "Voice 2",
+     "tip": "Interval of voice 2 from the singer, in semitones (4 is a third, 7 a fifth, 12 an octave). Double-click resets.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 161,
+     "name": "Level 2",
+     "tip": "Level of voice 2. 0 switches it off. Double-click resets.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 162,
+     "name": "Voice 3",
+     "tip": "Interval of voice 3 from the singer, in semitones (4 is a third, 7 a fifth, 12 an octave). Double-click resets.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 163,
+     "name": "Level 3",
+     "tip": "Level of voice 3. 0 switches it off. Double-click resets.",
+     "kind": "button",
+     "sec": "HarmonyOn",
+     "fresh": true
+    },
+    {
+     "n": 164,
+     "name": "On",
+     "tip": "Turns Robot on or off.",
+     "kind": "button",
+     "sec": "RobotOn",
+     "fresh": true
+    },
+    {
+     "n": 165,
+     "name": "Note",
+     "tip": "Robot voice: the whole performance is forced onto this one note (in the nearest octave). Needs Auto-Tune on. Set the speed to 0 for a hard robot.",
+     "kind": "button",
+     "sec": "RobotOn",
+     "fresh": true
+    },
+    {
+     "n": 166,
+     "name": "Key and scale",
+     "tip": "Harmony and Robot use the key, scale and note switches of the Auto-Tune page. Click to go there.",
+     "kind": "button",
+     "sec": "Key",
+     "fresh": true
+    },
+    {
+     "n": 142,
+     "name": "Original",
+     "tip": "Plays the file as it is, to compare.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": false
+    },
+    {
+     "n": 143,
+     "name": "Processed",
+     "tip": "Plays the file with the pitch changes. Space plays it from the cursor.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": false
+    },
+    {
+     "n": 144,
+     "name": "Apply to audio",
+     "tip": "Writes the processed pitch into the file (all of it). Undo brings the old audio back.",
+     "kind": "button",
+     "sec": "Result",
+     "fresh": false
+    },
+    {
+     "n": 49,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 50,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  }
+ ]
+}
