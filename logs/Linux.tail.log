@@ -1,16 +1,23 @@
+  135 |         if (empty()) return false; if (needSel && !hasSel()) return false;
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:135:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  135 |         if (empty()) return false; if (needSel && !hasSel()) return false;
+      |                                    ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In function ‘bool purrfect::readWav(const std::string&, Audio&, double&)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:181:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  181 |             if (!in) return false; sr = rate; return true;
+      |             ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:181:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  181 |             if (!in) return false; sr = rate; return true;
+      |                                    ^~
+In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:9:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Pitch.h: In function ‘float purrfect::yinF0(const float*, size_t, double, float, float)’:
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Pitch.h:79:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
    79 |     if (n < (size_t) (W + tauMax)) return 0.f; YinState st; st.init(tauMax); float c; const float p = yinPeriod(x + n - (size_t) (W + tauMax), W, tauMin, tauMax, 0.15f, st, &c);
       |     ^~
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Pitch.h:79:48: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
    79 |     if (n < (size_t) (W + tauMax)) return 0.f; YinState st; st.init(tauMax); float c; const float p = yinPeriod(x + n - (size_t) (W + tauMax), W, tauMin, tauMax, 0.15f, st, &c);
       |                                                ^~~~~~~~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp: In member function ‘void MainComponent::save()’:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:131:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  131 |         if (doc.empty()) return; chooser = std::make_unique<juce::FileChooser>("Save as 24 bit WAV", juce::File(), "*.wav");
-      |         ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:131:34: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  131 |         if (doc.empty()) return; chooser = std::make_unique<juce::FileChooser>("Save as 24 bit WAV", juce::File(), "*.wav");
-      |                                  ^~~~~~~
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Pitch.h: In function ‘purrfect::PitchFrames purrfect::yinTrack(const float*, size_t, double, int, float, float)’:
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Pitch.h:102:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
   102 |         if (e - i < 3) for (size_t q = i; q < e; ++q) f[q] = 0.f; i = e;
@@ -18,13 +25,6 @@
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Pitch.h:102:67: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
   102 |         if (e - i < 3) for (size_t q = i; q < e; ++q) f[q] = 0.f; i = e;
       |                                                                   ^
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp: In lambda function:
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:133:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  133 |             if (c.getResult() == juce::File()) return; const auto f = c.getResult().withFileExtension("wav");
-      |             ^~
-/home/runner/work/purrfect-cut/purrfect-cut/src/app/Main.cpp:133:56: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  133 |             if (c.getResult() == juce::File()) return; const auto f = c.getResult().withFileExtension("wav");
-      |                                                        ^~~~~
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Pitch.h: In member function ‘void purrfect::PitchBrain::update(float, float, const purrfect::PitchParams&, float*)’:
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Pitch.h:138:18: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
   138 |         if (note != note_) { note_ = note; held_ = 0.f; } else held_ += hopMs;
@@ -74,9 +74,6 @@
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:191:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
   191 |                 if (!v.on) continue; v.glo = kgl > 0.f ? v.glo * kgl : 0.f; if (std::fabs(v.glo) < 1e-4f) v.glo = 0.f;
       |                                      ^
-[ 26%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
-[ 28%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/src/plugin/PluginEditor.cpp.o
-[ 29%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
 In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:6,
                  from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginProcessor.h:8,
                  from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginEditor.h:4,
@@ -207,12 +204,10 @@ In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:191:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
   191 |                 if (!v.on) continue; v.glo = kgl > 0.f ? v.glo * kgl : 0.f; if (std::fabs(v.glo) < 1e-4f) v.glo = 0.f;
       |                                      ^
-[ 30%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
-[ 31%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
-[ 32%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
-[ 34%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
-[ 35%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
-[ 36%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
+[ 26%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
+[ 28%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
+[ 29%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
+[ 30%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
 In file included from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_core/system/juce_StandardHeader.h:108,
                  from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_core/juce_core.h:215,
                  from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_graphics/juce_graphics.h:67,
@@ -224,66 +219,71 @@ In file included from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/ju
 /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp:61:2: note: in expansion of macro ‘JUCE_COMPILER_WARNING’
    61 |  JUCE_COMPILER_WARNING ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
       |  ^~~~~~~~~~~~~~~~~~~~~
-[ 37%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
-[ 39%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
-[ 40%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
-[ 41%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.cpp.o
-[ 42%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
-[ 43%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
-[ 45%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
-[ 46%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.cpp.o
-[ 47%] Building C object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
-[ 48%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
-[ 50%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_events/juce_events.cpp.o
-[ 51%] Building C object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
-[ 52%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core.cpp.o
-[ 53%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
-[ 54%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
-[ 56%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_events/juce_events.cpp.o
-[ 57%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.cpp.o
-[ 58%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
-[ 59%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_core/juce_core.cpp.o
-[ 60%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
-[ 62%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
-[ 63%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.cpp.o
-[ 64%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
-[ 65%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.cpp.o
-[ 67%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
-[ 68%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.cpp.o
-[ 69%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
-[ 70%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
-[ 71%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.cpp.o
-[ 73%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.cpp.o
-[ 74%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.cpp.o
-[ 75%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
-[ 76%] Linking CXX executable "PurrfectCut_artefacts/Release/Purrfect Cut"
-[ 76%] Built target PurrfectCut
-[ 78%] Linking CXX static library "PurrfectCutSampler_artefacts/Release/libPurrfect Cut Sampler_SharedCode.a"
-[ 78%] Built target PurrfectCutSampler
-[ 79%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
-[ 81%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
-[ 81%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 31%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
+[ 32%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
+[ 34%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
+[ 35%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
+[ 36%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
+[ 37%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
+[ 39%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
+[ 40%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
+[ 41%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
+[ 42%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.cpp.o
+[ 43%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
+[ 45%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
+[ 46%] Building C object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
+[ 47%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.cpp.o
+[ 48%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
+[ 50%] Building C object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
+[ 51%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_events/juce_events.cpp.o
+[ 52%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_core/juce_core.cpp.o
+[ 53%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
+[ 54%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
+[ 56%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_events/juce_events.cpp.o
+[ 57%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core.cpp.o
+[ 58%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.cpp.o
+[ 59%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
+[ 60%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
+[ 62%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
+[ 63%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
+[ 64%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.cpp.o
+[ 65%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.cpp.o
+[ 67%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
+[ 68%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.cpp.o
+[ 69%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.cpp.o
+[ 70%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
+[ 71%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
+[ 73%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.cpp.o
+[ 74%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.cpp.o
+[ 75%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
+[ 76%] Linking CXX static library "PurrfectCutSampler_artefacts/Release/libPurrfect Cut Sampler_SharedCode.a"
+[ 76%] Built target PurrfectCutSampler
+[ 78%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
+[ 79%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 80%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
+[ 81%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
 [ 82%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
-[ 84%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
-[ 85%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
-[ 86%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
-[ 87%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
-[ 89%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
+[ 84%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 85%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
+[ 86%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
+[ 87%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
 [ 90%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
-[ 91%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
-[ 93%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
-[ 93%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
-[ 95%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
-[ 96%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
-[ 97%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
-[ 98%] Linking CXX executable "PurrfectCutSampler_artefacts/Release/Standalone/Purrfect Cut Sampler"
-[ 98%] Built target PurrfectCutSampler_Standalone
+[ 90%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 91%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 92%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 93%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 95%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
+[ 96%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
+[ 97%] Linking CXX executable "PurrfectCutSampler_artefacts/Release/Standalone/Purrfect Cut Sampler"
+[ 97%] Built target PurrfectCutSampler_Standalone
+[ 98%] Linking CXX executable "PurrfectCut_artefacts/Release/Purrfect Cut"
+[ 98%] Built target PurrfectCut
 [100%] Linking CXX shared module "PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3/Contents/x86_64-linux/Purrfect Cut Sampler.so"
 removing moduleinfo.json
 creating /home/runner/work/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3/Contents/Resources/moduleinfo.json
 [100%] Built target PurrfectCutSampler_VST3
 Started validating: /home/runner/work/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3
-Random seed: 0x62b72a2
+Random seed: 0x46e673c
 Validation started
 Strictness level: 5
 -----------------------------------------------------------------
