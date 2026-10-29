@@ -300,8 +300,8 @@ struct PurrfectSamplerEditor::Impl
     }
 };
 
-// impl is still null while its constructor runs (setSize calls resized and paint), so those two skip until it exists
-PurrfectSamplerEditor::PurrfectSamplerEditor(PurrfectSamplerProcessor& p) : AudioProcessorEditor(&p), impl(std::make_unique<Impl>(*this, p)) { resized(); }
+// impl is assigned in the constructor body, so it is null while Impl runs (setSize calls resized and paint); those skip until it exists
+PurrfectSamplerEditor::PurrfectSamplerEditor(PurrfectSamplerProcessor& p) : AudioProcessorEditor(&p) { impl = std::make_unique<Impl>(*this, p); resized(); }
 PurrfectSamplerEditor::~PurrfectSamplerEditor() = default;
 void PurrfectSamplerEditor::paint(Graphics& g) { g.fillAll(kBg); if (!impl) return; catui::drawWoodCheeks(g, getLocalBounds(), juce::roundToInt(kCheek * impl->scale())); }
 void PurrfectSamplerEditor::resized()
