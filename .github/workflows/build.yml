@@ -34,6 +34,7 @@ jobs:
       - name: pluginval level 5 (Linux)
         if: runner.os == 'Linux'
         run: |
+          set +e +o pipefail
           curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_Linux.zip && unzip -q pv.zip
           xvfb-run -a ./pluginval --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | tee -a ci.log; rc=${PIPESTATUS[0]}
           if [ $rc -ne 0 ]; then
