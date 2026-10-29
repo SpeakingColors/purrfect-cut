@@ -300,15 +300,18 @@ struct PurrfectSamplerEditor::Impl
     }
 };
 
-PurrfectSamplerEditor::PurrfectSamplerEditor(PurrfectSamplerProcessor& p) : AudioProcessorEditor(&p), impl(std::make_unique<Impl>(*this, p)) {}
+// impl is still null while its constructor runs (setSize calls resized and paint), so those two skip until it exists
+PurrfectSamplerEditor::PurrfectSamplerEditor(PurrfectSamplerProcessor& p) : AudioProcessorEditor(&p), impl(std::make_unique<Impl>(*this, p)) { resized(); }
 PurrfectSamplerEditor::~PurrfectSamplerEditor() = default;
-void PurrfectSamplerEditor::paint(Graphics& g) { g.fillAll(kBg); catui::drawWoodCheeks(g, getLocalBounds(), juce::roundToInt(kCheek * impl->scale())); }
+void PurrfectSamplerEditor::paint(Graphics& g) { g.fillAll(kBg); if (!impl) return; catui::drawWoodCheeks(g, getLocalBounds(), juce::roundToInt(kCheek * impl->scale())); }
 void PurrfectSamplerEditor::resized()
 {
+    if (!impl) return;
     const float s = impl->scale();
     impl->content.setBounds(juce::roundToInt(kCheek * s), 0, kContentW, kBaseH); impl->content.setTransform(juce::AffineTransform::scale(s)); impl->layout();
 }
 void PurrfectSamplerEditor::mouseDoubleClick(const juce::MouseEvent& e)
 {
+    if (!impl) return;
     const auto p = e.getEventRelativeTo(this).getPosition(); if (p.x < kCheek * impl->scale() || p.x > getWidth() - kCheek * impl->scale()) setSize(kBaseW, kBaseH);
 }
