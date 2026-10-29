@@ -40,7 +40,7 @@ jobs:
           if [ $rc -ne 0 ]; then
             sudo apt-get install -y gdb > /dev/null
             echo "=== backtrace of the crash ===" | tee -a ci.log
-            xvfb-run -a gdb -batch -ex run -ex bt -ex "thread apply all bt 12" --args ./pluginval --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | tail -80 | tee -a ci.log
+            xvfb-run -a gdb -batch -ex run -ex "bt 14" --args ./pluginval --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | grep -E "^#|SIG" | cut -c1-230 | tail -30 | tee -a ci.log
           fi
           exit $rc
       - name: pluginval level 5 (Windows)
