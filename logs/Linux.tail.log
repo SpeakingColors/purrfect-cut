@@ -1,3 +1,69 @@
+[ 26%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
+[ 27%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
+[ 28%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
+[ 29%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
+[ 30%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
+[ 31%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
+[ 32%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
+[ 34%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
+[ 35%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_graphics/juce_graphics.cpp.o
+[ 36%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
+[ 37%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.cpp.o
+[ 38%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
+[ 39%] Building C object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
+[ 40%] Building C object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
+[ 41%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_events/juce_events.cpp.o
+[ 42%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_core/juce_core.cpp.o
+[ 43%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_events/juce_events.cpp.o
+[ 44%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core.cpp.o
+[ 45%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
+[ 46%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
+[ 47%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
+[ 48%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_data_structures/juce_data_structures.cpp.o
+[ 49%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.cpp.o
+[ 50%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
+[ 51%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
+[ 52%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.cpp.o
+[ 53%] Linking CXX static library libcat_ui.a
+[ 54%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.cpp.o
+[ 55%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
+[ 55%] Built target cat_ui
+[ 56%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/src/plugin/PluginProcessor.cpp.o
+In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:6,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginProcessor.h:8,
+                 from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginProcessor.cpp:1:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::del()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:60:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   60 |         if (!hasSel()) return false; const size_t a = selA; Edit e = begin(); splice(e, a, selB - a, Audio {}); finish(e); selA = selB = a; cursor = a; e_after(); return true;
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:60:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   60 |         if (!hasSel()) return false; const size_t a = selA; Edit e = begin(); splice(e, a, selB - a, Audio {}); finish(e); selA = selB = a; cursor = a; e_after(); return true;
+      |                                      ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::paste()’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:64:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   64 |         if (!hasClip() || empty()) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; Edit e = begin(); splice(e, a, b - a, clip_); finish(e);
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:64:50: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   64 |         if (!hasClip() || empty()) return false; const size_t a = hasSel() ? selA : cursor, b = hasSel() ? selB : cursor; Edit e = begin(); splice(e, a, b - a, clip_); finish(e);
+      |                                                  ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::replace(const purrfect::Audio&)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:70:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   70 |         if (empty() || a.size() == 0) return false; const auto [x, y] = range(); Edit e = begin(); splice(e, x, y - x, a); finish(e); selA = x; selB = x + a.size(); cursor = x; e_after(); return true;
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:70:53: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   70 |         if (empty() || a.size() == 0) return false; const auto [x, y] = range(); Edit e = begin(); splice(e, x, y - x, a); finish(e); selA = x; selB = x + a.size(); cursor = x; e_after(); return true;
+      |                                                     ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::normalize(float)’:
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:78:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   78 |         if (empty()) return false; const auto [a, b] = range(); float pk = 0; for (size_t i = a; i < b; ++i) pk = std::max(pk, std::max(std::fabs(cur_.L[i]), std::fabs(cur_.R[i])));
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:78:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   78 |         if (empty()) return false; const auto [a, b] = range(); float pk = 0; for (size_t i = a; i < b; ++i) pk = std::max(pk, std::max(std::fabs(cur_.L[i]), std::fabs(cur_.R[i])));
+      |                                    ^~~~~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:79:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   79 |         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
+      |         ^~
+/home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h:79:39: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
    79 |         if (pk < 1e-6f) return false; return gain(targetDb - 20.f * std::log10(pk));
       |                                       ^~~~~~
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/EditDoc.h: In member function ‘bool purrfect::EditDoc::undo()’:
@@ -92,7 +158,8 @@ In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:191:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
   191 |                 if (!v.on) continue; v.glo = kgl > 0.f ? v.glo * kgl : 0.f; if (std::fabs(v.glo) < 1e-4f) v.glo = 0.f;
       |                                      ^
-[ 56%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/src/plugin/PluginEditor.cpp.o
+[ 57%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/src/plugin/PluginEditor.cpp.o
+[ 58%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
 In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:6,
                  from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginProcessor.h:8,
                  from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginEditor.h:6,
@@ -223,10 +290,9 @@ In file included from /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../
 /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/../core/Sampler.h:191:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
   191 |                 if (!v.on) continue; v.glo = kgl > 0.f ? v.glo * kgl : 0.f; if (std::fabs(v.glo) < 1e-4f) v.glo = 0.f;
       |                                      ^
-[ 57%] Building CXX object CMakeFiles/PurrfectCut.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.cpp.o
-[ 58%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
 [ 59%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.cpp.o
 [ 60%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
+[ 61%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
 In file included from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_core/system/juce_StandardHeader.h:108,
                  from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_core/juce_core.h:215,
                  from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_graphics/juce_graphics.h:67,
@@ -238,7 +304,6 @@ In file included from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/ju
 /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp:61:2: note: in expansion of macro ‘JUCE_COMPILER_WARNING’
    61 |  JUCE_COMPILER_WARNING ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
       |  ^~~~~~~~~~~~~~~~~~~~~
-[ 61%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
 [ 62%] Building CXX object CMakeFiles/PurrfectCutSampler.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
 [ 63%] Linking CXX executable "PurrfectCut_artefacts/Release/Purrfect Cut"
 [ 63%] Built target PurrfectCut
@@ -261,21 +326,21 @@ In file included from /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/ju
 [ 81%] Linking CXX static library "PurrfectCutSampler_artefacts/Release/libPurrfect Cut Sampler_SharedCode.a"
 [ 81%] Built target PurrfectCutSampler
 [ 82%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
-[ 83%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
-[ 84%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
-[ 85%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
-[ 86%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 83%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 84%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
+[ 85%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
 [ 87%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
-[ 88%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 87%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 89%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
 [ 89%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
-[ 90%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
-[ 91%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
-[ 92%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
-[ 95%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
-[ 95%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
-[ 95%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
-[ 96%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
-[ 97%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
+[ 90%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 91%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
+[ 92%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 93%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 94%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 95%] Building CXX object CMakeFiles/PurrfectCutSampler_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
+[ 96%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 97%] Building CXX object CMakeFiles/PurrfectCutSampler_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
 [ 98%] Linking CXX executable "PurrfectCutSampler_artefacts/Release/Standalone/Purrfect Cut Sampler"
 [ 98%] Built target PurrfectCutSampler_Standalone
 [100%] Linking CXX shared module "PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3/Contents/x86_64-linux/Purrfect Cut Sampler.so"
@@ -283,7 +348,7 @@ removing moduleinfo.json
 creating /home/runner/work/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3/Contents/Resources/moduleinfo.json
 [100%] Built target PurrfectCutSampler_VST3
 Started validating: /home/runner/work/purrfect-cut/purrfect-cut/build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3
-Random seed: 0x20a7955
+Random seed: 0x3ba8938
 Validation started
 Strictness level: 5
 -----------------------------------------------------------------
@@ -318,74 +383,7 @@ Completed tests in pluginval / Plugin programs
 Starting tests in: pluginval / Editor...
 Segmentation fault (core dumped)
 === backtrace of the crash ===
-#9  juce::JuceVST3EditController::JuceVST3Editor::createContentWrapperComponentIfNeeded () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp:2428
-#10 0x00007ffff4d8bfb4 in non-virtual thunk to juce::JuceVST3EditController::createView(char const*) () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp:1439
-#11 0x0000555555897359 in juce::VST3PluginInstance::hasEditor() const ()
-#12 0x0000555555678dd8 in EditorTest::runTest(PluginTests&, juce::AudioPluginInstance&) ()
-#13 0x000055555566efdf in std::_Function_handler<void (), PluginTests::testType(juce::PluginDescription const&)::{lambda()#1}>::_M_invoke(std::_Any_data const&) ()
-#14 0x000055555582c63a in std::_Function_handler<void (int), juce::InternalMessageQueue::InternalMessageQueue()::{lambda(int)#1}>::_M_invoke(std::_Any_data const&, int&&) ()
-#15 0x000055555581f3a2 in std::_Function_handler<void (), juce::LinuxEventLoop::registerFdCallback(int, std::function<void (int)>, short)::{lambda()#1}>::_M_invoke(std::_Any_data const&) ()
-#16 0x00005555558296b1 in juce::MessageManager::runDispatchLoop() ()
-#17 0x0000555555654a41 in juce::JUCEApplicationBase::main() ()
-#18 0x00007ffff7a2a8c1 in __libc_start_call_main (main=main@entry=0x55555564dfa0 <main>, argc=argc@entry=5, argv=argv@entry=0x7fffffffd5f8) at ../sysdeps/nptl/libc_start_call_main.h:59
-#19 0x00007ffff7a2a9d8 in __libc_start_main_impl (main=0x55555564dfa0 <main>, argc=5, argv=0x7fffffffd5f8, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffd5e8) at ../csu/libc-start.c:360
-#20 0x00005555556596b5 in _start ()
-
-Thread 10 (Thread 0x7fffeeffe6c0 (LWP 4940) "pluginval"):
-#0  __syscall_cancel_arch () at ../sysdeps/unix/sysv/linux/x86_64/syscall_cancel.S:56
-#1  0x00007ffff7aa82fc in __internal_syscall_cancel (a1=a1@entry=93825005114996, a2=<optimized out>, a3=a3@entry=0, a4=a4@entry=140737203133536, a5=a5@entry=0, a6=a6@entry=4294967295, nr=202) at ./nptl/cancellation.c:49
-#2  0x00007ffff7aa86d7 in __futex_abstimed_wait_common64 (private=0, futex_word=0x55555619d674, expected=0, op=137, abstime=0x7fffeeffdc60, cancel=true) at ./nptl/futex-internal.c:57
-#3  __futex_abstimed_wait_common (futex_word=0x55555619d674, expected=0, clockid=1, abstime=0x7fffeeffdc60, private=0, cancel=true) at ./nptl/futex-internal.c:87
-#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x55555619d674, expected=expected@entry=14, clockid=clockid@entry=1, abstime=abstime@entry=0x7fffeeffdc60, private=private@entry=0) at ./nptl/futex-internal.c:139
-#5  0x00007ffff7aab709 in __pthread_cond_wait_common (cond=<optimized out>, mutex=0x55555619d628, clockid=1, abstime=<optimized out>) at ./nptl/pthread_cond_wait.c:421
-#6  ___pthread_cond_clockwait64 (cond=<optimized out>, mutex=0x55555619d628, clockid=1, abstime=<optimized out>) at ./nptl/pthread_cond_wait.c:517
-#7  ___pthread_cond_clockwait64 (cond=<optimized out>, mutex=0x55555619d628, clockid=1, abstime=<optimized out>) at ./nptl/pthread_cond_wait.c:505
-#8  0x00005555557b2dd8 in juce::WaitableEvent::wait(double) const ()
-#9  0x000055555582cce0 in juce::Timer::TimerThread::run() ()
-#10 0x00005555557b2f1c in juce::Thread::threadEntryPoint() ()
-#11 0x00005555557b315d in juce::Thread::createNativeThread(juce::Thread::Priority)::{lambda(void*)#1}::_FUN(void*) ()
-
-Thread 9 (Thread 0x7fffeffff6c0 (LWP 4939) "pluginval"):
-#0  __syscall_cancel_arch () at ../sysdeps/unix/sysv/linux/x86_64/syscall_cancel.S:56
-#1  0x00007ffff7aa82fc in __internal_syscall_cancel (a1=a1@entry=93825005087188, a2=<optimized out>, a3=a3@entry=3825228848, a4=a4@entry=140737219914992, a5=a5@entry=0, a6=a6@entry=4294967295, nr=202) at ./nptl/cancellation.c:49
-#2  0x00007ffff7aa86d7 in __futex_abstimed_wait_common64 (private=32767, futex_word=0x5555561969d4, expected=3825228848, op=32630, abstime=0x7fffefffecf0, cancel=true) at ./nptl/futex-internal.c:57
-#3  __futex_abstimed_wait_common (futex_word=0x5555561969d4, expected=3825228848, clockid=1, abstime=0x7fffefffecf0, private=32767, cancel=true) at ./nptl/futex-internal.c:87
-#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555561969d4, expected=expected@entry=2, clockid=clockid@entry=1, abstime=abstime@entry=0x7fffefffecf0, private=private@entry=0) at ./nptl/futex-internal.c:139
-#5  0x00007ffff7aab709 in __pthread_cond_wait_common (cond=<optimized out>, mutex=0x555556196988, clockid=1, abstime=<optimized out>) at ./nptl/pthread_cond_wait.c:421
-#6  ___pthread_cond_clockwait64 (cond=<optimized out>, mutex=0x555556196988, clockid=1, abstime=<optimized out>) at ./nptl/pthread_cond_wait.c:517
-#7  ___pthread_cond_clockwait64 (cond=<optimized out>, mutex=0x555556196988, clockid=1, abstime=<optimized out>) at ./nptl/pthread_cond_wait.c:505
-#8  0x00007ffff5308f0e in std::__condvar::wait_until () at /usr/include/c++/15/bits/std_mutex.h:187
-#9  std::condition_variable::__wait_until_impl<std::chrono::duration<long, std::ratio<1l, 1000000000l> > > () at /usr/include/c++/15/condition_variable:205
-#10 std::condition_variable::wait_until<std::chrono::duration<long, std::ratio<1l, 1000000000l> > > () at /usr/include/c++/15/condition_variable:115
-#11 wait_until<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> >, juce::WaitableEvent::wait(double) const::<lambda()> > () at /usr/include/c++/15/condition_variable:156
-
-Thread 3 (Thread 0x7ffff694f6c0 (LWP 4931) "TimoutThread"):
-#0  __syscall_cancel_arch () at ../sysdeps/unix/sysv/linux/x86_64/syscall_cancel.S:56
-#1  0x00007ffff7aa82fc in __internal_syscall_cancel (a1=a1@entry=0, a2=a2@entry=0, a3=<optimized out>, a4=<optimized out>, a5=a5@entry=0, a6=a6@entry=0, nr=230) at ./nptl/cancellation.c:49
-#2  0x00007ffff7af7c82 in __GI___clock_nanosleep (clock_id=<optimized out>, clock_id@entry=0, flags=flags@entry=0, req=<optimized out>, rem=<optimized out>) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
-#3  0x00007ffff7b07947 in __GI___nanosleep (req=<optimized out>, rem=<optimized out>) at ../sysdeps/unix/sysv/linux/nanosleep.c:25
-#4  0x000055555577dc4d in juce::Thread::sleep(int) ()
-#5  0x0000555555689d0f in non-virtual thunk to PluginsUnitTestRunner::run() ()
-#6  0x00005555557b2f1c in juce::Thread::threadEntryPoint() ()
-#7  0x00005555557b315d in juce::Thread::createNativeThread(juce::Thread::Priority)::{lambda(void*)#1}::_FUN(void*) ()
-#8  0x00007ffff7aabe6b in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:454
-#9  0x00007ffff7b3f55c in __GI___clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
-
-Thread 2 (Thread 0x7ffff79506c0 (LWP 4930) "pluginval"):
-#0  __syscall_cancel_arch () at ../sysdeps/unix/sysv/linux/x86_64/syscall_cancel.S:56
-#1  0x00007ffff7aa82fc in __internal_syscall_cancel (a1=a1@entry=140737347117136, a2=<optimized out>, a3=a3@entry=4155120471, a4=a4@entry=0, a5=a5@entry=0, a6=a6@entry=4294967295, nr=202) at ./nptl/cancellation.c:49
-#2  0x00007ffff7aa86d7 in __futex_abstimed_wait_common64 (private=0, futex_word=0x7ffff794e050, expected=4155120471, op=393, abstime=0x0, cancel=true) at ./nptl/futex-internal.c:57
-#3  __futex_abstimed_wait_common (futex_word=0x7ffff794e050, expected=4155120471, clockid=0, abstime=0x0, private=0, cancel=true) at ./nptl/futex-internal.c:87
-#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x7ffff794e050, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
-#5  0x00007ffff7aab147 in __pthread_cond_wait_common (cond=<optimized out>, mutex=0x7ffff794e008, clockid=0, abstime=0x0) at ./nptl/pthread_cond_wait.c:421
-#6  ___pthread_cond_wait (cond=<optimized out>, mutex=0x7ffff794e008) at ./nptl/pthread_cond_wait.c:453
-#7  0x0000555555da6670 in std::condition_variable::wait(std::unique_lock<std::mutex>&) ()
-#8  0x00005555557b2e2b in juce::WaitableEvent::wait(double) const ()
-#9  0x000055555566fe30 in PluginTests::testType(juce::PluginDescription const&) ()
-#10 0x0000555555670280 in PluginTests::runTest() ()
-#11 0x00005555557f63d7 in juce::UnitTestRunner::runTests(juce::Array<juce::UnitTest*, juce::DummyCriticalSection, 0> const&, long long) ()
-
-Thread 1 (Thread 0x7ffff7c32180 (LWP 4927) "pluginval"):
+Thread 1 "pluginval" received signal SIGSEGV, Segmentation fault.
 #0  0x00007ffff4e03076 in juce::Component::sendMovedResizedMessages () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_gui_basics/components/juce_Component.cpp:1156
 #1  0x00007ffff4da42fa in PurrfectSamplerEditor::resized () at /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginEditor.cpp:311
 #2  0x00007ffff4e02fef in juce::Component::sendMovedResizedMessages () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_gui_basics/components/juce_Component.cpp:1164
@@ -394,7 +392,9 @@ Thread 1 (Thread 0x7ffff7c32180 (LWP 4927) "pluginval"):
 #5  PurrfectSamplerEditor::PurrfectSamplerEditor () at /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginEditor.cpp:304
 #6  0x00007ffff4d8d625 in PurrfectSamplerProcessor::createEditor () at /home/runner/work/purrfect-cut/purrfect-cut/src/plugin/PluginProcessor.cpp:124
 #7  0x00007ffff535ac0d in juce::AudioProcessor::createEditorAndMakeActive () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_audio_processors_headless/processors/juce_AudioProcessor.cpp:919
-#8  0x00007ffff4d8b7fa in juce::JuceVST3EditController::JuceVST3Editor::ContentWrapperComponent::createEditor () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp:2305
+#8  0x00007ffff4d8b7fa in juce::JuceVST3EditController::JuceVST3Editor::ContentWrapperComponent::createEditor () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugi
 #9  juce::JuceVST3EditController::JuceVST3Editor::createContentWrapperComponentIfNeeded () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp:2428
-#10 0x00007ffff4d8bfb4 in non-virtual thunk to juce::JuceVST3EditController::createView(char const*) () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp:1439
+#10 0x00007ffff4d8bfb4 in non-virtual thunk to juce::JuceVST3EditController::createView(char const*) () at /home/runner/work/purrfect-cut/purrfect-cut/build/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_
 #11 0x0000555555897359 in juce::VST3PluginInstance::hasEditor() const ()
+#12 0x0000555555678dd8 in EditorTest::runTest(PluginTests&, juce::AudioPluginInstance&) ()
+#13 0x000055555566efdf in std::_Function_handler<void (), PluginTests::testType(juce::PluginDescription const&)::{lambda()#1}>::_M_invoke(std::_Any_data const&) ()
