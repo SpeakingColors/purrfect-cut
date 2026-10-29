@@ -35,8 +35,8 @@ Call Stack (most recent call first):
   CMakeLists.txt:49 (juce_add_plugin)
 
 
--- Configuring done (130.2s)
--- Generating done (0.3s)
+-- Configuring done (128.3s)
+-- Generating done (0.2s)
 CMake Warning (unused-cli):
   Manually-specified variables were not used by the project:
 
@@ -176,7 +176,7 @@ Test project D:/a/purrfect-cut/purrfect-cut/build
     Start 1: core
 1/8 Test #1: core .............................   Passed    0.02 sec
     Start 2: sampler_and_view
-2/8 Test #2: sampler_and_view .................   Passed    1.68 sec
+2/8 Test #2: sampler_and_view .................   Passed    1.69 sec
     Start 3: pitch
 3/8 Test #3: pitch ............................   Passed    2.46 sec
     Start 4: track
@@ -184,32 +184,32 @@ Test project D:/a/purrfect-cut/purrfect-cut/build
     Start 5: poly
 5/8 Test #5: poly .............................   Passed    0.20 sec
     Start 6: spectral
-6/8 Test #6: spectral .........................   Passed    3.04 sec
+6/8 Test #6: spectral .........................   Passed    3.05 sec
     Start 7: notes
-7/8 Test #7: notes ............................   Passed    1.99 sec
+7/8 Test #7: notes ............................   Passed    2.00 sec
     Start 8: session
-8/8 Test #8: session ..........................   Passed    1.36 sec
+8/8 Test #8: session ..........................   Passed    1.38 sec
 
 100% tests passed out of 8
 
-Total Test time (real) =  11.50 sec
+Total Test time (real) =  11.57 sec
 MSBuild version 18.11.1-1.26513.3+940033be3 for .NET Framework
 
   Checking File Globs
-  Generating PurrfectCutSampler_artefacts/JuceLibraryCode/PurrfectCutSampler_resources.rc
   Generating PurrfectCut_artefacts/JuceLibraryCode/PurrfectCut_resources.rc
+  Generating PurrfectCutSampler_artefacts/JuceLibraryCode/PurrfectCutSampler_resources.rc
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
   Building VST3 manifest helper for PurrfectCutSampler
-  PurrfectCutSampler_rc_lib.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_rc_lib.dir\Release\PurrfectCutSampler_rc_lib.lib
   PurrfectCut_rc_lib.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut_rc_lib.dir\Release\PurrfectCut_rc_lib.lib
+  PurrfectCutSampler_rc_lib.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_rc_lib.dir\Release\PurrfectCutSampler_rc_lib.lib
   -- The CXX compiler identification is MSVC 19.51.36260.0
   -- Detecting CXX compiler ABI info
   -- Detecting CXX compiler ABI info - done
   -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
   -- Detecting CXX compile features
   -- Detecting CXX compile features - done
-  -- Configuring done (1.9s)
+  -- Configuring done (2.0s)
   -- Generating done (0.0s)
   -- Build files have been written to: D:/a/purrfect-cut/purrfect-cut/build/vst3_helpers/PurrfectCutSampler
   MSBuild version 18.11.1-1.26513.3+940033be3 for .NET Framework
@@ -249,8 +249,8 @@ cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-c
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler.vcxproj]
   PluginEditor.cpp
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler.vcxproj]
-cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler.vcxproj]
   juce_audio_processors.cpp
+cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler.vcxproj]
   juce_gui_extra.cpp
 D:\a\purrfect-cut\purrfect-cut\src\plugin\PluginEditor.cpp(250,34): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler.vcxproj]
 D:\a\purrfect-cut\purrfect-cut\src\plugin\PluginEditor.cpp(252,34): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler.vcxproj]
@@ -281,12 +281,12 @@ cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-c
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_VST3.vcxproj]
   juce_audio_plugin_client_AAX.cpp
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_VST3.vcxproj]
+cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_VST3.vcxproj]
   juce_audio_plugin_client_AAX_utils.cpp
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_VST3.vcxproj]
   juce_audio_plugin_client_ARA.cpp
   juce_audio_plugin_client_LV2.cpp
   juce_audio_plugin_client_Standalone.cpp
-cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_VST3.vcxproj]
   juce_audio_plugin_client_Unity.cpp
   juce_audio_plugin_client_VST2.cpp
   juce_audio_plugin_client_VST3.cpp
@@ -298,7 +298,9 @@ cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-c
   test_more.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_more.exe
   test_core.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_core.exe
   test_pitch.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_pitch.exe
+  test_poly.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_poly.exe
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_Standalone.vcxproj]
+  test_spectral.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_spectral.exe
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_Standalone.vcxproj]
   juce_audio_plugin_client_AAX.cpp
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_Standalone.vcxproj]
@@ -313,22 +315,20 @@ cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-c
   juce_audio_plugin_client_VST3.cpp
   test_notes.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_notes.exe
   test_session.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_session.exe
-  test_poly.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_poly.exe
-  test_spectral.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_spectral.exe
   test_track.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\Release\test_track.exe
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut.vcxproj]
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut.vcxproj]
   Main.cpp
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut.vcxproj]
-  juce_audio_utils.cpp
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut.vcxproj]
+  juce_audio_utils.cpp
   juce_audio_processors.cpp
 cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut.vcxproj]
   juce_gui_extra.cpp
   juce_gui_basics.cpp
-  juce_gui_basics_2.cpp
   PurrfectCutSampler_Standalone.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\Standalone\Purrfect Cut Sampler.exe
+  juce_gui_basics_2.cpp
   juce_gui_basics_3.cpp
   juce_gui_basics_4.cpp
   juce_gui_basics_5.cpp
@@ -349,7 +349,7 @@ cl : command line  warning D9002: ignoring unknown option '-g1' [D:\a\purrfect-c
   PurrfectCut.vcxproj -> D:\a\purrfect-cut\purrfect-cut\build\PurrfectCut_artefacts\Release\Purrfect Cut.exe
   Building Custom Rule D:/a/purrfect-cut/purrfect-cut/CMakeLists.txt
 Started validating: D:\a\purrfect-cut\purrfect-cut\build\PurrfectCutSampler_artefacts\Release\VST3\Purrfect Cut Sampler.vst3
-Random seed: 0xe25bac
+Random seed: 0x376ab59
 Validation started
 Strictness level: 5
 -----------------------------------------------------------------
