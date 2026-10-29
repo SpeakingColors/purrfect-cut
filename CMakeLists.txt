@@ -33,6 +33,10 @@ if(PC_BUILD_JUCE)
     FetchContent_MakeAvailable(juce)
   endif()
 
+  include(FetchContent)
+  FetchContent_Declare(cat_ui GIT_REPOSITORY https://github.com/SpeakingColors/cat-ui GIT_TAG ba762e1755bbabd6847076e26c5ed7a9c5d6c76d)
+  FetchContent_MakeAvailable(cat_ui)
+
   # 1. The audio editor (desktop app)
   juce_add_gui_app(PurrfectCut COMPANY_NAME "Studio 87" PRODUCT_NAME "Purrfect Cut")
   target_sources(PurrfectCut PRIVATE src/app/Main.cpp)
@@ -56,6 +60,6 @@ if(PC_BUILD_JUCE)
   target_sources(PurrfectCutSampler PRIVATE src/plugin/PluginProcessor.cpp src/plugin/PluginEditor.cpp)
   target_compile_definitions(PurrfectCutSampler PUBLIC
     JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_VST3_CAN_REPLACE_VST2=0 JUCE_DISPLAY_SPLASH_SCREEN=0 JUCE_USE_MP3AUDIOFORMAT=1)
-  target_link_libraries(PurrfectCutSampler PRIVATE juce::juce_audio_utils juce::juce_audio_formats
+  target_link_libraries(PurrfectCutSampler PRIVATE cat_ui juce::juce_audio_utils juce::juce_audio_formats
       PUBLIC juce::juce_recommended_config_flags juce::juce_recommended_warning_flags)
 endif()

@@ -24,7 +24,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libasound2-dev libx11-dev libxinerama-dev libxext-dev libxrandr-dev libxcursor-dev libxcomposite-dev libfreetype-dev libfontconfig1-dev libgl1-mesa-dev
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-g1" 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
       - name: Core tests (editing model, sampler engine, FX, zoom; no JUCE)
         run: |
           cmake --build build --config Release --target test_core test_more test_pitch test_track test_poly test_spectral test_notes test_session 2>&1 | tee -a ci.log; [ ${PIPESTATUS[0]} -eq 0 ] || exit 1
@@ -34,8 +34,15 @@ jobs:
       - name: pluginval level 5 (Linux)
         if: runner.os == 'Linux'
         run: |
+          set +e +o pipefail
           curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_Linux.zip && unzip -q pv.zip
-          xvfb-run -a ./pluginval --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
+          xvfb-run -a ./pluginval --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | tee -a ci.log; rc=${PIPESTATUS[0]}
+          if [ $rc -ne 0 ]; then
+            sudo apt-get install -y gdb > /dev/null
+            echo "=== backtrace of the crash ===" | tee -a ci.log
+            xvfb-run -a gdb -batch -ex run -ex "bt 14" --args ./pluginval --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | grep -E "^#|SIG" | cut -c1-230 | tail -30 | tee -a ci.log
+          fi
+          exit $rc
       - name: pluginval level 5 (Windows)
         if: runner.os == 'Windows'
         run: |

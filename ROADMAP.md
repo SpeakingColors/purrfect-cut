@@ -11,7 +11,8 @@ Audio editor.
 - [x] Interactive mockup v3 with Editor, Sampler and FX tabs
 - [x] Pitch tools in the core with tests: YIN and pYIN pitch tracking, PSOLA auto-tune, harmony, robot, note segmentation, chord detector, spectral shifter, note document and session, offline renderer (34 more automatable parameters)
 - [x] Release packaging: installers (Windows, macOS, Linux Flatpak), uninstallers, PDF manual (test builds, not tested on real machines)
-- [ ] The plugin window is still the generic parameter editor; the mockup window comes with the cat-ui item below
+- [x] Sampler plugin window on cat-ui (wood cheeks, tabs Sampler / FX / Auto-Tune / Harmony, waveform with markers, on-screen keys); written 2026-10-29, compiled by CI, not yet looked at in a real window
+- [ ] Plugin window: info, spectrum and level panels, undo and automation list buttons (as in the mockup)
 
 ## Next
 - [ ] Try it on real files and long files by ear
