@@ -1,29 +1,19 @@
-// Purrfect Cut sampler editor: a plain JUCE panel generated from the parameter table, so every automatable control is on screen.
-// The cat-ui look from the mockup is on the roadmap.
+// Purrfect Cut sampler window: built from the Sampler, FX, Auto-Tune and Harmony tabs of docs/mockup/purrfectcut.html.
+// Wood cheeks, header, tabs, waveform with the region, loop and slice markers, a section for every group of the parameter
+// table (src/core/Params.h) and the on-screen keys. Fixed aspect ratio, resizable from every corner and edge.
+// Not built yet (see ROADMAP): the info, spectrum and level panels, the Editor and Pitch Editor tabs (those are the desktop app).
 #pragma once
 #include "PluginProcessor.h"
 
-class WaveStrip : public juce::Component
-{
-public:
-    explicit WaveStrip(PurrfectSamplerProcessor& p) : proc(p) {}
-    void paint(juce::Graphics&) override;
-private:
-    PurrfectSamplerProcessor& proc;
-};
-
-class PurrfectSamplerEditor : public juce::AudioProcessorEditor, private juce::Timer
+class PurrfectSamplerEditor : public juce::AudioProcessorEditor
 {
 public:
     explicit PurrfectSamplerEditor(PurrfectSamplerProcessor&);
     ~PurrfectSamplerEditor() override;
     void paint(juce::Graphics&) override;
     void resized() override;
+    void mouseDoubleClick(const juce::MouseEvent&) override;
 private:
-    struct Ctl;
-    struct Panel;
-    void timerCallback() override;
-    PurrfectSamplerProcessor& proc;
-    juce::TextButton load { "Load sample" }; juce::Label name; WaveStrip wave;
-    std::unique_ptr<Panel> panel; juce::Viewport view; std::unique_ptr<juce::FileChooser> chooser; int seenVersion = -1;
+    struct Impl;
+    std::unique_ptr<Impl> impl;
 };

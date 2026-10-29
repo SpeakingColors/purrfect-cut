@@ -49,6 +49,7 @@ void PurrfectSamplerProcessor::processBlock(juce::AudioBuffer<float>& buf, juce:
     { const juce::SpinLock::ScopedTryLockType l(lock); if (l.isLocked() && pendingFlag) { std::swap(cur, pending); pendingFlag = false; engine.setSource(cur.get(), pendingRate); seenSerial = -1; } }
     if (seenSerial != sliceSerial.load()) { seenSerial = sliceSerial.load(); engine.setSlices(maps[live.load()]); }
     for (int i = 0; i < kParamCount; ++i) P[i] = raw[i]->load();
+    keyState.processNextMidiBuffer(midi, 0, n, true);
 
     const float* scL = nullptr; const float* scR = nullptr; auto in = getBusBuffer(buf, true, 0);
     const bool haveSc = getBus(true, 0) && getBus(true, 0)->isEnabled() && in.getNumChannels() >= 2;

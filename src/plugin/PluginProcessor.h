@@ -43,6 +43,7 @@ public:
     purrfect::SliceMap currentSlices() const { return maps[live.load()]; }
 
     juce::AudioProcessorValueTreeState apvts;
+    juce::MidiKeyboardState keyState;   // the on-screen keys; merged into the MIDI input in processBlock
 
 private:
     void timerCallback() override;
