@@ -17,7 +17,7 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Linux dependencies
         if: runner.os == 'Linux'
         run: |
@@ -41,7 +41,7 @@ jobs:
         run: |
           curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_Windows.zip && 7z x -y pv.zip > /dev/null
           ./pluginval.exe --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: PurrfectCut-${{ runner.os }}
           path: build/*_artefacts/
