@@ -32,11 +32,13 @@ jobs:
       - name: Build (desktop app and VST3 sampler)
         run: cmake --build build --config Release --parallel 4 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
       - name: pluginval level 5 (Linux)
+        timeout-minutes: 20
         if: runner.os == 'Linux'
         run: |
           curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/download/v1.0.4/pluginval_Linux.zip && unzip -q pv.zip
           xvfb-run -a ./pluginval --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
       - name: pluginval level 5 (Windows)
+        timeout-minutes: 20
         if: runner.os == 'Windows'
         run: |
           curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/download/v1.0.4/pluginval_Windows.zip && 7z x -y pv.zip > /dev/null
