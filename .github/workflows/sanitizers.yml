@@ -1,0 +1,18 @@
+# Runs the engine tests (tests/run.sh) with AddressSanitizer and UBSan: out of bounds access, use after free, undefined behaviour.
+name: sanitizers
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  sanitize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Engine tests with AddressSanitizer and UBSan
+        run: |
+          sed -i 's#g++ #g++ -g -fsanitize=address,undefined -fno-omit-frame-pointer #g' tests/run.sh
+          sh tests/run.sh

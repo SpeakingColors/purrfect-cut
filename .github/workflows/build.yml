@@ -34,12 +34,12 @@ jobs:
       - name: pluginval level 5 (Linux)
         if: runner.os == 'Linux'
         run: |
-          curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_Linux.zip && unzip -q pv.zip
+          curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/download/v1.0.4/pluginval_Linux.zip && unzip -q pv.zip
           xvfb-run -a ./pluginval --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
       - name: pluginval level 5 (Windows)
         if: runner.os == 'Windows'
         run: |
-          curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_Windows.zip && 7z x -y pv.zip > /dev/null
+          curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/download/v1.0.4/pluginval_Windows.zip && 7z x -y pv.zip > /dev/null
           ./pluginval.exe --strictness-level 5 --validate-in-process "build/PurrfectCutSampler_artefacts/Release/VST3/Purrfect Cut Sampler.vst3" 2>&1 | tee -a ci.log; exit ${PIPESTATUS[0]}
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
